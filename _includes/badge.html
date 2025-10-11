@@ -3,15 +3,15 @@
 {% assign base_class = 'inline-flex items-center rounded-full font-medium tracking-tight transition focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-brand-sky/30' %}
 {% case tone %}
   {% when 'impact' %}
-    {% assign tone_class = 'bg-brand-sea/15 text-brand-sea' %}
+    {% assign tone_class = 'border border-brand-forest/25 bg-brand-sea/15 text-brand-forest' %}
   {% when 'department' %}
-    {% assign tone_class = 'bg-brand-sky/15 text-brand-sky' %}
+    {% assign tone_class = 'border border-brand-indigo/25 bg-brand-sky/15 text-brand-indigo' %}
   {% when 'track' %}
-    {% assign tone_class = 'bg-brand-gold/15 text-brand-gold' %}
+    {% assign tone_class = 'border border-brand-amber/25 bg-brand-gold/15 text-brand-amber' %}
   {% when 'neutral' %}
-    {% assign tone_class = 'bg-white/60 text-brand-stone border border-brand-stone/25' %}
+    {% assign tone_class = 'border border-brand-cloud/30 bg-white text-brand-stone' %}
   {% else %}
-    {% assign tone_class = 'bg-brand-indigo/15 text-brand-indigo' %}
+    {% assign tone_class = 'border border-brand-indigo/20 bg-brand-indigo/10 text-brand-indigo' %}
 {% endcase %}
 {% case size %}
   {% when 'sm' %}

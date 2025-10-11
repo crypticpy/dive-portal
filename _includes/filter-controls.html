@@ -8,14 +8,14 @@
     <div class="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
       <div>
         <h2 class="text-lg font-semibold text-brand-navy">Filter projects</h2>
-        <p class="text-sm text-brand-stone/80">Explore the cohort by department, track, tags, or keywords.</p>
+        <p class="text-sm text-brand-stone">Explore the cohort by department, track, tags, or keywords.</p>
       </div>
       <div class="flex w-full flex-col gap-3 sm:flex-row sm:items-center sm:justify-end">
         <div class="relative flex-1">
-          <span class="pointer-events-none absolute inset-y-0 left-4 flex items-center text-brand-stone/50">
+          <span class="pointer-events-none absolute inset-y-0 left-4 flex items-center text-brand-cloud">
             <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="m21 21-4.35-4.35M17 10a7 7 0 1 1-14 0 7 7 0 0 1 14 0Z"/></svg>
           </span>
-          <input type="search" data-filter="search" data-search-index="{{ '/search.json' | relative_url }}" class="w-full rounded-full border border-brand-sky/20 bg-white py-3 pl-12 pr-5 text-sm text-brand-slate shadow-subtle placeholder:text-brand-stone/60 focus:border-brand-sky focus:outline-none focus:ring-4 focus:ring-brand-sky/20" placeholder="Search teams, disciplines, or tags…">
+          <input type="search" data-filter="search" data-search-index="{{ '/search.json' | relative_url }}" class="w-full rounded-full border border-brand-sky/20 bg-white py-3 pl-12 pr-5 text-sm text-brand-slate shadow-subtle placeholder:text-brand-cloud focus:border-brand-sky focus:outline-none focus:ring-4 focus:ring-brand-sky/20" placeholder="Search teams, disciplines, or tags…">
         </div>
         <button type="button" data-filter-clear class="inline-flex items-center justify-center rounded-full border border-brand-sky/30 px-4 py-2 text-sm font-semibold text-brand-sky transition hover:border-brand-indigo hover:text-brand-indigo focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-brand-sky/30">Clear filters</button>
       </div>
@@ -23,7 +23,7 @@
 
     <div class="grid gap-6 md:grid-cols-2">
       <div>
-        <h3 class="text-xs font-semibold uppercase tracking-[0.28em] text-brand-stone/60">Departments</h3>
+        <h3 class="text-xs font-semibold uppercase tracking-[0.28em] text-brand-cloud">Departments</h3>
         <div class="mt-3 flex flex-wrap gap-2" role="group" aria-label="Filter by department">
           {% for department in departments %}
             {% assign value = department | slugify %}
@@ -32,7 +32,7 @@
         </div>
       </div>
       <div>
-        <h3 class="text-xs font-semibold uppercase tracking-[0.28em] text-brand-stone/60">Tracks</h3>
+        <h3 class="text-xs font-semibold uppercase tracking-[0.28em] text-brand-cloud">Tracks</h3>
         <div class="mt-3 flex flex-wrap gap-2" role="group" aria-label="Filter by track">
           {% for track in tracks %}
             {% assign value = track | slugify %}
@@ -44,8 +44,8 @@
 
     <div>
       <div class="flex items-center justify-between">
-        <h3 class="text-xs font-semibold uppercase tracking-[0.28em] text-brand-stone/60">Tags</h3>
-        <span class="text-xs text-brand-stone/60">Multi-select supported</span>
+        <h3 class="text-xs font-semibold uppercase tracking-[0.28em] text-brand-cloud">Tags</h3>
+        <span class="text-xs text-brand-cloud">Multi-select supported</span>
       </div>
       <div class="mt-3 flex flex-wrap gap-2" role="group" aria-label="Filter by tag">
         {% for tag in tags %}

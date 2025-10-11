@@ -84,6 +84,12 @@
     transition: color 150ms ease, background-color 150ms ease, box-shadow 150ms ease;
   }
 
+  input::placeholder,
+  textarea::placeholder {
+    color: theme("colors.brand.cloud");
+    opacity: 1;
+  }
+
   ::selection {
     background-color: rgba(46, 106, 247, 0.25);
   }

@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", () => {
       pill.className = "inline-flex items-center gap-2 rounded-full bg-brand-sky/15 px-3 py-1.5 text-xs font-semibold text-brand-navy transition hover:bg-brand-sky/25 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-brand-sky/30";
       pill.dataset.removeFilter = type;
       pill.dataset.removeValue = value ?? "";
-      pill.innerHTML = `${label}<span class=\"text-brand-sky/70\">×</span>`;
+      pill.innerHTML = `${label}<span class="text-brand-indigo">×</span>`;
       activePillsEl.appendChild(pill);
     };
 

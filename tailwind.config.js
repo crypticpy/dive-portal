@@ -14,13 +14,16 @@ module.exports = {
       colors: {
         brand: {
           navy: "#1f2b63",
-          indigo: "#3d4ba0",
+          indigo: "#364799",
           sky: "#2e6af7",
           sea: "#009f4d",
+          forest: "#0b7d41",
           gold: "#f3a712",
+          amber: "#a15d00",
           cream: "#f8f3eb",
           slate: "#1f2933",
-          stone: "#6b7280"
+          stone: "#4a5568",
+          cloud: "#667085"
         },
         surface: {
           base: "#f5f6fb",
@@ -69,6 +72,9 @@ module.exports = {
               borderLeftColor: theme("colors.brand.indigo"),
               color: theme("colors.brand.navy"),
               fontStyle: "normal"
+            },
+            'p strong': {
+              color: theme("colors.brand.slate")
             }
           }
         }

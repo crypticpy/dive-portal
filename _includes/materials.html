@@ -1,23 +1,23 @@
 <section aria-labelledby="cohort-materials" class="overflow-hidden rounded-2xl border border-brand-sky/10 bg-white shadow-subtle">
   <div class="border-b border-brand-sky/10 bg-brand-sky/5 px-6 py-4">
     <h2 id="cohort-materials" class="text-lg font-semibold text-brand-navy">Learning materials</h2>
-    <p class="text-xs uppercase tracking-[0.28em] text-brand-stone/50">Guides and workshops for this cohort</p>
+    <p class="text-xs uppercase tracking-[0.28em] text-brand-cloud">Guides and workshops for this cohort</p>
   </div>
   <div class="space-y-6 px-6 py-6 sm:py-8">
     {% for group in include.materials %}
       <div class="rounded-2xl border border-brand-sky/10 bg-white/80 p-5 shadow-subtle">
-        <h3 class="text-sm font-semibold uppercase tracking-wide text-brand-stone/70">{{ group[0] | replace: '_', ' ' | capitalize }}</h3>
+        <h3 class="text-sm font-semibold uppercase tracking-wide text-brand-cloud">{{ group[0] | replace: '_', ' ' | capitalize }}</h3>
         <ul class="mt-4 grid gap-3">
           {% for item in group[1] %}
             <li>
               <a class="group flex items-center justify-between rounded-xl border border-brand-sky/15 bg-white px-4 py-3 text-sm font-semibold text-brand-navy transition hover:border-brand-sky hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-brand-sky/30" href="{{ item.url }}">
                 <span class="flex items-center gap-3">
-                  <span class="inline-flex h-9 w-9 items-center justify-center rounded-full bg-brand-sky/10 text-brand-sky">
+                  <span class="inline-flex h-9 w-9 items-center justify-center rounded-full bg-brand-sky/10 text-brand-indigo">
                     <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 4.5h15v15h-15z"/><path stroke-linecap="round" stroke-linejoin="round" d="M9 2.5h6m-3 11v5"/></svg>
                   </span>
                   <span class="flex flex-col">
                     {{ item.title }}
-                    <span class="text-xs font-medium uppercase tracking-wide text-brand-stone/60">{{ item.type }}</span>
+                    <span class="text-xs font-medium uppercase tracking-wide text-brand-cloud">{{ item.type }}</span>
                   </span>
                 </span>
                 <svg class="h-4 w-4 text-brand-sky transition group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m0 0-5 5m5-5-5-5"/></svg>

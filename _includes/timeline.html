@@ -1,7 +1,7 @@
 <section aria-labelledby="cohort-timeline" class="overflow-hidden rounded-2xl border border-brand-sky/10 bg-white shadow-subtle">
   <div class="border-b border-brand-sky/10 bg-brand-sky/5 px-6 py-4">
     <h2 id="cohort-timeline" class="text-lg font-semibold text-brand-navy">Key events</h2>
-    <p class="text-xs uppercase tracking-[0.28em] text-brand-stone/50">Milestones for this cohort</p>
+    <p class="text-xs uppercase tracking-[0.28em] text-brand-cloud">Milestones for this cohort</p>
   </div>
   <div class="relative px-6 py-6 sm:py-8">
     <span class="pointer-events-none absolute left-6 top-0 bottom-0 w-px bg-gradient-to-b from-brand-sky/40 via-brand-indigo/30 to-brand-sea/30" aria-hidden="true"></span>
@@ -16,7 +16,7 @@
         {% assign icon = 'flag' %}
       {% endif %}
         <li class="relative ml-10 rounded-2xl border border-brand-sky/15 bg-white/80 p-5 shadow-subtle backdrop-blur">
-          <div class="absolute left-[-46px] top-1 flex h-10 w-10 items-center justify-center rounded-full bg-brand-sky/15 text-brand-sky shadow-subtle">
+          <div class="absolute left-[-46px] top-1 flex h-10 w-10 items-center justify-center rounded-full bg-brand-sky/15 text-brand-indigo shadow-subtle">
           {% case icon %}
             {% when 'spark' %}
               <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v3m0 12v3m9-9h-3M6 12H3m14.364-6.364-2.121 2.121M8.757 15.243l-2.121 2.121m0-12.728 2.121 2.121m7.486 7.486 2.121 2.121"/></svg>
@@ -28,9 +28,9 @@
               <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M6.75 6.75h10.5v10.5H6.75z"/><path stroke-linecap="round" stroke-linejoin="round" d="M9 3.75h6m-3 7.5v3.75"/></svg>
           {% endcase %}
           </div>
-          <p class="text-xs font-semibold uppercase tracking-[0.28em] text-brand-stone/60">{{ event.date | date: "%B %-d, %Y" }}</p>
+          <p class="text-xs font-semibold uppercase tracking-[0.28em] text-brand-cloud">{{ event.date | date: "%B %-d, %Y" }}</p>
           <h3 class="mt-2 text-lg font-semibold text-brand-navy">{{ event.name }}</h3>
-          <div class="mt-2 space-y-1 text-sm text-brand-stone/80">
+          <div class="mt-2 space-y-1 text-sm text-brand-stone">
             {% if event.time %}<p><strong class="font-semibold text-brand-sky">Time:</strong> {{ event.time }}</p>{% endif %}
             {% if event.location %}<p><strong class="font-semibold text-brand-sky">Location:</strong> {{ event.location }}</p>{% endif %}
           </div>
