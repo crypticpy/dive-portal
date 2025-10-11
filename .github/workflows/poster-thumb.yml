@@ -24,6 +24,15 @@ jobs:
           set -euo pipefail
           find cohorts -name poster.pdf | while read -r poster; do
             thumb="$(dirname "$poster")/thumb.jpg"
+            if [ ! -s "$poster" ]; then
+              echo "Skipping empty poster placeholder at $poster"
+              continue
+            fi
+            signature="$(head -c4 "$poster" 2>/dev/null || true)"
+            if [ "$signature" != "%PDF" ]; then
+              echo "Skipping non-PDF file at $poster (signature: $signature)"
+              continue
+            fi
             if [ ! -f "$thumb" ] || [ "$poster" -nt "$thumb" ]; then
               echo "Generating thumbnail for $poster"
               magick -density 150 "$poster"[0] -quality 85 -resize 800x -background white -alpha remove -alpha off "$thumb"

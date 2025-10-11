@@ -1,0 +1,12 @@
+{
+  "generated_at": "2025-10-11T20:39:44Z",
+  "docs": [
+    {
+      "slug": "transit-on-time",
+      "title": "On-Time Transit Analytics",
+      "summary": "Uses APC/AVL to analyze late arrivals on Bus Line 7 and recommend interventions.",
+      "tags": "transportation reliability apc avl",
+      "url": "/cohorts/2025/teams/transit-on-time/"
+    }
+  ]
+}

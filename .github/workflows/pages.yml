@@ -35,10 +35,15 @@ jobs:
           node-version: "18"
 
       - name: Install npm dependencies
-        run: npm install
+        run: npm ci
 
       - name: Build CSS
         run: npm run build:css
+
+      - name: Smoke check configuration
+        env:
+          JEKYLL_ENV: production
+        run: bundle exec jekyll doctor
 
       - name: Build Jekyll site
         env:

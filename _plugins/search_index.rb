@@ -1,5 +1,6 @@
 require "json"
 require "fileutils"
+require "time"
 
 module Dive
   class SearchIndexFile < Jekyll::StaticFile

@@ -1,0 +1,46 @@
+name: Update cohort schedule
+description: Provide cohort milestone updates without editing YAML manually.
+title: "Schedule: Cohort YYYY"
+labels:
+  - content:schedule
+body:
+  - type: input
+    id: cohort_year
+    attributes:
+      label: Cohort year
+      description: "Four-digit year for the cohort (e.g., 2025)."
+      placeholder: "2025"
+    validations:
+      required: true
+  - type: textarea
+    id: schedule_entries
+    attributes:
+      label: Schedule entries (YAML)
+      description: |
+        Update the YAML list below. Each entry must include at least `name` and an ISO date (`YYYY-MM-DD`).
+        Optional keys: `time`, `location`, `description`, `type`, `state`, `icon`.
+      render: yaml
+      value: |
+        - name: Kickoff
+          date: 2025-08-01
+          time: 09:00 - 11:30
+          location: City Hall
+          description: Cohort welcome and orientation.
+        - name: Midpoint Check-in
+          date: 2025-10-01
+          time: 13:00 - 15:00
+          location: Austin Public Library
+          description: Progress share-out and coaching.
+        - name: Final Showcase
+          date: 2025-11-15
+          time: 17:30 - 19:00
+          location: Austin City Hall
+          description: Presentations and celebration.
+    validations:
+      required: true
+  - type: textarea
+    id: changelog
+    attributes:
+      label: Notes for reviewers
+      description: "Optional context for this schedule update."
+      placeholder: "Highlight what's new or removed."

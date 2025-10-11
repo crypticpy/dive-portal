@@ -14,6 +14,13 @@ if (!ISSUE_BODY.trim()) {
   process.exit(1);
 }
 
+function escapeYaml(value) {
+  return (value || '')
+    .replace(/\\/g, '\\\\')
+    .replace(/"/g, '\\"')
+    .replace(/\n/g, '\\n');
+}
+
 function normalizeKey(key) {
   return key
     .trim()
@@ -71,49 +78,42 @@ const thumbnailPath = `/cohorts/${cohortYear}/teams/${slug}/thumb.jpg`;
 
 const frontMatter = `---
 layout: team
-title: "${title.replace(/"/g, '\"')}"
+title: "${escapeYaml(title)}"
 slug: ${slug}
 cohort: ${cohortYear}
-department: "${department.replace(/"/g, '\"')}"
-track: "${track.replace(/"/g, '\"')}"
+department: "${escapeYaml(department)}"
+track: "${escapeYaml(track)}"
 coach:
-  name: "${coachName.replace(/"/g, '\"')}"
-  email: "${coachEmail}"
+  name: "${escapeYaml(coachName)}"
+  email: "${escapeYaml(coachEmail)}"
 members:
-${members.map((member) => `  - name: "${member.name.replace(/"/g, '\"')}"`).join('\n') || '  - name: TBD'}
+${members.map((member) => `  - name: "${escapeYaml(member.name)}"`).join('\n') || '  - name: TBD'}
 links:
-  dashboard_url: "${dashboardUrl}"
+  dashboard_url: "${escapeYaml(dashboardUrl)}"
   poster_pdf: "${posterPath}"
   idea_sheet_pdf: "${ideaSheetPath}"
-summary: "${summary.replace(/"/g, '\"')}"
+summary: "${escapeYaml(summary)}"
 methods:
-${methods.map((method) => `  - ${method}`).join('\n') || '  - TBD'}
+${methods.map((method) => `  - "${escapeYaml(method)}"`).join('\n') || '  - TBD'}
 tags:
-${tags.map((tag) => `  - ${tag}`).join('\n') || '  - TBD'}
+${tags.map((tag) => `  - "${escapeYaml(tag)}"`).join('\n') || '  - TBD'}
 thumbnail: "${thumbnailPath}"
-thumbnail_alt: "Poster thumbnail for ${title.replace(/"/g, '\"')}"
+thumbnail_alt: "Poster thumbnail for ${escapeYaml(title)}"
 accessibility:
-  dashboard_title: "${(values.dashboard_title || title).replace(/"/g, '\"')}"
+  dashboard_title: "${escapeYaml(values.dashboard_title || title)}"
 ---
 
 ${values.project_overview || 'Project narrative forthcoming.'}
 `;
 
 const teamDir = path.join(process.cwd(), 'cohorts', cohortYear, 'teams', slug);
+if (fs.existsSync(teamDir)) {
+  console.error(`Team directory already exists at cohorts/${cohortYear}/teams/${slug}. Aborting to avoid overwriting curated content.`);
+  process.exit(1);
+}
+
 fs.mkdirSync(teamDir, { recursive: true });
 fs.writeFileSync(path.join(teamDir, 'index.md'), frontMatter);
-
-['poster.pdf', 'idea-sheet.pdf'].forEach((filename) => {
-  const filePath = path.join(teamDir, filename);
-  if (!fs.existsSync(filePath)) {
-    fs.writeFileSync(filePath, 'Placeholder - replace via GitHub UI.');
-  }
-});
-
-const thumbPath = path.join(teamDir, 'thumb.jpg');
-if (!fs.existsSync(thumbPath)) {
-  fs.writeFileSync(thumbPath, 'Thumbnail will be generated from poster.pdf.');
-}
 
 console.log(`Scaffolded team at cohorts/${cohortYear}/teams/${slug}`);
 
