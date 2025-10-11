@@ -259,4 +259,131 @@
   .focus-card {
     @apply focus-within:ring-4 focus-within:ring-brand-sky/20 focus-within:ring-offset-2 focus-within:outline-none;
   }
+
+  /* Micro-animations and Motion */
+  /* Smooth scale on hover for interactive elements */
+  .hover-lift {
+    @apply transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-card;
+  }
+
+  .hover-lift-subtle {
+    @apply transition-all duration-300 ease-out hover:-translate-y-0.5 hover:shadow-subtle;
+  }
+
+  /* Smooth scale animation */
+  .hover-scale {
+    @apply transition-transform duration-300 ease-out hover:scale-105;
+  }
+
+  .hover-scale-subtle {
+    @apply transition-transform duration-200 ease-out hover:scale-102;
+  }
+
+  /* Fade in animation for content loading */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 0.4s ease-out;
+  }
+
+  /* Stagger animation for lists */
+  .animate-stagger > * {
+    animation: fadeIn 0.4s ease-out backwards;
+  }
+
+  .animate-stagger > *:nth-child(1) { animation-delay: 0.05s; }
+  .animate-stagger > *:nth-child(2) { animation-delay: 0.1s; }
+  .animate-stagger > *:nth-child(3) { animation-delay: 0.15s; }
+  .animate-stagger > *:nth-child(4) { animation-delay: 0.2s; }
+  .animate-stagger > *:nth-child(5) { animation-delay: 0.25s; }
+  .animate-stagger > *:nth-child(6) { animation-delay: 0.3s; }
+
+  /* Smooth entrance for modals/panels */
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.3s ease-out;
+  }
+
+  /* Pulse effect for attention */
+  @keyframes pulse-subtle {
+    0%, 100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.9;
+      transform: scale(1.02);
+    }
+  }
+
+  .animate-pulse-subtle {
+    animation: pulse-subtle 2s ease-in-out infinite;
+  }
+
+  /* Shimmer effect for loading skeletons */
+  @keyframes shimmer {
+    0% {
+      background-position: -1000px 0;
+    }
+    100% {
+      background-position: 1000px 0;
+    }
+  }
+
+  .animate-shimmer {
+    background: linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0.4) 50%,
+      rgba(255, 255, 255, 0) 100%
+    );
+    background-size: 1000px 100%;
+    animation: shimmer 2s infinite;
+  }
+
+  /* Smooth color transitions */
+  .transition-colors-smooth {
+    @apply transition-colors duration-300 ease-out;
+  }
+
+  /* Bouncy entrance for success states */
+  @keyframes bounceIn {
+    0% {
+      opacity: 0;
+      transform: scale(0.3);
+    }
+    50% {
+      opacity: 1;
+      transform: scale(1.05);
+    }
+    70% {
+      transform: scale(0.9);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+
+  .animate-bounce-in {
+    animation: bounceIn 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
 }
