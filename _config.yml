@@ -1,0 +1,50 @@
+title: "DIVE Data Learning Cohorts Gallery"
+description: "Showcase of City of Austin DIVE cohort projects"
+url: "https://cityofaustin.github.io"
+baseurl: "/dive-gallery"
+theme: null
+timezone: "America/Chicago"
+markdown: kramdown
+permalink: pretty
+future: false
+
+exclude:
+  - node_modules
+  - vendor
+  - README.md
+  - package-lock.json
+  - package.json
+  - tailwind.config.js
+  - postcss.config.js
+  - assets/css/tailwind.css
+  - scripts
+  - spec.md
+
+defaults:
+  - scope:
+      path: "cohorts"
+    values:
+      layout: cohort
+  - scope:
+      path: "cohorts"
+      type: "team"
+    values:
+      layout: team
+
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-sitemap
+  - jekyll-include-cache
+
+include:
+  - _pages
+
+sass:
+  style: compressed
+
+search_index:
+  fields:
+    - title
+    - summary
+    - tags

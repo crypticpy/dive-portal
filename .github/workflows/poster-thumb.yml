@@ -1,0 +1,36 @@
+name: Generate poster thumbnails
+
+on:
+  pull_request:
+    paths:
+      - 'cohorts/**/poster.pdf'
+  workflow_dispatch:
+
+jobs:
+  thumbnail:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install ImageMagick
+        run: sudo apt-get update && sudo apt-get install -y imagemagick
+
+      - name: Generate thumbnails
+        run: |
+          set -euo pipefail
+          find cohorts -name poster.pdf | while read -r poster; do
+            thumb="$(dirname "$poster")/thumb.jpg"
+            if [ ! -f "$thumb" ] || [ "$poster" -nt "$thumb" ]; then
+              echo "Generating thumbnail for $poster"
+              magick -density 150 "$poster"[0] -quality 85 -resize 800x -background white -alpha remove -alpha off "$thumb"
+            fi
+          done
+
+      - name: Commit thumbnails
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "chore: update poster thumbnails"

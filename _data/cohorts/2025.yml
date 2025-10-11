@@ -1,0 +1,31 @@
+year: 2025
+events:
+  - id: kickoff
+    name: "Kickoff"
+    date: "2025-08-20"
+    location: "Online"
+  - id: midpoint
+    name: "Midpoint Project Check-in"
+    date: "2025-10-02"
+    time: "13:30–16:00"
+    location: "Austin City Hall, Council Chambers"
+  - id: final
+    name: "Final Celebration & Poster Showcase"
+    date: "2025-11-05"
+    location: "Austin City Hall"
+materials:
+  essentials:
+    - title: "Data Storytelling"
+      type: "slide-deck"
+      url: "/learning/2025/data-storytelling.pdf"
+    - title: "Austin Open Data Portal – intro"
+      type: "guide"
+      url: "https://data.austintexas.gov/"
+  workshops:
+    - title: "Geospatial Foundations"
+      type: "hands-on"
+      url: "/learning/2025/geospatial-foundations.pdf"
+policies:
+  - "No PII; publish only approved public data."
+  - "Accessibility: WCAG 2.1 AA for posted assets."
+  - "Ensure deliverables are approved by department communications."

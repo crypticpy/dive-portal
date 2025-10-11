@@ -1,0 +1,27 @@
+name: "Start new cohort year"
+description: "Collect details before scaffolding a new cohort year."
+title: "[Cohort] <year>"
+labels:
+  - content:new-year
+body:
+  - type: input
+    id: cohort_year
+    attributes:
+      label: "Cohort Year"
+      placeholder: "2026"
+    validations:
+      required: true
+  - type: textarea
+    id: intro
+    attributes:
+      label: "Intro Paragraph"
+      description: "Short description for the new cohort landing page."
+    validations:
+      required: false
+  - type: textarea
+    id: notable_events
+    attributes:
+      label: "Notable Events"
+      description: "List key events with date and location."
+    validations:
+      required: false

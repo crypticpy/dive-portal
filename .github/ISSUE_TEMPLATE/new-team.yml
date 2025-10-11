@@ -1,0 +1,97 @@
+name: "Add team (creates PR)"
+description: "Submit metadata for a new team project."
+title: "[Team] <team-name>"
+labels:
+  - content:new-team
+body:
+  - type: input
+    id: cohort_year
+    attributes:
+      label: "Cohort Year"
+      placeholder: "2025"
+    validations:
+      required: true
+  - type: input
+    id: team_title
+    attributes:
+      label: "Team Title"
+      placeholder: "On-Time Transit Analytics"
+    validations:
+      required: true
+  - type: input
+    id: department
+    attributes:
+      label: "Department"
+      placeholder: "Austin Transportation"
+    validations:
+      required: true
+  - type: input
+    id: track
+    attributes:
+      label: "Track"
+      placeholder: "Data Science Essentials"
+    validations:
+      required: true
+  - type: textarea
+    id: summary
+    attributes:
+      label: "Project Summary"
+      description: "One sentence summary for the project card."
+    validations:
+      required: true
+  - type: input
+    id: coach_name
+    attributes:
+      label: "Coach Name"
+      placeholder: "Jane Smith"
+    validations:
+      required: true
+  - type: input
+    id: coach_email
+    attributes:
+      label: "Coach Email"
+      placeholder: "jane.smith@austintexas.gov"
+    validations:
+      required: true
+  - type: textarea
+    id: team_members
+    attributes:
+      label: "Team Members"
+      description: "List each member on a new line."
+    validations:
+      required: true
+  - type: textarea
+    id: methods
+    attributes:
+      label: "Methods"
+      description: "Comma-separated list of tools/techniques."
+      placeholder: "SQL, Pandas, Power BI"
+    validations:
+      required: true
+  - type: textarea
+    id: tags
+    attributes:
+      label: "Tags"
+      description: "Comma-separated list of tags."
+      placeholder: "transportation, reliability"
+    validations:
+      required: true
+  - type: input
+    id: dashboard_url
+    attributes:
+      label: "Dashboard URL"
+      placeholder: "https://public.tableau.com/..."
+    validations:
+      required: false
+  - type: input
+    id: dashboard_title
+    attributes:
+      label: "Accessible Dashboard Title"
+      placeholder: "Transit Performance Dashboard"
+    validations:
+      required: false
+  - type: textarea
+    id: project_overview
+    attributes:
+      label: "Project Narrative"
+      description: "Optional multi-paragraph project description."

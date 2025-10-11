@@ -1,0 +1,101 @@
+---
+layout: default
+---
+
+<article class="grid gap-10 lg:grid-cols-[2fr_1fr]">
+  <section>
+    <nav class="text-sm mb-4" aria-label="Breadcrumb">
+      <a class="text-secondary hover:text-accent" href="{{ '/cohorts/' | relative_url }}">All cohorts</a>
+      <span class="mx-2 text-slate-400" aria-hidden="true">/</span>
+      <a class="text-secondary hover:text-accent" href="{{ '/cohorts/' | append: page.cohort | append: '/' | relative_url }}">{{ page.cohort }}</a>
+    </nav>
+    <h1 class="text-4xl font-bold text-primary mb-4">{{ page.title }}</h1>
+    <p class="text-lg text-slate-600 mb-6">{{ page.summary }}</p>
+
+    <div class="prose prose-slate max-w-none">
+      {{ content }}
+    </div>
+  </section>
+
+  <aside class="space-y-6">
+    {% if page.thumbnail %}
+      <img class="rounded-xl shadow" src="{{ page.thumbnail | relative_url }}" alt="{{ page.thumbnail_alt | default: page.title }} thumbnail">
+    {% endif %}
+
+    <section class="bg-white rounded-xl shadow p-6">
+      <h2 class="text-xl font-semibold text-primary mb-4">Project Details</h2>
+      <dl class="space-y-3 text-sm text-slate-700">
+        <div>
+          <dt class="font-semibold text-slate-500 uppercase tracking-wide">Department</dt>
+          <dd>{{ page.department }}</dd>
+        </div>
+        <div>
+          <dt class="font-semibold text-slate-500 uppercase tracking-wide">Track</dt>
+          <dd>{{ page.track }}</dd>
+        </div>
+        {% if page.coach %}
+          <div>
+            <dt class="font-semibold text-slate-500 uppercase tracking-wide">Coach</dt>
+            <dd>
+              {{ page.coach.name }}<br>
+              <a class="text-secondary hover:text-accent" href="mailto:{{ page.coach.email }}">{{ page.coach.email }}</a>
+            </dd>
+          </div>
+        {% endif %}
+        <div>
+          <dt class="font-semibold text-slate-500 uppercase tracking-wide">Team Members</dt>
+          <dd>
+            <ul class="space-y-1">
+              {% for member in page.members %}
+                <li>{{ member.name }}</li>
+              {% endfor %}
+            </ul>
+          </dd>
+        </div>
+        {% if page.methods %}
+          <div>
+            <dt class="font-semibold text-slate-500 uppercase tracking-wide">Methods</dt>
+            <dd class="flex flex-wrap gap-2">
+              {% for method in page.methods %}
+                <span class="bg-neutral px-2 py-1 rounded-full text-xs font-medium text-secondary">{{ method }}</span>
+              {% endfor %}
+            </dd>
+          </div>
+        {% endif %}
+        {% if page.tags %}
+          <div>
+            <dt class="font-semibold text-slate-500 uppercase tracking-wide">Tags</dt>
+            <dd class="flex flex-wrap gap-2">
+              {% for tag in page.tags %}
+                <span class="bg-slate-100 px-2 py-1 rounded-full text-xs">{{ tag }}</span>
+              {% endfor %}
+            </dd>
+          </div>
+        {% endif %}
+      </dl>
+    </section>
+
+    {% if page.links %}
+      <section class="bg-white rounded-xl shadow p-6">
+        <h2 class="text-xl font-semibold text-primary mb-4">Deliverables</h2>
+        <ul class="space-y-3 text-sm">
+          {% if page.links.dashboard_url %}
+            <li><a class="text-secondary hover:text-accent font-medium" href="{{ page.links.dashboard_url }}" target="_blank" rel="noopener">View dashboard</a></li>
+          {% endif %}
+          {% if page.links.poster_pdf %}
+            <li><a class="text-secondary hover:text-accent font-medium" href="{{ page.links.poster_pdf | relative_url }}">Poster PDF</a></li>
+          {% endif %}
+          {% if page.links.idea_sheet_pdf %}
+            <li><a class="text-secondary hover:text-accent font-medium" href="{{ page.links.idea_sheet_pdf | relative_url }}">Idea sheet</a></li>
+          {% endif %}
+        </ul>
+      </section>
+    {% endif %}
+
+    {% if page.links.dashboard_url %}
+      <section class="bg-white rounded-xl shadow overflow-hidden">
+        <iframe src="{{ page.links.dashboard_url }}" title="{{ page.accessibility.dashboard_title | default: page.title }}" class="w-full h-64" loading="lazy"></iframe>
+      </section>
+    {% endif %}
+  </aside>
+</article>

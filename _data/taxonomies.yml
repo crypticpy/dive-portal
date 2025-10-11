@@ -1,0 +1,16 @@
+departments:
+  - Austin Transportation
+  - Austin Public Health
+  - Austin Water
+tracks:
+  - Data Science Essentials
+  - Data Storytelling
+  - Civic Analytics
+tags:
+  - transportation
+  - reliability
+  - apc
+  - avl
+  - health
+  - equity
+  - sustainability

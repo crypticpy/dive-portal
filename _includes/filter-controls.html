@@ -1,0 +1,44 @@
+{% assign departments = site.data.taxonomies.departments | sort %}
+{% assign tracks = site.data.taxonomies.tracks | sort %}
+{% assign tags = site.data.taxonomies.tags | sort %}
+
+<section class="bg-white shadow rounded-lg p-6 mb-8" data-component="filters">
+  <div class="flex flex-col gap-4 md:flex-row md:items-end md:gap-6">
+    <label class="flex flex-col text-sm font-medium text-slate-600">
+      Department
+      <select class="mt-1 border-slate-300 rounded-md px-3 py-2" data-filter="department">
+        <option value="">All departments</option>
+        {% for department in departments %}
+          <option value="{{ department | slugify }}">{{ department }}</option>
+        {% endfor %}
+      </select>
+    </label>
+
+    <label class="flex flex-col text-sm font-medium text-slate-600">
+      Track
+      <select class="mt-1 border-slate-300 rounded-md px-3 py-2" data-filter="track">
+        <option value="">All tracks</option>
+        {% for track in tracks %}
+          <option value="{{ track | slugify }}">{{ track }}</option>
+        {% endfor %}
+      </select>
+    </label>
+
+    <label class="flex flex-col text-sm font-medium text-slate-600">
+      Tag
+      <select class="mt-1 border-slate-300 rounded-md px-3 py-2" data-filter="tag">
+        <option value="">All tags</option>
+        {% for tag in tags %}
+          <option value="{{ tag | slugify }}">{{ tag }}</option>
+        {% endfor %}
+      </select>
+    </label>
+
+    <div class="flex-1">
+      <label class="flex flex-col text-sm font-medium text-slate-600">
+        Search
+        <input type="search" class="mt-1 border-slate-300 rounded-md px-3 py-2" placeholder="Search teams…" data-filter="search" data-search-index="{{ '/search.json' | relative_url }}">
+      </label>
+    </div>
+  </div>
+</section>

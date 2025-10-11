@@ -1,0 +1,54 @@
+---
+layout: default
+include_filters: true
+include_search: true
+---
+
+{% assign cohort_key = page.year | append: '' %}
+{% assign cohort_data = site.data.cohorts[cohort_key] %}
+
+<section class="mb-12">
+  <h1 class="text-4xl font-bold text-primary mb-4">DIVE Cohort {{ page.year }}</h1>
+  {% if page.intro %}
+    <p class="text-lg text-slate-700 max-w-3xl">{{ page.intro }}</p>
+  {% endif %}
+</section>
+
+<div class="grid gap-8 lg:grid-cols-3">
+  <div class="lg:col-span-2 space-y-8">
+    {% include filter-controls.html %}
+
+    {% assign cohort_teams = site.pages | where: "layout", "team" | where: "cohort", page.year | sort: "title" %}
+    <section aria-labelledby="team-gallery">
+      <div class="flex items-center justify-between mb-4">
+        <h2 id="team-gallery" class="text-2xl font-semibold text-primary">Team Projects</h2>
+        <span class="text-sm text-slate-500"><span data-team-count>{{ cohort_teams | size }}</span> teams</span>
+      </div>
+      <div class="grid gap-6 sm:grid-cols-2" data-team-grid>
+        {% for team in cohort_teams %}
+          {% include team-card.html team=team %}
+        {% endfor %}
+      </div>
+      <p class="mt-6 text-sm text-slate-500 hidden" data-empty-state>No teams match the selected filters.</p>
+    </section>
+  </div>
+
+  <aside class="space-y-6">
+    {% if cohort_data and cohort_data.events %}
+      {% include timeline.html events=cohort_data.events %}
+    {% endif %}
+    {% if cohort_data and cohort_data.materials %}
+      {% include materials.html materials=cohort_data.materials %}
+    {% endif %}
+    {% if cohort_data and cohort_data.policies %}
+      <section aria-labelledby="cohort-policies" class="bg-white rounded-xl shadow p-6">
+        <h2 id="cohort-policies" class="text-2xl font-semibold text-primary mb-4">Policies</h2>
+        <ul class="space-y-2 text-sm text-slate-700">
+          {% for policy in cohort_data.policies %}
+            <li class="flex gap-2"><span aria-hidden="true">•</span><span>{{ policy }}</span></li>
+          {% endfor %}
+        </ul>
+      </section>
+    {% endif %}
+  </aside>
+</div>

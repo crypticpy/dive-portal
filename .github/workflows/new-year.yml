@@ -1,0 +1,41 @@
+name: Scaffold new cohort year
+
+on:
+  workflow_dispatch:
+    inputs:
+      year:
+        description: "Cohort year to scaffold"
+        required: true
+        type: string
+
+jobs:
+  scaffold:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.3"
+
+      - name: Scaffold cohort
+        run: ruby scripts/scaffold_year.rb
+        env:
+          COHORT_YEAR: ${{ inputs.year }}
+
+      - name: Create pull request
+        uses: peter-evans/create-pull-request@v6
+        with:
+          branch: scaffold/${{ inputs.year }}
+          commit-message: "chore: scaffold cohort ${{ inputs.year }}"
+          title: "Scaffold cohort ${{ inputs.year }}"
+          body: "Generated via workflow dispatch for cohort ${{ inputs.year }}"
+          delete-branch: true

@@ -1,0 +1,21 @@
+<article class="bg-white rounded-xl shadow hover:shadow-lg transition overflow-hidden" data-team
+  data-team-slug="{{ include.team.slug | default: include.team.title | slugify }}"
+  data-team-department="{{ include.team.department | slugify }}"
+  data-team-track="{{ include.team.track | slugify }}"
+  data-team-tags="{% for tag in include.team.tags %}{{ tag | slugify }}{% unless forloop.last %},{% endunless %}{% endfor %}">
+  <a class="block" href="{{ include.team.url | relative_url }}">
+    {% if include.team.thumbnail %}
+      <img class="h-48 w-full object-cover" src="{{ include.team.thumbnail | relative_url }}" alt="Thumbnail for {{ include.team.title }}">
+    {% endif %}
+    <div class="p-6 flex flex-col gap-2">
+      <p class="text-xs uppercase tracking-wide text-primary font-semibold">{{ include.team.department }}</p>
+      <h3 class="text-xl font-semibold text-slate-900">{{ include.team.title }}</h3>
+      <p class="text-sm text-slate-600">{{ include.team.summary }}</p>
+      <ul class="flex flex-wrap gap-2 mt-4 text-xs text-secondary font-medium">
+        {% for method in include.team.methods %}
+          <li class="bg-neutral px-2 py-1 rounded-full">{{ method }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+  </a>
+</article>
