@@ -13,22 +13,36 @@ module.exports = {
     extend: {
       colors: {
         brand: {
-          navy: "#1f2b63",
-          indigo: "#364799",
-          sky: "#2e6af7",
-          sea: "#009f4d",
-          forest: "#0b7d41",
-          gold: "#f3a712",
-          amber: "#a15d00",
-          cream: "#f8f3eb",
-          slate: "#1f2933",
-          stone: "#4a5568",
-          cloud: "#667085"
+          // PRIMARY BLUES (Official & Supporting Palette)
+          navy: "#22254E",        // Dark Blue (Official Supporting)
+          indigo: "#44499C",      // Logo Blue (Official)
+          sky: "#009CDE",         // Cyan (Official Extended)
+
+          // PRIMARY GREENS (Official & Supporting Palette)
+          sea: "#009F4D",         // Logo Green (Official)
+          forest: "#008743",      // Compliant Green (Official Supporting)
+          darkGreen: "#005027",   // Dark Green (Official Supporting)
+
+          // ACCENT COLORS (Official Extended Palette)
+          gold: "#FFC600",        // Yellow (Official Extended)
+          amber: "#FF8F00",       // Orange (Official Extended)
+          red: "#F83125",         // Red (Official Extended)
+          purple: "#9F3CC9",      // Purple (Official Extended)
+          brown: "#8F5201",       // Brown (Official Extended)
+
+          // NEUTRALS (Official & Supporting Palette)
+          cream: "#f7f6f5",       // Faded White (Official)
+          slate: "#636262",       // Dark Gray (Official Extended)
+          stone: "#636262",       // Dark Gray (Official Extended)
+          cloud: "#C6C5C4",       // Light Gray (Official Extended)
+          black: "#000000"        // Black (Official Extended)
         },
         surface: {
-          base: "#f5f6fb",
-          card: "#ffffff",
-          overlay: "rgba(31,43,99,0.04)"
+          base: "#f7f6f5",        // Faded White (Official)
+          card: "#ffffff",        // White
+          overlay: "rgba(34,37,78,0.04)",  // Dark Blue with opacity
+          lightBlue: "#dcf2fd",   // Light Blue (Official Supporting)
+          lightGreen: "#dff0e3"   // Light Green (Official Supporting)
         }
       },
       fontFamily: {
@@ -36,17 +50,17 @@ module.exports = {
         sans: ["Inter", ...defaultTheme.fontFamily.sans]
       },
       boxShadow: {
-        focus: "0 0 0 4px rgba(46, 106, 247, 0.25)",
+        focus: "0 0 0 4px rgba(68, 73, 156, 0.25)",         // Logo Blue
         card: "0 18px 50px -24px rgba(17, 24, 39, 0.45)",
-        subtle: "0 10px 30px -20px rgba(31, 43, 99, 0.35)"
+        subtle: "0 10px 30px -20px rgba(34, 37, 78, 0.35)"  // Dark Blue
       },
       borderRadius: {
         xl: "1.25rem",
         "2xl": "1.75rem"
       },
       backgroundImage: {
-        "hero-radial": "radial-gradient(circle at 20% 20%, rgba(46,106,247,0.18), transparent 55%), radial-gradient(circle at 80% 10%, rgba(0,159,77,0.18), transparent 50%)",
-        "card-gradient": "linear-gradient(135deg, rgba(61,75,160,0.09) 0%, rgba(0,159,77,0.05) 100%)"
+        "hero-radial": "radial-gradient(circle at 20% 20%, rgba(0,156,222,0.18), transparent 55%), radial-gradient(circle at 80% 10%, rgba(0,159,77,0.18), transparent 50%)",  // Cyan + Logo Green
+        "card-gradient": "linear-gradient(135deg, rgba(68,73,156,0.09) 0%, rgba(0,159,77,0.05) 100%)"  // Logo Blue + Logo Green
       },
       spacing: {
         18: "4.5rem",
