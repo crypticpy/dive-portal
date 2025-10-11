@@ -1,0 +1,85 @@
+{% assign variant = include.variant | default: 'spinner' %}
+{% assign size = include.size | default: 'md' %}
+{% assign text = include.text | default: '' %}
+
+{% comment %}
+Loading component variants:
+- spinner: Animated circular spinner
+- dots: Three pulsing dots
+- skeleton: Content placeholder (for cards, text)
+- inline: Small inline spinner for buttons
+
+Size options:
+- sm: Small (16px / 20px)
+- md: Medium (24px / 32px)
+- lg: Large (40px / 48px)
+- xl: Extra large (64px / 80px)
+{% endcomment %}
+
+{% case size %}
+  {% when 'sm' %}
+    {% assign spinner_size = 'h-4 w-4' %}
+    {% assign dot_size = 'h-2 w-2' %}
+    {% assign text_size = 'text-xs' %}
+  {% when 'lg' %}
+    {% assign spinner_size = 'h-10 w-10' %}
+    {% assign dot_size = 'h-3 w-3' %}
+    {% assign text_size = 'text-base' %}
+  {% when 'xl' %}
+    {% assign spinner_size = 'h-16 w-16' %}
+    {% assign dot_size = 'h-4 w-4' %}
+    {% assign text_size = 'text-lg' %}
+  {% else %}
+    {% assign spinner_size = 'h-6 w-6' %}
+    {% assign dot_size = 'h-2.5 w-2.5' %}
+    {% assign text_size = 'text-sm' %}
+{% endcase %}
+
+{% case variant %}
+  {% when 'dots' %}
+    <div class="flex items-center justify-center gap-2" role="status" aria-label="{{ text | default: 'Loading' }}">
+      <span class="inline-flex {{ dot_size }} animate-pulse rounded-full bg-brand-sky" style="animation-delay: 0ms"></span>
+      <span class="inline-flex {{ dot_size }} animate-pulse rounded-full bg-brand-indigo" style="animation-delay: 150ms"></span>
+      <span class="inline-flex {{ dot_size }} animate-pulse rounded-full bg-brand-sea" style="animation-delay: 300ms"></span>
+      {% if text %}
+        <span class="{{ text_size }} ml-2 font-medium text-brand-stone">{{ text }}</span>
+      {% endif %}
+    </div>
+
+  {% when 'skeleton' %}
+    {% assign count = include.count | default: 3 %}
+    <div class="space-y-4 animate-pulse" role="status" aria-label="{{ text | default: 'Loading content' }}">
+      {% for i in (1..count) %}
+        <div class="rounded-2xl border border-brand-sky/10 bg-white p-6 shadow-subtle">
+          <div class="flex items-start gap-4">
+            <div class="h-12 w-12 rounded-full bg-brand-sky/10"></div>
+            <div class="flex-1 space-y-3">
+              <div class="h-4 w-3/4 rounded-full bg-brand-sky/10"></div>
+              <div class="h-3 w-1/2 rounded-full bg-brand-indigo/10"></div>
+              <div class="space-y-2">
+                <div class="h-3 w-full rounded-full bg-brand-cloud/20"></div>
+                <div class="h-3 w-5/6 rounded-full bg-brand-cloud/20"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+
+  {% when 'inline' %}
+    <svg class="inline-block {{ spinner_size }} animate-spin text-current" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" role="status" aria-label="{{ text | default: 'Loading' }}">
+      <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+      <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+    </svg>
+
+  {% else %}
+    <div class="flex flex-col items-center justify-center gap-4" role="status" aria-label="{{ text | default: 'Loading' }}">
+      <svg class="{{ spinner_size }} animate-spin text-brand-sky" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+      </svg>
+      {% if text %}
+        <p class="{{ text_size }} font-medium text-brand-stone">{{ text }}</p>
+      {% endif %}
+    </div>
+{% endcase %}

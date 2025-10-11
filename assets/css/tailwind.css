@@ -148,6 +148,9 @@
     @apply hover:border-brand-sky/40 hover:bg-brand-sky/5 hover:text-brand-navy hover:shadow-sm;
     @apply focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-brand-sky/30 focus-visible:ring-offset-2;
     @apply active:scale-95;
+    /* Mobile-optimized touch targets (min 44x44px) */
+    min-height: 44px;
+    min-width: 44px;
   }
 
   .filter-pill[aria-pressed="true"],
@@ -159,11 +162,21 @@
   }
 
   .filter-chip {
-    @apply px-3 py-1.5 text-xs font-medium;
+    @apply px-3 py-2 text-xs font-medium;
+    min-height: 40px;
   }
 
   .filter-pill {
-    @apply text-sm;
+    @apply text-sm py-2.5;
+  }
+
+  /* Mobile-specific touch target improvements */
+  @media (max-width: 767px) {
+    .filter-pill,
+    .filter-chip {
+      @apply px-5 py-2.5 text-sm;
+      min-height: 48px;
+    }
   }
 
   /* Vertical Rhythm & Spacing System */
@@ -219,5 +232,31 @@
   .prose-flow > * + h2,
   .prose-flow > * + h3 {
     @apply mt-8;
+  }
+
+  /* Consistent Focus State System */
+  /* Primary focus state for interactive elements */
+  .focus-primary {
+    @apply focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-brand-sky/30 focus-visible:ring-offset-2;
+  }
+
+  /* Secondary focus state for subtle interactions */
+  .focus-secondary {
+    @apply focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-brand-indigo/20 focus-visible:ring-offset-1;
+  }
+
+  /* Danger focus state for destructive actions */
+  .focus-danger {
+    @apply focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-brand-red/30 focus-visible:ring-offset-2;
+  }
+
+  /* High contrast focus for accessibility */
+  .focus-accessible {
+    @apply focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-brand-indigo/50 focus-visible:ring-offset-2;
+  }
+
+  /* Focus state for cards and containers */
+  .focus-card {
+    @apply focus-within:ring-4 focus-within:ring-brand-sky/20 focus-within:ring-offset-2 focus-within:outline-none;
   }
 }

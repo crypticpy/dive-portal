@@ -36,10 +36,29 @@
           toggle.setAttribute('aria-expanded', 'false');
         };
 
+        // Mobile navigation with smooth transitions
         toggle.addEventListener('click', () => {
           const expanded = toggle.getAttribute('aria-expanded') === 'true';
           toggle.setAttribute('aria-expanded', String(!expanded));
-          panel.classList.toggle('hidden');
+
+          if (expanded) {
+            // Closing: fade out then hide
+            panel.style.opacity = '0';
+            panel.style.transform = 'translateY(-8px)';
+            setTimeout(() => {
+              panel.classList.add('hidden');
+            }, 200);
+          } else {
+            // Opening: show then fade in
+            panel.classList.remove('hidden');
+            panel.style.opacity = '0';
+            panel.style.transform = 'translateY(-8px)';
+            // Force reflow
+            panel.offsetHeight;
+            panel.style.transition = 'opacity 200ms ease-out, transform 200ms ease-out';
+            panel.style.opacity = '1';
+            panel.style.transform = 'translateY(0)';
+          }
         });
 
         panel.addEventListener('click', (event) => {
