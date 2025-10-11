@@ -1,14 +1,58 @@
-<div class="rounded-2xl border border-brand-sky/10 bg-white/80 p-6 shadow-subtle backdrop-blur">
-  <div class="flex items-baseline gap-3">
-    <span class="text-3xl font-semibold text-brand-navy sm:text-4xl">{{ include.value }}</span>
-    {% if include.badge %}
-      {% include badge.html label=include.badge tone="neutral" size="sm" %}
+{% assign trend = include.trend | default: nil %}
+{% assign trend_value = include.trend_value | default: nil %}
+{% assign highlight = include.highlight | default: false %}
+
+{% comment %}
+Stat block supports:
+- value: Main numeric or text value to display
+- label: Descriptive label for the stat
+- description: Optional longer description
+- badge: Optional badge label
+- trend: 'up', 'down', or 'neutral'
+- trend_value: Text to show next to trend icon (e.g., "+12%", "-3", "New")
+- highlight: Boolean to emphasize the stat block
+{% endcomment %}
+
+<div class="group rounded-2xl border transition-all duration-300 ease-out {% if highlight %}border-brand-sky/30 bg-gradient-to-br from-white to-brand-sky/5{% else %}border-brand-sky/10 bg-white/80{% endif %} p-6 shadow-subtle backdrop-blur hover:-translate-y-1 hover:shadow-card hover:border-brand-sky/30">
+  <div class="flex items-start justify-between gap-3">
+    <div class="flex flex-col gap-1">
+      <div class="flex items-baseline gap-2.5 flex-wrap">
+        <span class="text-3xl font-semibold text-brand-navy sm:text-4xl transition-colors {% if highlight %}group-hover:text-brand-indigo{% endif %}">{{ include.value }}</span>
+        {% if include.badge %}
+          {% include badge.html label=include.badge tone="neutral" size="sm" %}
+        {% endif %}
+      </div>
+      {% if include.label %}
+        <p class="text-sm font-medium uppercase tracking-wide text-brand-cloud">{{ include.label }}</p>
+      {% endif %}
+    </div>
+
+    {% if trend %}
+      <div class="flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-semibold
+        {% case trend %}
+          {% when 'up' %}
+            bg-brand-sea/10 text-brand-forest
+          {% when 'down' %}
+            bg-brand-red/10 text-brand-red
+          {% else %}
+            bg-brand-sky/10 text-brand-indigo
+        {% endcase %}">
+        {% case trend %}
+          {% when 'up' %}
+            {% include icon.html name='trending-up' size='xs' %}
+          {% when 'down' %}
+            {% include icon.html name='trending-down' size='xs' %}
+          {% else %}
+            {% include icon.html name='minus' size='xs' %}
+        {% endcase %}
+        {% if trend_value %}
+          <span>{{ trend_value }}</span>
+        {% endif %}
+      </div>
     {% endif %}
   </div>
-  {% if include.label %}
-    <p class="mt-1 text-sm font-medium uppercase tracking-wide text-brand-cloud">{{ include.label }}</p>
-  {% endif %}
+
   {% if include.description %}
-    <p class="mt-3 text-sm text-brand-stone">{{ include.description }}</p>
+    <p class="mt-3 text-sm leading-relaxed text-brand-stone">{{ include.description }}</p>
   {% endif %}
 </div>

@@ -165,4 +165,59 @@
   .filter-pill {
     @apply text-sm;
   }
+
+  /* Vertical Rhythm & Spacing System */
+  /* Section spacing utilities for consistent vertical rhythm */
+  .section-spacing {
+    @apply py-12 sm:py-16 lg:py-20;
+  }
+
+  .section-spacing-tight {
+    @apply py-8 sm:py-10 lg:py-12;
+  }
+
+  .section-spacing-loose {
+    @apply py-16 sm:py-20 lg:py-24;
+  }
+
+  /* Content spacing utilities */
+  .content-gap {
+    @apply space-y-6 sm:space-y-8;
+  }
+
+  .content-gap-tight {
+    @apply space-y-4 sm:space-y-5;
+  }
+
+  .content-gap-loose {
+    @apply space-y-8 sm:space-y-10 lg:space-y-12;
+  }
+
+  /* Card grid spacing */
+  .card-grid {
+    @apply grid gap-6 sm:gap-8 md:grid-cols-2 lg:grid-cols-3;
+  }
+
+  .card-grid-dense {
+    @apply grid gap-4 sm:gap-5 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4;
+  }
+
+  .card-grid-loose {
+    @apply grid gap-8 sm:gap-10 md:grid-cols-2 lg:grid-cols-3;
+  }
+
+  /* Flow utilities for consistent text spacing */
+  .prose-flow > * + * {
+    @apply mt-4;
+  }
+
+  .prose-flow > h2 + *,
+  .prose-flow > h3 + * {
+    @apply mt-3;
+  }
+
+  .prose-flow > * + h2,
+  .prose-flow > * + h3 {
+    @apply mt-8;
+  }
 }

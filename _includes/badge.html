@@ -1,17 +1,43 @@
 {% assign tone = include.tone | default: 'info' %}
 {% assign size = include.size | default: 'md' %}
-{% assign base_class = 'inline-flex items-center rounded-full font-medium tracking-tight transition focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-brand-sky/30' %}
+{% assign interactive = include.interactive | default: false %}
+{% assign base_class = 'inline-flex items-center rounded-full font-medium tracking-tight transition-all duration-200 ease-out' %}
+
+{% comment %}
+Interactive badges get hover states and can be clicked/focused.
+Non-interactive badges are purely informational.
+{% endcomment %}
+
+{% if interactive %}
+  {% assign base_class = base_class | append: ' cursor-pointer hover:scale-105 hover:shadow-subtle focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-brand-sky/30 focus-visible:ring-offset-1 active:scale-95' %}
+{% endif %}
+
 {% case tone %}
   {% when 'impact' %}
     {% assign tone_class = 'border border-brand-forest/25 bg-brand-sea/15 text-brand-forest' %}
+    {% if interactive %}
+      {% assign tone_class = tone_class | append: ' hover:border-brand-forest/40 hover:bg-brand-sea/25' %}
+    {% endif %}
   {% when 'department' %}
     {% assign tone_class = 'border border-brand-indigo/25 bg-brand-sky/15 text-brand-indigo' %}
+    {% if interactive %}
+      {% assign tone_class = tone_class | append: ' hover:border-brand-indigo/40 hover:bg-brand-sky/25' %}
+    {% endif %}
   {% when 'track' %}
     {% assign tone_class = 'border border-brand-amber/25 bg-brand-gold/15 text-brand-amber' %}
+    {% if interactive %}
+      {% assign tone_class = tone_class | append: ' hover:border-brand-amber/40 hover:bg-brand-gold/25' %}
+    {% endif %}
   {% when 'neutral' %}
     {% assign tone_class = 'border border-brand-cloud/30 bg-white text-brand-stone' %}
+    {% if interactive %}
+      {% assign tone_class = tone_class | append: ' hover:border-brand-cloud/50 hover:bg-brand-sky/5' %}
+    {% endif %}
   {% else %}
     {% assign tone_class = 'border border-brand-indigo/20 bg-brand-indigo/10 text-brand-indigo' %}
+    {% if interactive %}
+      {% assign tone_class = tone_class | append: ' hover:border-brand-indigo/40 hover:bg-brand-indigo/20' %}
+    {% endif %}
 {% endcase %}
 {% case size %}
   {% when 'sm' %}
@@ -21,11 +47,37 @@
   {% else %}
     {% assign size_class = 'px-3 py-1.5 text-xs' %}
 {% endcase %}
-<span class="{{ base_class }} {{ tone_class }} {{ size_class }}">
-  {% if include.icon %}
+{% if interactive and include.href %}
+<a href="{{ include.href | relative_url }}" class="{{ base_class }} {{ tone_class }} {{ size_class }}"{% if include.aria_label %} aria-label="{{ include.aria_label }}"{% endif %}{% if include.target %} target="{{ include.target }}"{% endif %}{% if include.rel %} rel="{{ include.rel }}"{% endif %}>
+  {% if include.icon_name %}
+    {% include icon.html name=include.icon_name size='xs' class='mr-1.5' %}
+  {% elsif include.icon %}
+    <span class="mr-1.5 inline-flex h-3.5 w-3.5 items-center justify-center">
+      {{ include.icon }}
+    </span>
+  {% endif %}
+  {{ include.label }}
+</a>
+{% elsif interactive %}
+<button type="button" class="{{ base_class }} {{ tone_class }} {{ size_class }}"{% if include.data_attrs %} {{ include.data_attrs }}{% endif %}{% if include.aria_label %} aria-label="{{ include.aria_label }}"{% endif %}>
+  {% if include.icon_name %}
+    {% include icon.html name=include.icon_name size='xs' class='mr-1.5' %}
+  {% elsif include.icon %}
+    <span class="mr-1.5 inline-flex h-3.5 w-3.5 items-center justify-center">
+      {{ include.icon }}
+    </span>
+  {% endif %}
+  {{ include.label }}
+</button>
+{% else %}
+<span class="{{ base_class }} {{ tone_class }} {{ size_class }}"{% if include.aria_label %} aria-label="{{ include.aria_label }}"{% endif %}>
+  {% if include.icon_name %}
+    {% include icon.html name=include.icon_name size='xs' class='mr-1.5' %}
+  {% elsif include.icon %}
     <span class="mr-1.5 inline-flex h-3.5 w-3.5 items-center justify-center">
       {{ include.icon }}
     </span>
   {% endif %}
   {{ include.label }}
 </span>
+{% endif %}

@@ -1,0 +1,60 @@
+{% assign variant = include.variant | default: 'primary' %}
+{% assign size = include.size | default: 'md' %}
+{% assign element = include.href | default: false %}
+{% assign tag = 'button' %}
+{% if element %}{% assign tag = 'a' %}{% endif %}
+
+{% comment %}
+Button variants:
+- primary: Brand sky background with white text
+- secondary: White background with brand sky border
+- ghost: No background, text only
+- danger: Red accent for destructive actions
+{% endcomment %}
+
+{% assign base_class = 'inline-flex items-center justify-center rounded-full font-semibold transition-all duration-200 ease-out focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 active:scale-95' %}
+
+{% case variant %}
+  {% when 'primary' %}
+    {% assign variant_class = 'bg-brand-sky border border-brand-sky text-white shadow-subtle hover:-translate-y-0.5 hover:bg-brand-indigo hover:border-brand-indigo hover:shadow-card focus-visible:ring-brand-sky/40' %}
+  {% when 'secondary' %}
+    {% assign variant_class = 'bg-white border border-brand-sky/70 text-brand-sky shadow-subtle hover:-translate-y-0.5 hover:border-brand-indigo hover:text-brand-indigo hover:bg-brand-sky/5 hover:shadow-card focus-visible:ring-brand-sky/30' %}
+  {% when 'ghost' %}
+    {% assign variant_class = 'bg-transparent border border-transparent text-brand-sky hover:bg-brand-sky/10 hover:text-brand-indigo focus-visible:ring-brand-sky/30' %}
+  {% when 'danger' %}
+    {% assign variant_class = 'bg-brand-red border border-brand-red text-white shadow-subtle hover:-translate-y-0.5 hover:bg-brand-red/90 hover:shadow-card focus-visible:ring-brand-red/40' %}
+  {% else %}
+    {% assign variant_class = 'bg-brand-sky border border-brand-sky text-white shadow-subtle hover:-translate-y-0.5 hover:bg-brand-indigo hover:shadow-card focus-visible:ring-brand-sky/40' %}
+{% endcase %}
+
+{% case size %}
+  {% when 'sm' %}
+    {% assign size_class = 'px-3 py-1.5 text-xs gap-1.5' %}
+  {% when 'lg' %}
+    {% assign size_class = 'px-6 py-3 text-base gap-2.5' %}
+  {% else %}
+    {% assign size_class = 'px-5 py-2 text-sm gap-2' %}
+{% endcase %}
+
+<{{ tag }}
+  {% if include.href %}href="{{ include.href | relative_url }}"{% endif %}
+  {% if include.type %}type="{{ include.type }}"{% else %}{% if tag == 'button' %}type="button"{% endif %}{% endif %}
+  {% if include.id %}id="{{ include.id }}"{% endif %}
+  {% if include.class %}class="{{ base_class }} {{ variant_class }} {{ size_class }} {{ include.class }}"{% else %}class="{{ base_class }} {{ variant_class }} {{ size_class }}"{% endif %}
+  {% if include.data_attrs %}{{ include.data_attrs }}{% endif %}
+  {% if include.aria_label %}aria-label="{{ include.aria_label }}"{% endif %}
+  {% if include.aria_expanded %}aria-expanded="{{ include.aria_expanded }}"{% endif %}
+  {% if include.aria_controls %}aria-controls="{{ include.aria_controls }}"{% endif %}
+  {% if include.disabled %}disabled{% endif %}
+  {% if include.target %}target="{{ include.target }}"{% endif %}
+  {% if include.rel %}rel="{{ include.rel }}"{% endif %}
+>
+  {% if include.icon_left %}
+    {% include icon.html name=include.icon_left size=include.icon_size %}
+  {% endif %}
+  {% if include.label %}{{ include.label }}{% endif %}
+  {{ include.content }}
+  {% if include.icon_right %}
+    {% include icon.html name=include.icon_right size=include.icon_size %}
+  {% endif %}
+</{{ tag }}>
