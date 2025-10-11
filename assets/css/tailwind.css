@@ -2,6 +2,111 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: "Inter";
+  src: url("/assets/fonts/Inter-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Inter";
+  src: url("/assets/fonts/Inter-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Inter";
+  src: url("/assets/fonts/Inter-SemiBold.ttf") format("truetype");
+  font-weight: 600;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Inter";
+  src: url("/assets/fonts/Inter-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Source Sans 3";
+  src: url("/assets/fonts/SourceSans3-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Source Sans 3";
+  src: url("/assets/fonts/SourceSans3-SemiBold.ttf") format("truetype");
+  font-weight: 600;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Source Sans 3";
+  src: url("/assets/fonts/SourceSans3-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-display: swap;
+  font-style: normal;
+}
+
 :root {
   color-scheme: light;
+}
+
+@layer base {
+  html {
+    font-family: theme("fontFamily.sans");
+    background-color: theme("colors.surface.base");
+    color: theme("colors.brand.slate");
+  }
+
+  body {
+    min-height: 100vh;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: theme("fontFamily.heading");
+    font-weight: 600;
+    color: theme("colors.brand.navy");
+    letter-spacing: -0.01em;
+  }
+
+  a {
+    transition: color 150ms ease, background-color 150ms ease, box-shadow 150ms ease;
+  }
+
+  ::selection {
+    background-color: rgba(46, 106, 247, 0.25);
+  }
+}
+
+@layer components {
+  .filter-pill,
+  .filter-chip {
+    @apply inline-flex items-center rounded-full border border-brand-sky/20 bg-white px-4 py-2 text-xs font-semibold text-brand-stone transition hover:border-brand-sky/40 hover:text-brand-navy focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-brand-sky/30;
+  }
+
+  .filter-pill[aria-pressed="true"],
+  .filter-pill.is-active,
+  .filter-chip[aria-pressed="true"],
+  .filter-chip.is-active {
+    @apply border-brand-sky bg-brand-sky/15 text-brand-navy shadow-subtle;
+  }
+
+  .filter-chip {
+    @apply px-3 py-1.5 text-xs font-medium;
+  }
+
+  .filter-pill {
+    @apply text-sm;
+  }
 }

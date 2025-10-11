@@ -6,30 +6,87 @@ include_search: true
 
 {% assign cohort_key = page.year | append: '' %}
 {% assign cohort_data = site.data.cohorts[cohort_key] %}
+{% assign cohort_teams = site.pages | where: "layout", "team" | where: "cohort", page.year | sort: "title" %}
+{% assign team_count = cohort_teams | size %}
+{% assign department_count = cohort_teams | map: "department" | uniq | size %}
+{% assign track_count = cohort_teams | map: "track" | uniq | size %}
+{% assign tag_values = cohort_teams | map: "tags" | join: ',' | split: ',' %}
+{% assign tag_values = tag_values | where_exp: 'tag', 'tag != ""' %}
+{% assign tag_count = tag_values | uniq | size %}
+{% assign final_event = nil %}
+{% assign event_count = 0 %}
+{% if cohort_data and cohort_data.events %}
+  {% assign final_event = cohort_data.events | last %}
+  {% assign event_count = cohort_data.events | size %}
+{% endif %}
 
-<section class="mb-12">
-  <h1 class="text-4xl font-bold text-primary mb-4">DIVE Cohort {{ page.year }}</h1>
-  {% if page.intro %}
-    <p class="text-lg text-slate-700 max-w-3xl">{{ page.intro }}</p>
-  {% endif %}
+<section class="relative mb-12 overflow-hidden rounded-3xl border border-brand-sky/20 bg-gradient-to-br from-white via-brand-sky/5 to-brand-sea/5 shadow-card">
+  <div class="absolute -left-24 -top-24 h-48 w-48 rounded-full bg-brand-sky/20 blur-3xl" aria-hidden="true"></div>
+  <div class="absolute -right-16 top-1/2 h-40 w-40 -translate-y-1/2 rounded-full bg-brand-sea/15 blur-3xl" aria-hidden="true"></div>
+  <div class="relative grid gap-8 px-6 py-12 sm:px-10 lg:grid-cols-[2fr_minmax(0,1fr)]">
+    <div class="space-y-6">
+      <div class="flex flex-wrap items-center gap-3 text-sm font-semibold uppercase tracking-[0.3em] text-brand-stone/60">
+        <span>Data Interdisciplinary Vocational Experience</span>
+        <span class="inline-flex items-center gap-2 rounded-full bg-brand-sky/10 px-3 py-1 text-xs font-bold tracking-wide text-brand-sky">{{ page.year }}</span>
+      </div>
+      <h1 class="text-4xl font-semibold text-brand-navy sm:text-5xl">DIVE Cohort {{ page.year }}</h1>
+      {% if page.intro %}
+        <p class="max-w-3xl text-lg leading-relaxed text-brand-stone">{{ page.intro }}</p>
+      {% endif %}
+      <div class="flex flex-wrap gap-3">
+        {% assign team_badge = team_count | append: ' teams' %}
+        {% assign department_badge = department_count | append: ' departments' %}
+        {% assign track_badge = track_count | append: ' tracks' %}
+        {% include badge.html label=team_badge tone='impact' size='lg' %}
+        {% include badge.html label=department_badge tone='department' size='lg' %}
+        {% include badge.html label=track_badge tone='track' size='lg' %}
+      </div>
+      {% if final_event %}
+        <div class="mt-6 flex flex-col gap-3 rounded-2xl border border-brand-sky/15 bg-white/80 p-5 shadow-subtle md:flex-row md:items-center md:justify-between">
+          <div class="flex items-center gap-3 text-brand-navy">
+            <span class="inline-flex h-12 w-12 items-center justify-center rounded-full bg-brand-sky/15 text-brand-sky">
+              <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M16 2v4M8 2v4M4.5 9h15M5 20h14a1 1 0 0 0 1-1v-9H4v9a1 1 0 0 0 1 1Z"/></svg>
+            </span>
+            <div>
+              <p class="text-sm font-semibold uppercase tracking-wide text-brand-stone/60">Next milestone</p>
+              <p class="text-base font-semibold text-brand-navy">{{ final_event.name }}</p>
+            </div>
+          </div>
+          <div class="text-sm text-brand-stone/80">
+            <p>{{ final_event.date | date: "%B %-d, %Y" }}</p>
+            {% if final_event.location %}<p>{{ final_event.location }}</p>{% endif %}
+          </div>
+        </div>
+      {% endif %}
+    </div>
+
+    <div class="grid gap-4 sm:grid-cols-2">
+      {% include stat-block.html value=tag_count label="Tags used" description="Project facets across the cohort" %}
+      {% include stat-block.html value=event_count label="Program events" description="Workshops, showcases, and checkpoints" %}
+    </div>
+  </div>
 </section>
 
-<div class="grid gap-8 lg:grid-cols-3">
-  <div class="lg:col-span-2 space-y-8">
+<div class="grid gap-10 lg:grid-cols-[minmax(0,2fr)_minmax(0,1fr)]">
+  <div class="space-y-10">
     {% include filter-controls.html %}
 
-    {% assign cohort_teams = site.pages | where: "layout", "team" | where: "cohort", page.year | sort: "title" %}
-    <section aria-labelledby="team-gallery">
-      <div class="flex items-center justify-between mb-4">
-        <h2 id="team-gallery" class="text-2xl font-semibold text-primary">Team Projects</h2>
-        <span class="text-sm text-slate-500"><span data-team-count>{{ cohort_teams | size }}</span> teams</span>
+    <section aria-labelledby="team-gallery" class="space-y-6">
+      <div class="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+        <div>
+          <h2 id="team-gallery" class="text-2xl font-semibold text-brand-navy">Team projects</h2>
+          <p class="text-sm text-brand-stone/70">Dive into the cohort&rsquo;s applied analytics, storytelling, and service improvements.</p>
+        </div>
+        <div class="inline-flex items-center gap-2 rounded-full border border-brand-sky/20 bg-white px-4 py-2 text-sm font-semibold text-brand-sky shadow-subtle"><span data-team-count>{{ team_count }}</span> teams</div>
       </div>
-      <div class="grid gap-6 sm:grid-cols-2" data-team-grid>
+      <div class="grid gap-6 sm:grid-cols-2 xl:grid-cols-3" data-team-grid>
         {% for team in cohort_teams %}
           {% include team-card.html team=team %}
         {% endfor %}
       </div>
-      <p class="mt-6 text-sm text-slate-500 hidden" data-empty-state>No teams match the selected filters.</p>
+      <div class="hidden" data-empty-state>
+        {% include empty-state.html title="No projects found" body="No teams match your current filters. Try clearing filters or searching with a different term." %}
+      </div>
     </section>
   </div>
 
@@ -41,11 +98,16 @@ include_search: true
       {% include materials.html materials=cohort_data.materials %}
     {% endif %}
     {% if cohort_data and cohort_data.policies %}
-      <section aria-labelledby="cohort-policies" class="bg-white rounded-xl shadow p-6">
-        <h2 id="cohort-policies" class="text-2xl font-semibold text-primary mb-4">Policies</h2>
-        <ul class="space-y-2 text-sm text-slate-700">
+      <section aria-labelledby="cohort-policies" class="overflow-hidden rounded-2xl border border-brand-sky/10 bg-white shadow-subtle">
+        <div class="border-b border-brand-sky/10 bg-brand-sky/5 px-6 py-4">
+          <h2 id="cohort-policies" class="text-lg font-semibold text-brand-navy">Program policies</h2>
+        </div>
+        <ul class="space-y-3 px-6 py-6 text-sm text-brand-stone/80">
           {% for policy in cohort_data.policies %}
-            <li class="flex gap-2"><span aria-hidden="true">•</span><span>{{ policy }}</span></li>
+            <li class="flex gap-3">
+              <span class="mt-1 inline-flex h-2 w-2 flex-shrink-0 rounded-full bg-brand-sky"></span>
+              <span>{{ policy }}</span>
+            </li>
           {% endfor %}
         </ul>
       </section>

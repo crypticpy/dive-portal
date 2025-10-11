@@ -1,0 +1,10 @@
+<div class="flex flex-col items-center justify-center rounded-2xl border border-dashed border-brand-sky/20 bg-white/70 px-6 py-12 text-center shadow-subtle">
+  <div class="flex h-16 w-16 items-center justify-center rounded-full bg-brand-sky/10 text-brand-sky">
+    <svg class="h-8 w-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15.362 5.214A8 8 0 1 0 20 12.944M15 3v6h6"/></svg>
+  </div>
+  <h3 class="mt-6 text-xl font-semibold text-brand-navy">{{ include.title | default: 'No results match your filters' }}</h3>
+  <p class="mt-2 max-w-md text-sm text-brand-stone/80">{{ include.body | default: 'Try adjusting your filters or searching with a different term to discover more cohort projects.' }}</p>
+  {% if include.cta_label and include.cta_href %}
+    <a href="{{ include.cta_href }}" class="mt-6 inline-flex items-center rounded-full bg-brand-sky px-4 py-2 text-sm font-semibold text-white shadow-subtle transition hover:bg-brand-indigo focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-brand-sky/40">{{ include.cta_label }}</a>
+  {% endif %}
+</div>

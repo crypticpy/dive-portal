@@ -2,73 +2,93 @@
 layout: default
 ---
 
-<article class="grid gap-10 lg:grid-cols-[2fr_1fr]">
-  <section>
-    <nav class="text-sm mb-4" aria-label="Breadcrumb">
-      <a class="text-secondary hover:text-accent" href="{{ '/cohorts/' | relative_url }}">All cohorts</a>
-      <span class="mx-2 text-slate-400" aria-hidden="true">/</span>
-      <a class="text-secondary hover:text-accent" href="{{ '/cohorts/' | append: page.cohort | append: '/' | relative_url }}">{{ page.cohort }}</a>
+<article class="grid gap-12 lg:grid-cols-[minmax(0,2.1fr)_minmax(0,1fr)]">
+  <section class="space-y-6">
+    <nav class="text-sm" aria-label="Breadcrumb">
+      <ol class="flex items-center gap-2 text-brand-stone/70">
+        <li><a class="inline-flex items-center gap-1 text-brand-sky transition hover:text-brand-indigo" href="{{ '/cohorts/' | relative_url }}"><svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19V7l-3-3-3 3v12"/></svg>All cohorts</a></li>
+        <li aria-hidden="true">/</li>
+        <li><a class="text-brand-sky transition hover:text-brand-indigo" href="{{ '/cohorts/' | append: page.cohort | append: '/' | relative_url }}">{{ page.cohort }}</a></li>
+      </ol>
     </nav>
-    <h1 class="text-4xl font-bold text-primary mb-4">{{ page.title }}</h1>
-    <p class="text-lg text-slate-600 mb-6">{{ page.summary }}</p>
+    <div class="flex flex-wrap gap-3">
+      {% include badge.html label=page.department tone='department' size='lg' %}
+      {% include badge.html label=page.track tone='track' size='lg' %}
+    </div>
+    <h1 class="text-4xl font-semibold text-brand-navy sm:text-5xl">{{ page.title }}</h1>
+    <p class="text-lg leading-relaxed text-brand-stone/90">{{ page.summary }}</p>
 
-    <div class="prose prose-slate max-w-none">
+    <div class="prose prose-lg prose-slate max-w-none">
       {{ content }}
     </div>
   </section>
 
-  <aside class="space-y-6">
+  <aside class="space-y-6 lg:sticky lg:top-32">
     {% if page.thumbnail %}
-      <img class="rounded-xl shadow" src="{{ page.thumbnail | relative_url }}" alt="{{ page.thumbnail_alt | default: page.title }} thumbnail">
+      <div class="overflow-hidden rounded-3xl border border-brand-sky/10 bg-white shadow-card">
+        <div class="relative h-56 overflow-hidden">
+          <img class="h-full w-full object-cover" src="{{ page.thumbnail | relative_url }}" alt="{{ page.thumbnail_alt | default: page.title }} thumbnail" loading="lazy" decoding="async">
+          <div class="absolute inset-0 bg-gradient-to-t from-brand-navy/60 via-transparent to-transparent"></div>
+        </div>
+        <div class="space-y-3 px-5 py-4">
+          <p class="text-sm font-semibold uppercase tracking-[0.3em] text-brand-stone/60">Project snapshot</p>
+          <p class="text-sm text-brand-stone/80">Poster and dashboard assets showcase the data story presented during the {{ page.cohort }} celebration.</p>
+        </div>
+      </div>
     {% endif %}
 
-    <section class="bg-white rounded-xl shadow p-6">
-      <h2 class="text-xl font-semibold text-primary mb-4">Project Details</h2>
-      <dl class="space-y-3 text-sm text-slate-700">
-        <div>
-          <dt class="font-semibold text-slate-500 uppercase tracking-wide">Department</dt>
-          <dd>{{ page.department }}</dd>
+    <section class="overflow-hidden rounded-2xl border border-brand-sky/10 bg-white shadow-subtle">
+      <div class="border-b border-brand-sky/10 bg-brand-sky/5 px-6 py-4">
+        <h2 class="text-lg font-semibold text-brand-navy">Project details</h2>
+      </div>
+      <dl class="space-y-4 px-6 py-6 text-sm text-brand-stone/80">
+        <div class="flex items-start justify-between gap-6">
+          <dt class="text-xs font-semibold uppercase tracking-[0.28em] text-brand-stone/50">Department</dt>
+          <dd class="text-sm text-brand-navy">{{ page.department }}</dd>
+        </div>
+        <div class="flex items-start justify-between gap-6">
+          <dt class="text-xs font-semibold uppercase tracking-[0.28em] text-brand-stone/50">Track</dt>
+          <dd class="text-sm text-brand-navy">{{ page.track }}</dd>
         </div>
         <div>
-          <dt class="font-semibold text-slate-500 uppercase tracking-wide">Track</dt>
-          <dd>{{ page.track }}</dd>
-        </div>
-        {% if page.coach %}
-          <div>
-            <dt class="font-semibold text-slate-500 uppercase tracking-wide">Coach</dt>
-            <dd>
-              {{ page.coach.name }}<br>
-              <a class="text-secondary hover:text-accent" href="mailto:{{ page.coach.email }}">{{ page.coach.email }}</a>
-            </dd>
-          </div>
-        {% endif %}
-        <div>
-          <dt class="font-semibold text-slate-500 uppercase tracking-wide">Team Members</dt>
-          <dd>
-            <ul class="space-y-1">
+          <dt class="text-xs font-semibold uppercase tracking-[0.28em] text-brand-stone/50">Team members</dt>
+          <dd class="mt-2">
+            <ul class="space-y-1.5">
               {% for member in page.members %}
-                <li>{{ member.name }}</li>
+                <li class="text-sm text-brand-stone/90">{{ member.name }}</li>
               {% endfor %}
             </ul>
           </dd>
         </div>
         {% if page.methods %}
-          <div>
-            <dt class="font-semibold text-slate-500 uppercase tracking-wide">Methods</dt>
+          <div class="space-y-2">
+            <dt class="text-xs font-semibold uppercase tracking-[0.28em] text-brand-stone/50">Methods</dt>
             <dd class="flex flex-wrap gap-2">
               {% for method in page.methods %}
-                <span class="bg-neutral px-2 py-1 rounded-full text-xs font-medium text-secondary">{{ method }}</span>
+                <span class="rounded-full bg-brand-sky/15 px-3 py-1 text-xs font-semibold text-brand-sky">{{ method }}</span>
               {% endfor %}
             </dd>
           </div>
         {% endif %}
         {% if page.tags %}
-          <div>
-            <dt class="font-semibold text-slate-500 uppercase tracking-wide">Tags</dt>
+          <div class="space-y-2">
+            <dt class="text-xs font-semibold uppercase tracking-[0.28em] text-brand-stone/50">Tags</dt>
             <dd class="flex flex-wrap gap-2">
               {% for tag in page.tags %}
-                <span class="bg-slate-100 px-2 py-1 rounded-full text-xs">{{ tag }}</span>
+                <span class="rounded-full bg-brand-sea/10 px-3 py-1 text-xs font-semibold text-brand-sea">{{ tag }}</span>
               {% endfor %}
+            </dd>
+          </div>
+        {% endif %}
+        {% if page.coach %}
+          <div class="space-y-2">
+            <dt class="text-xs font-semibold uppercase tracking-[0.28em] text-brand-stone/50">Coach</dt>
+            <dd class="text-sm text-brand-stone/90">
+              <span class="block font-medium text-brand-navy">{{ page.coach.name }}</span>
+              <a class="inline-flex items-center gap-1 text-brand-sky transition hover:text-brand-indigo" href="mailto:{{ page.coach.email }}">
+                <svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a.75.75 0 0 1-.75.75H3a.75.75 0 0 1-.75-.75V6.75M21 6H3"/><path stroke-linecap="round" stroke-linejoin="round" d="M3 6l8.6 6.47a1 1 0 0 0 1.2 0L21 6"/></svg>
+                {{ page.coach.email }}
+              </a>
             </dd>
           </div>
         {% endif %}
@@ -76,25 +96,59 @@ layout: default
     </section>
 
     {% if page.links %}
-      <section class="bg-white rounded-xl shadow p-6">
-        <h2 class="text-xl font-semibold text-primary mb-4">Deliverables</h2>
-        <ul class="space-y-3 text-sm">
+      <section class="overflow-hidden rounded-2xl border border-brand-sky/10 bg-white shadow-subtle">
+        <div class="border-b border-brand-sky/10 bg-brand-sky/5 px-6 py-4">
+          <h2 class="text-lg font-semibold text-brand-navy">Deliverables</h2>
+        </div>
+        <ul class="space-y-3 px-6 py-6 text-sm text-brand-navy">
           {% if page.links.dashboard_url %}
-            <li><a class="text-secondary hover:text-accent font-medium" href="{{ page.links.dashboard_url }}" target="_blank" rel="noopener">View dashboard</a></li>
+            <li>
+              <a class="group flex items-center justify-between rounded-xl border border-brand-sky/15 bg-white px-4 py-3 font-semibold text-brand-navy transition hover:border-brand-sky hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-brand-sky/30" href="{{ page.links.dashboard_url }}" target="_blank" rel="noopener">
+                <span class="flex items-center gap-3">
+                  <span class="inline-flex h-9 w-9 items-center justify-center rounded-full bg-brand-sky/10 text-brand-sky">
+                    <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6h16.5M3.75 12h16.5M3.75 18h16.5"/></svg>
+                  </span>
+                  <span>Interactive dashboard</span>
+                </span>
+                <svg class="h-4 w-4 text-brand-sky transition group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m0 0-5 5m5-5-5-5"/></svg>
+              </a>
+            </li>
           {% endif %}
           {% if page.links.poster_pdf %}
-            <li><a class="text-secondary hover:text-accent font-medium" href="{{ page.links.poster_pdf | relative_url }}">Poster PDF</a></li>
+            <li>
+              <a class="group flex items-center justify-between rounded-xl border border-brand-sky/15 bg-white px-4 py-3 font-semibold text-brand-navy transition hover:border-brand-sky hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-brand-sky/30" href="{{ page.links.poster_pdf | relative_url }}">
+                <span class="flex items-center gap-3">
+                  <span class="inline-flex h-9 w-9 items-center justify-center rounded-full bg-brand-gold/15 text-brand-gold">
+                    <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M14.25 9.75H19.5m-5.25 3H19.5M4.5 12c0-4.556 0-6.833 1.317-8.166C7.135 2.5 9.444 2.5 14.063 2.5h.374c4.619 0 6.928 0 8.246 1.334C24 5.167 24 7.444 24 12"/><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5h7.5"/><path stroke-linecap="round" stroke-linejoin="round" d="M9 17.25v4.5m-3-3h6"/></svg>
+                  </span>
+                  <span>Poster (PDF)</span>
+                </span>
+                <svg class="h-4 w-4 text-brand-sky transition group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m0 0-5 5m5-5-5-5"/></svg>
+              </a>
+            </li>
           {% endif %}
           {% if page.links.idea_sheet_pdf %}
-            <li><a class="text-secondary hover:text-accent font-medium" href="{{ page.links.idea_sheet_pdf | relative_url }}">Idea sheet</a></li>
+            <li>
+              <a class="group flex items-center justify-between rounded-xl border border-brand-sky/15 bg-white px-4 py-3 font-semibold text-brand-navy transition hover:border-brand-sky hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-brand-sky/30" href="{{ page.links.idea_sheet_pdf | relative_url }}">
+                <span class="flex items-center gap-3">
+                  <span class="inline-flex h-9 w-9 items-center justify-center rounded-full bg-brand-sea/15 text-brand-sea">
+                    <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v18"/><path stroke-linecap="round" stroke-linejoin="round" d="M9.75 5.25h7.5m-7.5 4.5h7.5m-7.5 4.5h7.5m-7.5 4.5h7.5"/></svg>
+                  </span>
+                  <span>Idea sheet</span>
+                </span>
+                <svg class="h-4 w-4 text-brand-sky transition group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m0 0-5 5m5-5-5-5"/></svg>
+              </a>
+            </li>
           {% endif %}
         </ul>
       </section>
     {% endif %}
 
     {% if page.links.dashboard_url %}
-      <section class="bg-white rounded-xl shadow overflow-hidden">
-        <iframe src="{{ page.links.dashboard_url }}" title="{{ page.accessibility.dashboard_title | default: page.title }}" class="w-full h-64" loading="lazy"></iframe>
+      <section class="overflow-hidden rounded-2xl border border-brand-sky/10 bg-white shadow-subtle">
+        <div class="aspect-[16/10]">
+          <iframe src="{{ page.links.dashboard_url }}" title="{{ page.accessibility.dashboard_title | default: page.title }}" class="h-full w-full" loading="lazy"></iframe>
+        </div>
       </section>
     {% endif %}
   </aside>

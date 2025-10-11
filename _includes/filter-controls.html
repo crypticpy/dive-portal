@@ -2,43 +2,62 @@
 {% assign tracks = site.data.taxonomies.tracks | sort %}
 {% assign tags = site.data.taxonomies.tags | sort %}
 
-<section class="bg-white shadow rounded-lg p-6 mb-8" data-component="filters">
-  <div class="flex flex-col gap-4 md:flex-row md:items-end md:gap-6">
-    <label class="flex flex-col text-sm font-medium text-slate-600">
-      Department
-      <select class="mt-1 border-slate-300 rounded-md px-3 py-2" data-filter="department">
-        <option value="">All departments</option>
-        {% for department in departments %}
-          <option value="{{ department | slugify }}">{{ department }}</option>
-        {% endfor %}
-      </select>
-    </label>
+<section class="relative mb-10 overflow-hidden rounded-2xl border border-brand-sky/10 bg-white shadow-subtle" data-component="filters">
+  <div class="absolute -right-16 -top-16 h-40 w-40 rounded-full bg-brand-sky/10 blur-2xl" aria-hidden="true"></div>
+  <div class="relative flex flex-col gap-6 p-6 sm:p-8">
+    <div class="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+      <div>
+        <h2 class="text-lg font-semibold text-brand-navy">Filter projects</h2>
+        <p class="text-sm text-brand-stone/80">Explore the cohort by department, track, tags, or keywords.</p>
+      </div>
+      <div class="flex w-full flex-col gap-3 sm:flex-row sm:items-center sm:justify-end">
+        <div class="relative flex-1">
+          <span class="pointer-events-none absolute inset-y-0 left-4 flex items-center text-brand-stone/50">
+            <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="m21 21-4.35-4.35M17 10a7 7 0 1 1-14 0 7 7 0 0 1 14 0Z"/></svg>
+          </span>
+          <input type="search" data-filter="search" data-search-index="{{ '/search.json' | relative_url }}" class="w-full rounded-full border border-brand-sky/20 bg-white py-3 pl-12 pr-5 text-sm text-brand-slate shadow-subtle placeholder:text-brand-stone/60 focus:border-brand-sky focus:outline-none focus:ring-4 focus:ring-brand-sky/20" placeholder="Search teams, disciplines, or tags…">
+        </div>
+        <button type="button" data-filter-clear class="inline-flex items-center justify-center rounded-full border border-brand-sky/30 px-4 py-2 text-sm font-semibold text-brand-sky transition hover:border-brand-indigo hover:text-brand-indigo focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-brand-sky/30">Clear filters</button>
+      </div>
+    </div>
 
-    <label class="flex flex-col text-sm font-medium text-slate-600">
-      Track
-      <select class="mt-1 border-slate-300 rounded-md px-3 py-2" data-filter="track">
-        <option value="">All tracks</option>
-        {% for track in tracks %}
-          <option value="{{ track | slugify }}">{{ track }}</option>
-        {% endfor %}
-      </select>
-    </label>
+    <div class="grid gap-6 md:grid-cols-2">
+      <div>
+        <h3 class="text-xs font-semibold uppercase tracking-[0.28em] text-brand-stone/60">Departments</h3>
+        <div class="mt-3 flex flex-wrap gap-2" role="group" aria-label="Filter by department">
+          {% for department in departments %}
+            {% assign value = department | slugify %}
+            <button type="button" class="filter-pill" data-filter-option="department" data-filter-value="{{ value }}">{{ department }}</button>
+          {% endfor %}
+        </div>
+      </div>
+      <div>
+        <h3 class="text-xs font-semibold uppercase tracking-[0.28em] text-brand-stone/60">Tracks</h3>
+        <div class="mt-3 flex flex-wrap gap-2" role="group" aria-label="Filter by track">
+          {% for track in tracks %}
+            {% assign value = track | slugify %}
+            <button type="button" class="filter-pill" data-filter-option="track" data-filter-value="{{ value }}">{{ track }}</button>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
 
-    <label class="flex flex-col text-sm font-medium text-slate-600">
-      Tag
-      <select class="mt-1 border-slate-300 rounded-md px-3 py-2" data-filter="tag">
-        <option value="">All tags</option>
+    <div>
+      <div class="flex items-center justify-between">
+        <h3 class="text-xs font-semibold uppercase tracking-[0.28em] text-brand-stone/60">Tags</h3>
+        <span class="text-xs text-brand-stone/60">Multi-select supported</span>
+      </div>
+      <div class="mt-3 flex flex-wrap gap-2" role="group" aria-label="Filter by tag">
         {% for tag in tags %}
-          <option value="{{ tag | slugify }}">{{ tag }}</option>
+          {% assign value = tag | slugify %}
+          <button type="button" class="filter-chip" data-filter-option="tag" data-filter-value="{{ value }}">{{ tag }}</button>
         {% endfor %}
-      </select>
-    </label>
+      </div>
+    </div>
 
-    <div class="flex-1">
-      <label class="flex flex-col text-sm font-medium text-slate-600">
-        Search
-        <input type="search" class="mt-1 border-slate-300 rounded-md px-3 py-2" placeholder="Search teams…" data-filter="search" data-search-index="{{ '/search.json' | relative_url }}">
-      </label>
+    <div class="flex flex-col gap-2 rounded-2xl bg-brand-sky/5 p-4 sm:flex-row sm:items-center sm:justify-between">
+      <div class="text-sm text-brand-stone" data-filter-summary>Showing all teams</div>
+      <div class="flex flex-wrap gap-2" data-filter-active-pills></div>
     </div>
   </div>
 </section>

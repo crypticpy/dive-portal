@@ -1,0 +1,31 @@
+{% assign tone = include.tone | default: 'info' %}
+{% assign size = include.size | default: 'md' %}
+{% assign base_class = 'inline-flex items-center rounded-full font-medium tracking-tight transition focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-brand-sky/30' %}
+{% case tone %}
+  {% when 'impact' %}
+    {% assign tone_class = 'bg-brand-sea/15 text-brand-sea' %}
+  {% when 'department' %}
+    {% assign tone_class = 'bg-brand-sky/15 text-brand-sky' %}
+  {% when 'track' %}
+    {% assign tone_class = 'bg-brand-gold/15 text-brand-gold' %}
+  {% when 'neutral' %}
+    {% assign tone_class = 'bg-white/60 text-brand-stone border border-brand-stone/25' %}
+  {% else %}
+    {% assign tone_class = 'bg-brand-indigo/15 text-brand-indigo' %}
+{% endcase %}
+{% case size %}
+  {% when 'sm' %}
+    {% assign size_class = 'px-2.5 py-1 text-xs' %}
+  {% when 'lg' %}
+    {% assign size_class = 'px-4 py-2 text-sm' %}
+  {% else %}
+    {% assign size_class = 'px-3 py-1.5 text-xs' %}
+{% endcase %}
+<span class="{{ base_class }} {{ tone_class }} {{ size_class }}">
+  {% if include.icon %}
+    <span class="mr-1.5 inline-flex h-3.5 w-3.5 items-center justify-center">
+      {{ include.icon }}
+    </span>
+  {% endif %}
+  {{ include.label }}
+</span>

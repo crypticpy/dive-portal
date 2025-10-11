@@ -1,6 +1,40 @@
-<footer class="bg-slate-900 text-white mt-16">
-  <div class="max-w-6xl mx-auto px-4 py-8 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-    <p class="text-sm">&copy; {{ 'now' | date: '%Y' }} City of Austin · Data Interdisciplinary Vocational Experience (DIVE)</p>
-    <a class="text-sm hover:text-accent" href="https://data.austintexas.gov/" target="_blank" rel="noopener">Austin Open Data Portal</a>
+<footer class="relative mt-20 bg-brand-navy text-white">
+  <div class="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width=160 height=160 viewBox=\'0 0 160 160\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cpath d=\'M0 80c44.183-8.94 71.88-36.637 80-80 8.12 43.363 35.817 71.06 80 80-44.183 8.94-71.88 36.637-80 80-8.12-43.363-35.817-71.06-80-80Z\' fill=\'%23172a57\' fill-opacity=\'0.35\'/%3E%3C/svg%3E')] opacity-40 mix-blend-lighten"></div>
+  <div class="relative mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+    <div class="grid gap-10 md:grid-cols-2 lg:grid-cols-4">
+      <div class="flex flex-col gap-3">
+        <span class="text-xs uppercase tracking-[0.3em] text-brand-sky">DIVE Program</span>
+        <p class="text-lg font-semibold text-white">Data Learning Cohorts Gallery</p>
+        <p class="text-sm text-white/80">Celebrating the civic impact of Austin teams leveraging data to improve services across departments.</p>
+      </div>
+      <div>
+        <h3 class="text-sm font-semibold uppercase tracking-wide text-white/80">Explore</h3>
+        <ul class="mt-4 space-y-3 text-sm text-white/80">
+          <li><a class="transition hover:text-brand-sky" href="{{ '/' | relative_url }}">Home</a></li>
+          <li><a class="transition hover:text-brand-sky" href="{{ '/cohorts/' | relative_url }}">Cohort Archive</a></li>
+          <li><a class="transition hover:text-brand-sky" href="{{ '/cohorts/2025/' | relative_url }}">2025 Cohort</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="text-sm font-semibold uppercase tracking-wide text-white/80">Resources</h3>
+        <ul class="mt-4 space-y-3 text-sm text-white/80">
+          <li><a class="transition hover:text-brand-sky" href="https://data.austintexas.gov/" target="_blank" rel="noopener">Austin Open Data Portal</a></li>
+          <li><a class="transition hover:text-brand-sky" href="https://www.austintexas.gov/" target="_blank" rel="noopener">City of Austin</a></li>
+          <li><a class="transition hover:text-brand-sky" href="https://github.com/crypticpy/dive-gallery/issues/new?template=new-team.yml" target="_blank" rel="noopener">Submit a project</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="text-sm font-semibold uppercase tracking-wide text-white/80">Stay connected</h3>
+        <p class="mt-4 text-sm text-white/80">Have questions about the program or want to partner with a cohort? Reach out to the DIVE team.</p>
+        <a class="mt-4 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-sm font-semibold text-white transition hover:bg-brand-sky/30 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-brand-sky/50" href="mailto:dive@austintexas.gov">
+          <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 6.75h15a.75.75 0 0 1 .75.75v9a.75.75 0 0 1-.75.75h-15a.75.75 0 0 1-.75-.75v-9a.75.75 0 0 1 .75-.75Z"/><path stroke-linecap="round" stroke-linejoin="round" d="M5 7l7 5.25L19 7"/></svg>
+          dive@austintexas.gov
+        </a>
+      </div>
+    </div>
+    <div class="mt-10 flex flex-col gap-2 border-t border-white/10 pt-6 text-xs text-white/70 sm:flex-row sm:items-center sm:justify-between">
+      <p>&copy; {{ 'now' | date: '%Y' }} City of Austin · Data Interdisciplinary Vocational Experience</p>
+      <p>Built with accessibility and civic partnership in mind.</p>
+    </div>
   </div>
 </footer>

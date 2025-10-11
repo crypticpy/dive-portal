@@ -6,16 +6,17 @@ document.addEventListener("DOMContentLoaded", () => {
   let index = null;
   let documents = {};
 
-  function runSearch(query) {
-    if (!index || query.trim().length < 2) {
-      window.__teamSearchMatches = query.trim().length ? new Set() : null;
-      document.dispatchEvent(new CustomEvent("search-results:updated"));
+  function runSearch(rawQuery) {
+    const query = rawQuery.trim().toLowerCase();
+    if (!index || query.length < 2) {
+      window.__teamSearchMatches = query.length ? new Set() : null;
+      document.dispatchEvent(new CustomEvent("search-results:updated", { detail: { query } }));
       return;
     }
 
-    const results = index.search(query + "*");
+    const results = index.search(`${query}*`);
     window.__teamSearchMatches = new Set(results.map((result) => result.ref));
-    document.dispatchEvent(new CustomEvent("search-results:updated", { detail: { results, documents } }));
+    document.dispatchEvent(new CustomEvent("search-results:updated", { detail: { results, documents, query } }));
   }
 
   fetch(indexUrl)
@@ -41,6 +42,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
   searchInput.addEventListener("input", (event) => {
-    runSearch(event.target.value.toLowerCase());
+    runSearch(event.target.value);
   });
 });

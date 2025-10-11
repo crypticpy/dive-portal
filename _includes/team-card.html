@@ -1,21 +1,39 @@
-<article class="bg-white rounded-xl shadow hover:shadow-lg transition overflow-hidden" data-team
+<article class="group relative overflow-hidden rounded-2xl border border-brand-sky/10 bg-white shadow-card transition hover:-translate-y-1 hover:shadow-xl focus-within:-translate-y-1 focus-within:shadow-xl" data-team
   data-team-slug="{{ include.team.slug | default: include.team.title | slugify }}"
   data-team-department="{{ include.team.department | slugify }}"
   data-team-track="{{ include.team.track | slugify }}"
   data-team-tags="{% for tag in include.team.tags %}{{ tag | slugify }}{% unless forloop.last %},{% endunless %}{% endfor %}">
-  <a class="block" href="{{ include.team.url | relative_url }}">
+  <a class="flex h-full flex-col focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-brand-sky/30" href="{{ include.team.url | relative_url }}">
     {% if include.team.thumbnail %}
-      <img class="h-48 w-full object-cover" src="{{ include.team.thumbnail | relative_url }}" alt="Thumbnail for {{ include.team.title }}">
+      <div class="relative h-48 overflow-hidden">
+        <img class="h-full w-full object-cover transition duration-500 group-hover:scale-105" src="{{ include.team.thumbnail | relative_url }}" alt="Thumbnail for {{ include.team.title }}" loading="lazy" decoding="async">
+        <div class="absolute inset-0 bg-gradient-to-t from-brand-navy/80 via-brand-navy/20 to-transparent"></div>
+        <div class="absolute inset-x-0 bottom-0 flex flex-wrap items-center gap-2 px-4 pb-4">
+          {% include badge.html label=include.team.department tone='department' size='sm' %}
+          {% include badge.html label=include.team.track tone='track' size='sm' %}
+        </div>
+      </div>
     {% endif %}
-    <div class="p-6 flex flex-col gap-2">
-      <p class="text-xs uppercase tracking-wide text-primary font-semibold">{{ include.team.department }}</p>
-      <h3 class="text-xl font-semibold text-slate-900">{{ include.team.title }}</h3>
-      <p class="text-sm text-slate-600">{{ include.team.summary }}</p>
-      <ul class="flex flex-wrap gap-2 mt-4 text-xs text-secondary font-medium">
+    <div class="flex flex-1 flex-col gap-4 p-6">
+      <div class="flex items-start justify-between gap-4">
+        <div class="flex flex-col gap-2">
+          <h3 class="text-xl font-semibold text-brand-navy">{{ include.team.title }}</h3>
+          <p class="text-sm leading-relaxed text-brand-stone">{{ include.team.summary }}</p>
+        </div>
+        <span class="inline-flex items-center justify-center rounded-full bg-brand-gold/15 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-brand-gold shadow-subtle">{{ include.team.methods | size }} methods</span>
+      </div>
+      <div class="flex flex-wrap gap-2 text-xs text-brand-stone/80">
         {% for method in include.team.methods %}
-          <li class="bg-neutral px-2 py-1 rounded-full">{{ method }}</li>
+          <span class="rounded-full bg-brand-sky/10 px-3 py-1 font-medium text-brand-sky/90">{{ method }}</span>
         {% endfor %}
-      </ul>
+      </div>
+      {% if include.team.tags %}
+        <div class="mt-auto flex flex-wrap gap-2 text-[11px] font-medium uppercase tracking-wide text-brand-stone/70">
+          {% for tag in include.team.tags %}
+            <span class="rounded-full bg-brand-sea/10 px-2.5 py-1 text-brand-sea/90">{{ tag }}</span>
+          {% endfor %}
+        </div>
+      {% endif %}
     </div>
   </a>
 </article>

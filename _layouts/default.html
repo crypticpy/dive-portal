@@ -1,14 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
   {% include head.html %}
-  <body class="min-h-screen flex flex-col bg-neutral text-slate-900">
-    {% include header.html %}
-    <main id="main-content" class="flex-1">
-      <div class="max-w-6xl mx-auto px-4 py-12">
-        {{ content }}
-      </div>
-    </main>
-    {% include footer.html %}
+  <body class="bg-surface-base text-brand-slate">
+    <a class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-1/2 focus:-translate-x-1/2 focus:rounded-full focus:bg-brand-sky focus:px-5 focus:py-3 focus:text-white focus:shadow-subtle" href="#main-content">Skip to content</a>
+    <div class="relative flex min-h-screen flex-col overflow-hidden">
+      <div aria-hidden="true" class="pointer-events-none absolute inset-x-0 top-[-40vh] h-[60vh] bg-hero-radial opacity-70"></div>
+      <div aria-hidden="true" class="pointer-events-none absolute inset-x-0 bottom-[-45vh] h-[55vh] bg-card-gradient blur-3xl"></div>
+
+      {% include header.html %}
+
+      <main id="main-content" class="relative z-10 flex-1">
+        <div class="mx-auto w-full max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+          {{ content }}
+        </div>
+      </main>
+
+      {% include footer.html %}
+    </div>
     {% if page.include_filters %}
       <script defer src="{{ '/assets/js/filters.js' | relative_url }}"></script>
     {% endif %}
@@ -16,5 +24,53 @@
       <script defer src="{{ '/assets/js/lunr.min.js' | relative_url }}"></script>
       <script defer src="{{ '/assets/js/search.js' | relative_url }}"></script>
     {% endif %}
+    <script>
+      (function () {
+        const header = document.querySelector('[data-component="site-header"]');
+        const toggle = document.querySelector('[data-nav-toggle]');
+        const panel = document.querySelector('[data-nav-panel]');
+        if (!header || !toggle || !panel) return;
+
+        const closePanel = () => {
+          panel.classList.add('hidden');
+          toggle.setAttribute('aria-expanded', 'false');
+        };
+
+        toggle.addEventListener('click', () => {
+          const expanded = toggle.getAttribute('aria-expanded') === 'true';
+          toggle.setAttribute('aria-expanded', String(!expanded));
+          panel.classList.toggle('hidden');
+        });
+
+        panel.addEventListener('click', (event) => {
+          if (event.target.matches('a')) {
+            closePanel();
+          }
+        });
+
+        window.addEventListener('resize', () => {
+          if (window.innerWidth >= 1024) {
+            closePanel();
+          }
+        });
+
+        let lastY = window.scrollY;
+        const updateHeader = () => {
+          const offset = window.scrollY;
+          const target = header.querySelector('div.absolute');
+          if (!target) return;
+          if (offset > 24) {
+            target.classList.add('opacity-95', 'backdrop-blur-md');
+          } else {
+            target.classList.remove('opacity-95', 'backdrop-blur-md');
+          }
+          lastY = offset;
+        };
+        updateHeader();
+        window.addEventListener('scroll', () => {
+          window.requestAnimationFrame(updateHeader);
+        });
+      })();
+    </script>
   </body>
 </html>
