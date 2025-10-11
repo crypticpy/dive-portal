@@ -59,11 +59,20 @@
           const offset = window.scrollY;
           const target = header.querySelector('div.absolute');
           if (!target) return;
-          if (offset > 24) {
-            target.classList.add('opacity-95', 'backdrop-blur-md');
+
+          // Gradual transition between 0-50px scroll
+          const scrollProgress = Math.min(offset / 50, 1);
+          const shouldEnhance = offset > 20;
+
+          if (shouldEnhance) {
+            target.classList.add('backdrop-blur-md', 'shadow-subtle');
+            // Gradual opacity from 0.92 to 0.98
+            target.style.opacity = String(0.92 + (scrollProgress * 0.06));
           } else {
-            target.classList.remove('opacity-95', 'backdrop-blur-md');
+            target.classList.remove('backdrop-blur-md', 'shadow-subtle');
+            target.style.opacity = '';
           }
+
           lastY = offset;
         };
         updateHeader();
