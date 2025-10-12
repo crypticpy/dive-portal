@@ -1,0 +1,92 @@
+---
+layout: default
+---
+
+{% assign cohort_key = page.cohort | append: '' %}
+{% assign cohort_data = site.data.cohorts[cohort_key] %}
+{% assign event_obj = nil %}
+{% if cohort_data and cohort_data.events %}
+  {% for e in cohort_data.events %}
+    {% assign slug = e.slug | default: e.id | default: e.name | slugify %}
+    {% if slug == page.event_id %}
+      {% assign event_obj = e %}
+    {% endif %}
+  {% endfor %}
+{% endif %}
+
+<article class="grid gap-12 lg:grid-cols-[minmax(0,2.1fr)_minmax(0,1fr)]">
+  <section class="space-y-6">
+    <nav class="text-sm" aria-label="Breadcrumb">
+      <ol class="flex items-center gap-2 text-brand-cloud">
+        <li><a class="inline-flex items-center gap-1 text-brand-sky transition hover:text-brand-indigo" href="{{ '/cohorts/' | relative_url }}"><svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19V7l-3-3-3 3v12"/></svg>All cohorts</a></li>
+        <li aria-hidden="true">/</li>
+        <li><a class="text-brand-sky transition hover:text-brand-indigo" href="{{ '/cohorts/' | append: page.cohort | append: '/' | relative_url }}">{{ page.cohort }}</a></li>
+      </ol>
+    </nav>
+
+    <h1 class="text-4xl font-semibold text-brand-navy sm:text-5xl">{{ page.title | default: event_obj.name }}</h1>
+    {% if page.summary or event_obj.description %}
+      <p class="text-lg leading-relaxed text-brand-stone">{{ page.summary | default: event_obj.description }}</p>
+    {% endif %}
+
+    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {% if event_obj.date %}
+        <div class="rounded-2xl border border-brand-sky/15 bg-white p-4 shadow-subtle">
+          <p class="text-xs font-semibold uppercase tracking-[0.28em] text-brand-cloud">Date</p>
+          <p class="mt-1 text-brand-navy">{{ event_obj.date | date: "%A, %B %-d, %Y" }}</p>
+        </div>
+      {% endif %}
+      {% if event_obj.time %}
+        <div class="rounded-2xl border border-brand-sky/15 bg-white p-4 shadow-subtle">
+          <p class="text-xs font-semibold uppercase tracking-[0.28em] text-brand-cloud">Time</p>
+          <p class="mt-1 text-brand-navy">{{ event_obj.time }}</p>
+        </div>
+      {% endif %}
+      {% if event_obj.location %}
+        <div class="rounded-2xl border border-brand-sky/15 bg-white p-4 shadow-subtle">
+          <p class="text-xs font-semibold uppercase tracking-[0.28em] text-brand-cloud">Location</p>
+          <p class="mt-1 text-brand-navy">{{ event_obj.location }}</p>
+        </div>
+      {% endif %}
+    </div>
+
+    <div class="prose prose-slate max-w-none">
+      {{ content }}
+    </div>
+  </section>
+
+  <aside class="space-y-6 lg:sticky lg:top-32">
+    <section class="overflow-hidden rounded-2xl border border-brand-sky/10 bg-white shadow-subtle">
+      <div class="border-b border-brand-sky/10 bg-brand-sky/5 px-6 py-4">
+        <h2 class="text-lg font-semibold text-brand-navy">Event materials</h2>
+      </div>
+      {% assign page_attachments = page.attachments %}
+      {% assign data_attachments = event_obj.attachments %}
+      {% assign attachments = page_attachments | default: data_attachments %}
+      {% if attachments and attachments.size > 0 %}
+        <ul class="space-y-3 px-6 py-6 text-sm text-brand-navy">
+          {% for item in attachments %}
+            <li>
+              <a class="group flex items-center justify-between rounded-xl border border-brand-sky/15 bg-white px-4 py-3 font-semibold text-brand-navy transition hover:border-brand-sky hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-brand-sky/30" href="{{ item.url | relative_url }}" target="_blank" rel="noopener noreferrer">
+                <span class="flex items-center gap-3">
+                  <span class="inline-flex h-9 w-9 items-center justify-center rounded-full bg-brand-sky/10 text-brand-indigo">
+                    {% include icon.html name='document' size='sm' %}
+                  </span>
+                  <span>{{ item.title }}</span>
+                </span>
+                <svg class="h-4 w-4 text-brand-sky transition group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m0 0-5 5m5-5-5-5"/></svg>
+              </a>
+            </li>
+          {% endfor %}
+        </ul>
+      {% else %}
+        <div class="px-6 py-6 text-sm text-brand-stone">No materials attached yet.</div>
+      {% endif %}
+    </section>
+
+    <a class="inline-flex items-center justify-center rounded-full border border-brand-sky/30 bg-white px-4 py-2 text-sm font-semibold text-brand-sky shadow-subtle transition hover:-translate-y-0.5 hover:border-brand-indigo hover:text-brand-indigo focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-brand-sky/30" href="{{ '/cohorts/' | append: page.cohort | append: '/' | relative_url }}">
+      ← Back to {{ page.cohort }} cohort
+    </a>
+  </aside>
+</article>
+

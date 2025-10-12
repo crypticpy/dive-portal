@@ -45,6 +45,9 @@ Automatically determines state based on date if not specified
             {% assign icon_bg = 'bg-brand-sky/15 text-brand-indigo' %}
         {% endcase %}
 
+        {% assign event_year = include.year | default: page.year %}
+        {% assign event_slug = event.slug | default: event.id | default: event.name | slugify %}
+        {% assign event_href = '/cohorts/' | append: event_year | append: '/events/' | append: event_slug | append: '/' | relative_url %}
         <li class="group relative ml-10 rounded-2xl border transition-all duration-300 ease-out {{ card_class }} p-5 shadow-subtle backdrop-blur hover:-translate-y-0.5 hover:shadow-card hover:border-brand-sky/30">
           <div class="absolute left-[-46px] top-1 flex h-10 w-10 items-center justify-center rounded-full transition-all duration-300 {{ icon_bg }} shadow-subtle group-hover:scale-110">
             {% include icon.html name=icon_name size='md' %}
@@ -57,7 +60,9 @@ Automatically determines state based on date if not specified
                   <span class="ml-2 rounded-full bg-brand-indigo/15 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-brand-indigo">Current</span>
                 {% endif %}
               </p>
-              <h3 class="mt-2 text-lg font-semibold text-brand-navy transition-colors group-hover:text-brand-indigo">{{ event.name }}</h3>
+              <h3 class="mt-2 text-lg font-semibold text-brand-navy transition-colors group-hover:text-brand-indigo">
+                <a class="focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-brand-sky/30" href="{{ event_href }}">{{ event.name }}</a>
+              </h3>
             </div>
             {% if event.type %}
               {% include badge.html label=event.type tone='neutral' size='sm' %}
@@ -67,6 +72,10 @@ Automatically determines state based on date if not specified
             {% if event.time %}<p><strong class="font-semibold text-brand-sky">Time:</strong> {{ event.time }}</p>{% endif %}
             {% if event.location %}<p><strong class="font-semibold text-brand-sky">Location:</strong> {{ event.location }}</p>{% endif %}
             {% if event.description %}<p class="mt-2 leading-relaxed">{{ event.description }}</p>{% endif %}
+            <p class="mt-3 inline-flex items-center gap-2 text-sm font-semibold text-brand-sky">
+              <span>View details</span>
+              <svg class="h-4 w-4 transition group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m0 0-5 5m5-5-5-5"/></svg>
+            </p>
           </div>
         </li>
       {% endfor %}

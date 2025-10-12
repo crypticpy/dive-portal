@@ -92,7 +92,7 @@ include_search: true
 
   <aside class="space-y-6">
     {% if cohort_data and cohort_data.events %}
-      {% include timeline.html events=cohort_data.events %}
+      {% include timeline.html events=cohort_data.events year=page.year %}
     {% endif %}
     {% if cohort_data and cohort_data.materials %}
       {% include materials.html materials=cohort_data.materials %}
