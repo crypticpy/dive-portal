@@ -310,7 +310,7 @@ The page includes:
 4. Fill out the form:
    - Cohort Year (e.g., `2026`)
    - Event Title (e.g., `Kickoff & Orientation`)
-   - Event ID (optional; URL slug, defaults from title, e.g., `kickoff`)
+   - Event ID (optional; URL slug, defaults from title, e.g., `kickoff`). After opening the issue, automation comments with your cohort's existing schedule IDs for reference.
    - Event Date/Time/Location (optional; shown on the page; if the schedule has these already, you can leave blank)
    - Event Summary (1–2 sentences)
    - Attachments (one per line as `Title | URL`)
@@ -362,7 +362,7 @@ Creates a Pull Request that updates the `attachments:` list in the event page fr
 3. Select **"Update event attachments (creates PR)"**
 4. Fill out the form:
    - Cohort Year (e.g., `2026`)
-   - Event ID (e.g., `kickoff`, `midpoint`, `final`)
+   - Event ID (e.g., `kickoff`, `midpoint`, `final`). If you’re unsure, type `help` or leave it blank and the bot will comment a list of available IDs for that year.
    - Update Mode: `REPLACE` (overwrite) or `APPEND` (add to existing)
    - Attachments (one per line as `Title | URL`)
 5. Submit the issue

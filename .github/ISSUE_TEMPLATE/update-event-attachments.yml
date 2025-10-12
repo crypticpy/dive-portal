@@ -15,7 +15,7 @@ body:
     id: event_id
     attributes:
       label: "Event ID"
-      description: "The event identifier used in the URL and schedule (e.g., kickoff, midpoint)."
+      description: "The event identifier used in the URL and schedule (e.g., kickoff, midpoint). Type 'help' or leave blank and automation will comment with available IDs for your year."
       placeholder: "kickoff"
     validations:
       required: true

@@ -26,6 +26,26 @@ jobs:
         with:
           node-version: '18'
 
+      - name: List cohort events (helper)
+        id: list
+        run: node scripts/list_events_for_year.js
+        env:
+          ISSUE_BODY: ${{ github.event.issue.body }}
+
+      - name: Comment with schedule IDs for reference
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const year = `${{ steps.list.outputs.year }}`;
+            const events = `${{ steps.list.outputs.events_md }}`;
+            const body = `For reference, here are the current schedule events for ${year} (if any):\n\n${events}\n\nYou may leave Event ID blank (we will slugify the title), or reuse an existing ID if you want it to match the schedule.`;
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body
+            });
+
       - name: Scaffold event files
         id: scaffold
         run: node scripts/new_event_from_issue.js

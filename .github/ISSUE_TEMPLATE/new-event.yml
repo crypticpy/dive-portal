@@ -22,7 +22,7 @@ body:
     id: event_id
     attributes:
       label: "Event ID (optional)"
-      description: "Lowercase identifier used in the URL (e.g., kickoff). Leave blank to auto-generate from the title."
+      description: "Lowercase identifier used in the URL (e.g., kickoff). Leave blank to auto-generate from the title. Automation also comments a list of your cohort's existing schedule IDs for reference."
       placeholder: "kickoff"
     validations:
       required: false
