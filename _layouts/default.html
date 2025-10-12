@@ -97,7 +97,7 @@
         updateHeader();
         window.addEventListener('scroll', () => {
           window.requestAnimationFrame(updateHeader);
-        });
+        }, { passive: true });
       })();
     </script>
   </body>

@@ -15,7 +15,7 @@
           <span class="pointer-events-none absolute inset-y-0 left-4 flex items-center text-brand-cloud">
             <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="m21 21-4.35-4.35M17 10a7 7 0 1 1-14 0 7 7 0 0 1 14 0Z"/></svg>
           </span>
-          <input type="search" data-filter="search" data-search-index="{{ '/search.json' | relative_url }}" class="w-full rounded-full border border-brand-sky/20 bg-white py-3 pl-12 pr-5 text-sm text-brand-slate shadow-subtle placeholder:text-brand-cloud transition-all duration-200 focus:border-brand-sky focus:shadow-card focus:outline-none focus:ring-4 focus:ring-brand-sky/20" placeholder="Search teams, disciplines, or tags…">
+          <input type="search" data-filter="search" data-search-index="{{ '/search.json' | relative_url }}" class="w-full rounded-full border border-brand-sky/20 bg-white py-3 pl-12 pr-5 text-sm text-brand-slate shadow-subtle placeholder:text-brand-cloud transition-all duration-200 focus:border-brand-sky focus:shadow-card focus:outline-none focus:ring-4 focus:ring-brand-sky/20" placeholder="Search teams, disciplines, or tags…" aria-label="Search teams, disciplines, or tags" autocomplete="off" spellcheck="false" enterkeyhint="search">
         </div>
         <button type="button" data-filter-clear class="inline-flex items-center justify-center rounded-full border border-brand-sky/30 px-4 py-2 text-sm font-semibold text-brand-sky transition-all duration-200 hover:border-brand-indigo hover:text-brand-indigo hover:bg-brand-indigo/5 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-brand-sky/30 focus-visible:ring-offset-2">Clear filters</button>
       </div>
@@ -56,7 +56,7 @@
     </div>
 
     <div class="flex flex-col gap-2 rounded-2xl bg-brand-sky/5 p-4 sm:flex-row sm:items-center sm:justify-between">
-      <div class="text-sm text-brand-stone" data-filter-summary>Showing all teams</div>
+      <div class="text-sm text-brand-stone" data-filter-summary role="status" aria-live="polite">Showing all teams</div>
       <div class="flex flex-wrap gap-2" data-filter-active-pills></div>
     </div>
   </div>

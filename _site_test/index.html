@@ -7,6 +7,24 @@
   <title>DIVE Cohorts · DIVE Data Learning Cohorts Gallery</title>
   <meta name="description" content="Showcase of City of Austin DIVE cohort projects">
   <link rel="stylesheet" href="/dive-gallery/assets/css/site.css">
+  
+  <style>
+    /* Respect reduced-motion preferences for smoother, less janky UI */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+
+    /* Defer rendering cost of large grids until visible */
+    [data-team-grid] {
+      content-visibility: auto;
+      contain-intrinsic-size: 800px;
+    }
+  </style>
   <!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>DIVE Cohorts | DIVE Data Learning Cohorts Gallery</title>
 <meta name="generator" content="Jekyll v4.3.4" />
@@ -68,7 +86,7 @@
           <a href="/dive-gallery/cohorts/2025/" class="rounded-full px-4 py-2 text-sm font-medium transition-all duration-200 focus:outline-none focus-visible:ring-4 focus-visible:ring-brand-sky/30 focus-visible:ring-offset-1 text-brand-stone hover:bg-brand-sky/10 hover:text-brand-navy" >2025 Cohort</a>
         
       </nav>
-      <a class="hidden rounded-full border border-brand-sky/70 bg-brand-sky px-5 py-2 text-sm font-semibold text-white shadow-subtle transition-all duration-200 hover:-translate-y-0.5 hover:bg-brand-indigo hover:shadow-card focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-brand-sky/40 focus-visible:ring-offset-2 lg:inline-flex" href="https://github.com/crypticpy/dive-gallery/issues/new?template=new-team.yml" target="_blank" rel="noopener">Submit Project</a>
+      <a class="hidden rounded-full border border-brand-sky/70 bg-brand-sky px-5 py-2 text-sm font-semibold text-white shadow-subtle transition-all duration-200 hover:-translate-y-0.5 hover:bg-brand-indigo hover:shadow-card focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-brand-sky/40 focus-visible:ring-offset-2 lg:inline-flex" href="https://github.com/crypticpy/dive-gallery/issues/new?template=new-team.yml" target="_blank" rel="noopener noreferrer">Submit Project</a>
 
       <button type="button" class="inline-flex items-center justify-center rounded-full border border-brand-sky/20 bg-white p-2 text-brand-navy shadow-subtle transition-all duration-200 hover:-translate-y-0.5 hover:bg-brand-sky/10 hover:shadow-card focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-brand-sky/30 focus-visible:ring-offset-2 lg:hidden" data-nav-toggle aria-expanded="false" aria-controls="mobile-nav" aria-label="Toggle navigation">
         <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
@@ -85,7 +103,7 @@
       
         <a href="/dive-gallery/cohorts/2025/" class="rounded-xl border border-brand-sky/20 bg-white px-4 py-3 text-base font-medium text-brand-navy shadow-subtle transition-all duration-200 hover:bg-brand-sky/10 hover:border-brand-sky/30 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-brand-sky/30 focus-visible:ring-offset-2">2025 Cohort</a>
       
-      <a href="https://github.com/crypticpy/dive-gallery/issues/new?template=new-team.yml" target="_blank" rel="noopener" class="mt-2 inline-flex items-center justify-center rounded-xl bg-brand-sky px-4 py-3 text-base font-semibold text-white shadow-subtle transition-all duration-200 hover:bg-brand-indigo hover:shadow-card focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-brand-sky/40 focus-visible:ring-offset-2">Submit Project</a>
+      <a href="https://github.com/crypticpy/dive-gallery/issues/new?template=new-team.yml" target="_blank" rel="noopener noreferrer" class="mt-2 inline-flex items-center justify-center rounded-xl bg-brand-sky px-4 py-3 text-base font-semibold text-white shadow-subtle transition-all duration-200 hover:bg-brand-indigo hover:shadow-card focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-brand-sky/40 focus-visible:ring-offset-2">Submit Project</a>
     </nav>
   </div>
 </header>
@@ -320,9 +338,9 @@
       <div>
         <h3 class="text-sm font-semibold uppercase tracking-wide text-white/80">Resources</h3>
         <ul class="mt-4 space-y-3 text-sm text-white/80">
-          <li><a class="transition hover:text-brand-sky" href="https://data.austintexas.gov/" target="_blank" rel="noopener">Austin Open Data Portal</a></li>
-          <li><a class="transition hover:text-brand-sky" href="https://www.austintexas.gov/" target="_blank" rel="noopener">City of Austin</a></li>
-          <li><a class="transition hover:text-brand-sky" href="https://github.com/crypticpy/dive-gallery/issues/new?template=new-team.yml" target="_blank" rel="noopener">Submit a project</a></li>
+          <li><a class="transition hover:text-brand-sky" href="https://data.austintexas.gov/" target="_blank" rel="noopener noreferrer">Austin Open Data Portal</a></li>
+          <li><a class="transition hover:text-brand-sky" href="https://www.austintexas.gov/" target="_blank" rel="noopener noreferrer">City of Austin</a></li>
+          <li><a class="transition hover:text-brand-sky" href="https://github.com/crypticpy/dive-gallery/issues/new?template=new-team.yml" target="_blank" rel="noopener noreferrer">Submit a project</a></li>
         </ul>
       </div>
       <div>
@@ -417,7 +435,7 @@
         updateHeader();
         window.addEventListener('scroll', () => {
           window.requestAnimationFrame(updateHeader);
-        });
+        }, { passive: true });
       })();
     </script>
   </body>

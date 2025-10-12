@@ -17,6 +17,7 @@ exclude:
   - tailwind.config.js
   - postcss.config.js
   - assets/css/tailwind.css
+  - assets/fonts
   - scripts
   - spec.md
 

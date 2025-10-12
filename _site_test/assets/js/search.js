@@ -41,7 +41,13 @@ document.addEventListener("DOMContentLoaded", () => {
       console.error("Unable to load search index", error);
     });
 
+  // Light debounce to avoid excessive index queries while typing
+  let debounceTimer = null;
   searchInput.addEventListener("input", (event) => {
-    runSearch(event.target.value);
+    const value = event.target.value;
+    if (debounceTimer) window.clearTimeout(debounceTimer);
+    debounceTimer = window.setTimeout(() => {
+      runSearch(value);
+    }, 120);
   });
 });

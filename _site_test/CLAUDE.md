@@ -25,9 +25,45 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 This is the DIVE Data Learning Cohorts Gallery, a static Jekyll website showcasing City of Austin DIVE program cohort projects. The site is built with Jekyll, styled with Tailwind CSS, and hosted on GitHub Pages. All content management is handled through GitHub's web UI, with GitHub Actions automating deployment, validation, and content scaffolding.
 
+## Documentation Structure
+
+This repository has **role-specific documentation** to serve different audiences:
+
+### For Content Managers & Program Coordinators (Non-Technical)
+**→ [Admin Getting Started Guide](docs/admin-getting-started.md)**
+- GitHub web UI focused (no command-line required)
+- Step-by-step cohort lifecycle management
+- Friendly, hand-holding tone for GitHub newcomers
+- Troubleshooting and FAQ
+
+**→ [README.md](README.md)**
+- Overview of the gallery and how content management works
+- Quick start guide for finding the right documentation
+- GitHub-first workflow explanation
+- Common tasks reference
+
+### For Developers & Designers (Technical)
+**→ [TECHNICAL-GUIDE.md](TECHNICAL-GUIDE.md)**
+- Complete local development setup (rbenv, Jekyll, Tailwind, npm)
+- Architecture deep-dive and build system details
+- Customization patterns for layouts, styling, workflows
+- Code references and deployment information
+
+### For AI Assistants
+**→ CLAUDE.md (this file)**
+- Development commands and architecture for AI context
+- Technical implementation details
+- Integration with above documentation
+
+**Use the appropriate guide based on the user's role and request context.**
+
+---
+
 ## Development Commands
 
-### Local Development
+**Note:** For complete local development setup and detailed instructions, see [TECHNICAL-GUIDE.md](TECHNICAL-GUIDE.md).
+
+### Quick Reference: Local Development
 ```bash
 # Install Ruby dependencies
 bundle install
@@ -194,7 +230,9 @@ Search index is built at Jekyll build time from page front matter.
 
 ## Development Workflow
 
-### Adding a New Team
+**Note:** These workflows are GitHub web UI-first. Content managers use issue templates and automation. Developers making code changes should refer to [TECHNICAL-GUIDE.md](TECHNICAL-GUIDE.md) for detailed customization patterns.
+
+### Adding a New Team (Content Management - GitHub UI)
 1. Create GitHub issue using "Add team (creates PR)" template
 2. Fill out form with team metadata
 3. GitHub Action auto-creates PR with scaffolded `index.md`
@@ -202,17 +240,24 @@ Search index is built at Jekyll build time from page front matter.
 5. Thumbnail generation workflow auto-creates `thumb.jpg`
 6. Review and merge PR to publish
 
-### Adding a New Cohort Year
+### Adding a New Cohort Year (Content Management - GitHub UI)
 1. Go to Actions tab, select "Start new cohort year"
 2. Run workflow with desired year (e.g., 2026)
 3. Review and merge PR with scaffolded structure
 4. Edit `_data/cohorts/YYYY.yml` to add events, materials, policies
 
-### Making Design Changes
+### Making Design Changes (Developer - Local or GitHub UI)
 1. Edit Tailwind classes in `_layouts/` and `_includes/`
-2. Run `npm run watch:css` during development
-3. Test locally with `bundle exec jekyll serve`
+2. Run `npm run watch:css` during development (local only)
+3. Test locally with `bundle exec jekyll serve` (local only)
 4. Push changes; GitHub Actions rebuilds CSS and deploys
+
+**For developers:** See [TECHNICAL-GUIDE.md](TECHNICAL-GUIDE.md) for:
+- Local development setup
+- Architecture deep-dive
+- Customization patterns
+- Build system details
+- Testing and validation procedures
 
 ## Accessibility Requirements
 

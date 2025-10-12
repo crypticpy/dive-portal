@@ -5,5 +5,25 @@
   <title>{% if page.title %}{{ page.title }} · {% endif %}{{ site.title }}</title>
   <meta name="description" content="{{ page.summary | default: site.description }}">
   <link rel="stylesheet" href="{{ '/assets/css/site.css' | relative_url }}">
+  {% if page.include_search %}
+    <link rel="preload" as="fetch" href="{{ '/search.json' | relative_url }}" type="application/json">
+  {% endif %}
+  <style>
+    /* Respect reduced-motion preferences for smoother, less janky UI */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+
+    /* Defer rendering cost of large grids until visible */
+    [data-team-grid] {
+      content-visibility: auto;
+      contain-intrinsic-size: 800px;
+    }
+  </style>
   {% seo %}
 </head>

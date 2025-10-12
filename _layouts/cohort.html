@@ -77,7 +77,7 @@ include_search: true
           <h2 id="team-gallery" class="text-2xl font-semibold text-brand-navy">Team projects</h2>
           <p class="text-sm text-brand-cloud">Dive into the cohort&rsquo;s applied analytics, storytelling, and service improvements.</p>
         </div>
-        <div class="inline-flex items-center gap-2 rounded-full border border-brand-sky/20 bg-white px-4 py-2 text-sm font-semibold text-brand-sky shadow-subtle"><span data-team-count>{{ team_count }}</span> teams</div>
+        <div class="inline-flex items-center gap-2 rounded-full border border-brand-sky/20 bg-white px-4 py-2 text-sm font-semibold text-brand-sky shadow-subtle"><span data-team-count aria-live="polite" aria-atomic="true">{{ team_count }}</span> teams</div>
       </div>
       <div class="grid gap-6 sm:grid-cols-2 xl:grid-cols-3" data-team-grid>
         {% for team in cohort_teams %}
