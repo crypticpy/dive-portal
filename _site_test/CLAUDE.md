@@ -23,7 +23,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is the DIVE Data Learning Cohorts Gallery, a static Jekyll website showcasing City of Austin DIVE program cohort projects. The site is built with Jekyll, styled with Tailwind CSS, and hosted on GitHub Pages. All content management is handled through GitHub's web UI, with GitHub Actions automating deployment, validation, and content scaffolding.
+This is the DIVE Data Learning Cohorts Portal, a static Jekyll website for City of Austin DIVE program cohort projects. The Gallery is a section of the portal that showcases finished team projects. The site is built with Jekyll, styled with Tailwind CSS, and hosted on GitHub Pages. All content management is handled through GitHub's web UI, with GitHub Actions automating deployment, validation, and content scaffolding.
 
 ## Documentation Structure
 

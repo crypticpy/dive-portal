@@ -18,7 +18,7 @@ include_filters: false
   <div class="relative grid gap-12 px-6 py-14 sm:px-10 lg:grid-cols-[1.6fr_minmax(0,1fr)]">
     <div class="space-y-6">
       <span class="inline-flex items-center gap-2 rounded-full border border-brand-cloud/20 bg-white px-4 py-2 text-xs font-semibold uppercase tracking-[0.32em] text-brand-cloud shadow-subtle">City of Austin · DIVE Program</span>
-      <h1 class="text-4xl font-semibold text-brand-navy sm:text-5xl">Data Learning Cohorts Gallery</h1>
+      <h1 class="text-4xl font-semibold text-brand-navy sm:text-5xl">Data Learning Cohorts Portal</h1>
       <p class="max-w-2xl text-lg leading-relaxed text-brand-stone">Discover how Austin public servants apply data science, storytelling, and civic analytics to deliver measurable impact. Each cohort highlights cross-department teams, curated resources, and outcomes you can explore and reuse.</p>
       <div class="flex flex-col gap-3 sm:flex-row">
         <a class="inline-flex items-center justify-center rounded-full bg-brand-sky px-6 py-3 text-sm font-semibold text-white shadow-subtle transition hover:-translate-y-0.5 hover:bg-brand-indigo focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-brand-sky/40" href="{{ '/cohorts/2025/' | relative_url }}">

@@ -1,4 +1,4 @@
-# DIVE Gallery: Getting Started Guide
+# DIVE Portal: Getting Started Guide
 
 **Welcome!** You've been chosen to help manage the DIVE Cohort Gallery, and we're glad you're here. This guide will walk you through everything you need to know to confidently manage cohort content using GitHub's web interface.
 
@@ -48,6 +48,7 @@ All of this happens through **clicking, filling out forms, and drag-and-drop upl
 1. [Access & Preparation](#1-access--preparation)
 2. [Start a New Cohort Year](#2-start-a-new-cohort-year)
 3. [Manage the Cohort Schedule](#3-manage-the-cohort-schedule)
+3A. [Add Event Details & Materials](#3a-add-event-details--materials)
 4. [Add and Maintain Team Pages](#4-add-and-maintain-team-pages)
 5. [Upload Cohort Materials & Policies](#5-upload-cohort-materials--policies)
 6. [Seasonal Workflow Checklist](#6-seasonal-workflow-checklist)
@@ -283,6 +284,96 @@ When the schedule looks correct:
 - Treat each update as the "source of truth" for the full schedule
 
 **💡 Best practice:** Keep a working copy of your event list in a document so you can easily add to it and resubmit.
+
+---
+
+## 3A. Add Event Details & Materials
+
+Use this to create a page for any timeline event where participants need more information (agenda, parking, prep materials, etc.). Once created, the cohort timeline links directly to the event page.
+
+### What This Does
+
+Creates an event detail page at:
+- `cohorts/YYYY/events/<event-id>/index.md`
+
+The page includes:
+- Event title, summary
+- Date, time, location (from schedule or provided here)
+- Attachments (PDFs, slides, docs via links)
+- Additional details (Markdown)
+
+### Step-by-Step Instructions
+
+1. Go to the **"Issues"** tab
+2. Click **"New issue"**
+3. Select **"Add event details (creates PR)"**
+4. Fill out the form:
+   - Cohort Year (e.g., `2026`)
+   - Event Title (e.g., `Kickoff & Orientation`)
+   - Event ID (optional; URL slug, defaults from title, e.g., `kickoff`). After opening the issue, automation comments with your cohort's existing schedule IDs for reference.
+   - Event Date/Time/Location (optional; shown on the page; if the schedule has these already, you can leave blank)
+   - Event Summary (1–2 sentences)
+   - Attachments (one per line as `Title | URL`)
+   - Event Details (Markdown) — add logistics, parking, prep notes
+5. Submit the issue
+
+**What happens next:** A Pull Request is created with a new page under `cohorts/YYYY/events/<id>/index.md`.
+
+### Review and Publish
+
+1. Go to **"Pull requests"**
+2. Open the PR titled "Add event <id>"
+3. Click **"Files changed"** to review the generated page
+4. Make edits if needed using the inline editor
+5. Merge the PR when ready
+
+### How the Timeline Link Works
+
+- The cohort page timeline automatically links events to `/cohorts/YYYY/events/<id>/`
+- The `<id>` is the `id` from your schedule entry (or the slugified event name)
+- Make sure your schedule entries (Section 3) include the event and matching `id`
+
+### Managing Attachments
+
+- The event page shows attachments listed in the form (Title + URL)
+- You can edit the page later to add more items under `attachments:`
+- You can also host files elsewhere and paste the full URLs
+
+### Tips
+
+- If you see date/time/location missing on the page, either:
+  - Ensure the event exists in `_data/cohorts/YYYY.yml` with those fields, or
+  - Provide `Event Date`, `Event Time`, and `Event Location` in the issue form (they’re shown on the page)
+
+---
+
+## 3B. Update Event Attachments
+
+Use this when you want to add or change the list of materials shown on an event page.
+
+### What This Does
+
+Creates a Pull Request that updates the `attachments:` list in the event page front matter.
+
+### Step-by-Step Instructions
+
+1. Go to the **"Issues"** tab
+2. Click **"New issue"**
+3. Select **"Update event attachments (creates PR)"**
+4. Fill out the form:
+   - Cohort Year (e.g., `2026`)
+   - Event ID (e.g., `kickoff`, `midpoint`, `final`). If you’re unsure, type `help` or leave it blank and the bot will comment a list of available IDs for that year.
+   - Update Mode: `REPLACE` (overwrite) or `APPEND` (add to existing)
+   - Attachments (one per line as `Title | URL`)
+5. Submit the issue
+
+**What happens next:** A Pull Request is created with changes to `cohorts/YYYY/events/<id>/index.md`.
+
+### Tips
+
+- If you don’t know the Event ID, open the event page and look at the URL: `/cohorts/YYYY/events/<id>/`
+- Choose `APPEND` to keep existing attachments and add new ones without re-entering the full list.
+- Use direct links (https URLs) for files hosted elsewhere.
 
 ---
 

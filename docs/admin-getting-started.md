@@ -1,4 +1,4 @@
-# DIVE Gallery: Getting Started Guide
+# DIVE Portal: Getting Started Guide
 
 **Welcome!** You've been chosen to help manage the DIVE Cohort Gallery, and we're glad you're here. This guide will walk you through everything you need to know to confidently manage cohort content using GitHub's web interface.
 

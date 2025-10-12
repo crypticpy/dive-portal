@@ -1,12 +1,37 @@
 {
-  "generated_at": "2025-10-12T03:07:42Z",
+  "generated_at": "2025-10-12T04:12:16Z",
   "docs": [
     {
       "slug": "transit-on-time",
       "title": "On-Time Transit Analytics",
       "summary": "Uses APC/AVL to analyze late arrivals on Bus Line 7 and recommend interventions.",
       "tags": "transportation reliability apc avl",
-      "url": "/cohorts/2025/teams/transit-on-time/"
+      "url": "/cohorts/2025/teams/transit-on-time/",
+      "kind": "team"
+    },
+    {
+      "slug": "event:2025:kickoff",
+      "title": "Kickoff",
+      "summary": "Program kickoff and orientation for DIVE cohort participants.",
+      "tags": "",
+      "url": "/cohorts/2025/events/kickoff/",
+      "kind": "event"
+    },
+    {
+      "slug": "event:2025:midpoint",
+      "title": "Midpoint Project Check-in",
+      "summary": "Team progress updates and coaching at the halfway point.",
+      "tags": "",
+      "url": "/cohorts/2025/events/midpoint/",
+      "kind": "event"
+    },
+    {
+      "slug": "event:2025:final",
+      "title": "Final Celebration & Poster Showcase",
+      "summary": "Celebrate outcomes and present posters to peers and leadership.",
+      "tags": "",
+      "url": "/cohorts/2025/events/final/",
+      "kind": "event"
     }
   ]
 }

@@ -2,7 +2,7 @@ Of course. Here is the information structured as a formal Software Project Enhan
 
 ---
 
-## **SPEC Document: DIVE Data Learning Cohorts Gallery**
+## **SPEC Document: DIVE Data Learning Cohorts Portal**
 
 Version: 1.0
 
@@ -16,7 +16,7 @@ Status: Scoping
 
 #### **1.1 Project Overview**
 
-This document outlines the specifications for the "DIVE Data Learning Cohorts Gallery," a static website designed to showcase projects from the City of Austin's DIVE data learning program. The entire system will be self-contained within a single GitHub repository, leveraging GitHub Pages for hosting and GitHub Actions for automation. The administrative workflow is designed to be entirely managed through the GitHub web UI, eliminating the need for external databases, servers, or complex CMS platforms.
+This document outlines the specifications for the "DIVE Data Learning Cohorts Portal," a static website for the City of Austin's DIVE data learning program. The Gallery is a section of the portal that showcases finished team projects. The entire system is self-contained within a single GitHub repository, leveraging GitHub Pages for hosting and GitHub Actions for automation. The administrative workflow is designed to be entirely managed through the GitHub web UI, eliminating the need for external databases, servers, or complex CMS platforms.
 
 #### **1.2 Goals and Objectives**
 

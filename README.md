@@ -1,235 +1,393 @@
-# DIVE Data Learning Cohorts Gallery
+# DIVE Data Learning Cohorts Portal
 
-A production-grade, static Jekyll website showcasing City of Austin DIVE cohort projects. Styled with Tailwind CSS and deployed via GitHub Pages, the gallery is designed for non‑technical administrators to manage content entirely through the GitHub web UI with automation via GitHub Actions.
+A portal for City of Austin DIVE program cohort projects, managed entirely through GitHub's web interface.
 
-Live site: https://cityofaustin.github.io/dive-gallery
+**Live Site:** [cityofaustin.github.io/dive-gallery](https://cityofaustin.github.io/dive-gallery)
 
-- Configuration: [`_config.yml`](./_config.yml)
-- Node scripts: [`package.json`](./package.json)
-- Ruby gems: [`Gemfile`](./Gemfile)
-- Spec and architecture: [`spec.md`](./spec.md)
-- Assistant guidance: [`CLAUDE.md`](./CLAUDE.md)
-- Brand palette: [`austin_brand.md`](./austin_brand.md)
-- Search plugin: [`_plugins/search_index.rb`](./_plugins/search_index.rb)
-- Frontend JS (filters): [`assets/js/filters.js`](./assets/js/filters.js)
-- Admin playbook: [`docs/admin-getting-started.md`](./docs/admin-getting-started.md)
-- Frontend JS (search): [`assets/js/search.js`](./assets/js/search.js)
-- Cohort data example: [`_data/cohorts/2025.yml`](./_data/cohorts/2025.yml)
+---
 
-## Overview
+## What is This?
 
-This repository powers the "DIVE Data Learning Cohorts Gallery"—a static site that:
-- Publishes cohort landing pages, schedules, policies, and learning materials
-- Displays filterable/project cards for team projects
-- Hosts individual team pages with deliverables (dashboards, posters, idea sheets)
-- Provides client-side search across titles, summaries, and tags
+The DIVE Portal is the public hub for the City of Austin's DIVE (Data, Insight, Visualization, and Evaluation) data learning program. The Gallery is a section of the portal that showcases finished team projects. Each cohort of DIVE participants creates data-driven projects that are featured with:
 
-Architecture highlights:
-- Static site generator: Jekyll 4.x with Liquid
-- Styling: Tailwind CSS (compiled to a single minified CSS)
-- Search: Lunr.js, generated at build-time by a Jekyll plugin
-- Hosting: GitHub Pages (static deployment)
-- Automation: GitHub Actions for CI/CD, validation, and scaffolding
+- Project summaries and findings
+- Team member information
+- Interactive dashboards
+- Downloadable posters and documentation
+- Searchable and filterable project gallery
 
-Key plugin declaration: [`class SearchIndexGenerator`](./_plugins/search_index.rb:19)
+**The best part:** You manage all content through GitHub's web interface—no command line, no coding, no local software installation required!
 
-## Quickstart
+---
 
-Prerequisites:
-- Ruby 3.3.9 (managed via `rbenv`; see [`Gemfile`](./Gemfile))
-- Bundler (`gem install bundler`)
-- Node.js and npm (for Tailwind build tooling)
-- Jekyll (`gem install jekyll`) for local serving
+## 🌟 Quick Start: Find Your Guide
 
-Verify that `rbenv` shims are active before installing gems:
-```bash
-rbenv --version
-eval "$(rbenv init -)"
-which ruby   # should resolve to ~/.rbenv/versions/3.3.9/...
+Choose the guide that matches your role:
+
+### 📊 **Content Managers & Program Coordinators**
+You want to add teams, update schedules, and manage cohort content using GitHub's web interface.
+
+**→ Start here:** [Admin Getting Started Guide](docs/admin-getting-started.md)
+
+This friendly, step-by-step guide walks you through:
+- Starting a new cohort year
+- Adding team projects
+- Uploading materials and deliverables
+- Managing the cohort lifecycle
+
+**No technical experience needed!** Everything happens in your web browser.
+
+### 👨‍💻 **Developers & Designers**
+You want to customize the look and feel, modify layouts, or extend the platform's functionality.
+
+**→ Start here:** [Technical Guide](TECHNICAL-GUIDE.md)
+
+This comprehensive developer guide covers:
+- Local development setup
+- Architecture and build system
+- Customization patterns
+- Deployment and workflows
+
+**Assumes fullstack development experience.**
+
+### 🤖 **AI Assistants**
+You're Claude, Copilot, or another AI helping with this codebase.
+
+**→ Start here:** [CLAUDE.md](CLAUDE.md)
+
+---
+
+## How Content Management Works
+
+### The GitHub-First Workflow
+
+This site uses **GitHub as a content management system (CMS)**. Here's how it works:
+
+```
+1. You create an issue or upload a file through GitHub's web interface
+2. GitHub Actions (automation) generates the necessary files
+3. Changes are proposed in a Pull Request for review
+4. When approved and merged, the site automatically rebuilds and deploys
+5. Your changes are live in about 2 minutes!
 ```
 
-Install dependencies (ensure your shell is using `rbenv init` shims):
-```bash
-rbenv exec bundle install
-npm install
-```
+**No local development environment needed.** Everything happens in your browser on GitHub.com.
 
-Run Tailwind in watch mode and serve locally (two terminals recommended):
-```bash
-npm run watch:css
-rbenv exec bundle exec jekyll serve
-```
+### What You Can Do (No Coding Required)
 
-Production build (CSS + Jekyll):
-```bash
-npm run build
-```
+✅ **Create a new cohort year** - Start a fresh cohort with one click
+✅ **Add team projects** - Fill out a form, automation creates the page
+✅ **Upload deliverables** - Drag and drop PDFs right into GitHub
+✅ **Update schedules** - Edit event timelines through issue forms
+✅ **Manage materials** - Add learning resources and workshop links
+✅ **Review changes** - Approve content before it goes live
 
-Notes:
-- `rbenv` must be installed and initialized (e.g., add `eval "$(rbenv init -)"` to your shell profile) so the repository’s Ruby 3.3.9 shims are used. Avoid calling the system `gem` or `bundle` directly.
-- The Jekyll site serves at http://localhost:4000 by default
-- The public base URL is `https://cityofaustin.github.io/dive-gallery` (see [`_config.yml`](./_config.yml))
+### What Happens Automatically
+
+🤖 **Thumbnail generation** - Upload a poster PDF, get a thumbnail automatically
+🤖 **Site deployment** - Merge a change, site rebuilds and deploys automatically
+🤖 **Content validation** - Pull requests are checked for required information
+🤖 **File scaffolding** - Issue forms create properly structured files for you
+
+---
+
+## Site Features
+
+### For Site Visitors
+- **Cohort landing pages** - Browse projects by year with timelines and materials
+- **Filterable gallery** - Find projects by department, track, or topic tags
+- **Search** - Keyword search across all projects
+- **Team pages** - Detailed project information, dashboards, and deliverables
+- **Responsive design** - Works on desktop, tablet, and mobile
+- **Accessible** - Meets WCAG 2.1 AA standards
+
+### For Content Managers
+- **GitHub issue forms** - Structured templates guide you through adding content
+- **Pull request reviews** - Preview changes before publishing
+- **Automated validation** - Catch errors before content goes live
+- **Version history** - See what changed and when, rollback if needed
+- **Collaboration** - Multiple team members can manage content safely
+
+---
+
+## Common Tasks
+
+### Adding a New Team
+1. Go to **Issues → New issue**
+2. Select **"Add team (creates PR)"** template
+3. Fill out the form with team details
+4. Submit the issue
+5. GitHub creates a Pull Request with the team page
+6. Upload poster and idea sheet PDFs to the PR
+7. Review and merge to publish
+
+**Detailed walkthrough:** [Admin Getting Started Guide - Section 4](docs/admin-getting-started.md#4-add-and-maintain-team-pages)
+
+### Starting a New Cohort
+1. Go to **Actions → Scaffold new cohort year**
+2. Click **Run workflow**
+3. Enter the year (e.g., 2026)
+4. Review the Pull Request with scaffolded files
+5. Merge to activate the new cohort
+
+**Detailed walkthrough:** [Admin Getting Started Guide - Section 2](docs/admin-getting-started.md#2-start-a-new-cohort-year)
+
+### Updating the Schedule
+1. Go to **Issues → New issue**
+2. Select **"Update cohort schedule"** template
+3. Paste your event list (formatted as YAML)
+4. Submit the issue
+5. Review the Pull Request with updated timeline
+6. Merge to publish changes
+
+**Detailed walkthrough:** [Admin Getting Started Guide - Section 3](docs/admin-getting-started.md#3-manage-the-cohort-schedule)
+
+---
 
 ## Repository Structure
 
-Core directories/files:
-- Layouts and includes:
-  - `_layouts/` (page templates: default, cohort, team)
-  - `_includes/` (reusable UI components, filters, cards, header/footer)
-- Data and content:
-  - `_data/taxonomies.yml` (controlled vocabularies: departments, tracks, tags)
-  - `_data/cohorts/YYYY.yml` (year-specific schedule, materials, policies)
-  - `cohorts/YYYY/teams/<slug>/index.md` (team page with YAML front matter + narrative)
-- Assets and build:
-  - `assets/css/tailwind.css` → `assets/css/site.css` (compiled by Tailwind)
-  - `assets/js/filters.js` and `assets/js/search.js` (client-side filtering and search)
-- Jekyll plugin:
-  - `_plugins/search_index.rb` (generates `search.json` for Lunr)
-- Scripts:
-  - `scripts/check_front_matter.rb` (front matter validation)
-  - `scripts/check_file_sizes.rb` (file-size guard)
-  - `scripts/scaffold_year.rb` (creates new cohort structure)
-  - `scripts/new_team_from_issue.js` (creates team content from issue form)
+Here's what's in this repository and where content lives:
 
-Representative files:
-- Config: [`_config.yml`](./_config.yml)
-- Cohort data: [`_data/cohorts/2025.yml`](./_data/cohorts/2025.yml)
-- Filters: [`assets/js/filters.js`](./assets/js/filters.js)
-- Search: [`assets/js/search.js`](./assets/js/search.js)
-- Plugin: [`_plugins/search_index.rb`](./_plugins/search_index.rb)
-
-## Content Model
-
-Team pages (`cohorts/YYYY/teams/<slug>/index.md`) must include comprehensive YAML front matter followed by Markdown narrative content. Required keys are validated by the script:
-- Validation keys reference: [`REQUIRED_KEYS`](./scripts/check_front_matter.rb:7)
-
-Cohort data (`_data/cohorts/YYYY.yml`) contains:
-- `events`: timeline entries with id, name, date/time, location
-- `materials`: grouped learning resources (e.g., essentials, workshops)
-- `policies`: program policies to display on cohort pages
-
-Example year file: [`_data/cohorts/2025.yml`](./_data/cohorts/2025.yml)
-
-## Client-Side Features
-
-Filters:
-- Users can filter team cards by department, track, and tags
-- Filter state is reflected in UI pills and updated count of visible teams
-- Implementation: [`assets/js/filters.js`](./assets/js/filters.js)
-
-Search:
-- Lunr.js index built from team front matter (title, summary, tags) via Jekyll plugin
-- Live query updates and grid matching:
-  - Plugin: [`_plugins/search_index.rb`](./_plugins/search_index.rb)
-  - Frontend: [`assets/js/search.js`](./assets/js/search.js)
-
-## Administrative Workflows
-
-Content management is done entirely via GitHub (issues, PRs, file uploads). Automation flows (implemented via GitHub Actions) typically include:
-
-- Build & Deploy:
-  - On push to main, compiles Tailwind CSS, builds Jekyll, deploys to GitHub Pages
-- Validation:
-  - PR checks ensure front matter completeness and block files >50MB
-  - Run locally with:
-    ```bash
-    ruby scripts/check_front_matter.rb
-    ruby scripts/check_file_sizes.rb
-    ```
-- New Team from Issue:
-  - Issue form creates a branch and scaffolds `cohorts/YYYY/teams/<slug>/index.md` via [`scripts/new_team_from_issue.js`](./scripts/new_team_from_issue.js)
-- Scaffold New Year:
-  - Manually triggered workflow prepares `cohorts/YYYY/` and `_data/cohorts/YYYY.yml` via [`scripts/scaffold_year.rb`](./scripts/scaffold_year.rb)
-- Poster Thumbnail Generation:
-  - Automatically builds `thumb.jpg` from `poster.pdf` when added in a PR
-
-Even if specific workflow filenames are not listed here, they live under `.github/workflows/` and are discoverable in the repository Actions tab.
-
-## Development Workflow
-
-Local iteration:
-1. Edit layouts and includes under `_layouts/` and `_includes/`
-2. Run `npm run watch:css` to continuously rebuild Tailwind
-3. Serve locally with `bundle exec jekyll serve` and test changes
-
-Adding a new cohort:
-1. Trigger the "Start new cohort year" workflow (Actions tab)
-2. Review PR with scaffolded `cohorts/YYYY/` and `_data/cohorts/YYYY.yml`
-3. Merge PR and update content in the year data file
-
-Adding a new team:
-1. Create GitHub issue using the "Add team (creates PR)" template
-2. Upload `poster.pdf` and `idea-sheet.pdf` to the team folder in the PR branch
-3. Ensure thumbnail auto-generation completes and validation passes
-4. Merge PR to publish
-
-## Accessibility
-
-The gallery adheres to WCAG 2.1 AA:
-- All images require meaningful `alt` text
-- Embedded `iframe` elements must include `title` attributes
-- High-contrast palette and visible focus states are enforced
-- PDFs must be accessibility‑tagged prior to upload
-
-Accessibility rules are reflected in content validation and UI design.
-
-## Branding and Design
-
-Tailwind CSS is configured to align with official City of Austin brand guidelines:
-- Palette and usage are documented in [`austin_brand.md`](./austin_brand.md)
-- Typography uses Source Sans 3 (headings) and Inter (body)
-- Build process compiles Tailwind from `assets/css/tailwind.css` to `assets/css/site.css`
-
-## Repository Constraints
-
-Operational constraints for GitHub Pages:
-- Max repository size: 1 GB
-- No single file should exceed 50 MB (validated via [`scripts/check_file_sizes.rb`](./scripts/check_file_sizes.rb))
-- Git LFS is not supported for served assets
-
-Branch protection:
-- Merges to `main` require at least one review and successful validation checks
-
-## Configuration Notes
-
-- Base URL: set in [`_config.yml`](./_config.yml)
-- Timezone: `"America/Chicago"`
-- Search index fields: title, summary, tags (plugin generated)
-- Exclusions:
-  - Jekyll excludes this README from the site build (see `exclude:` in [`_config.yml`](./_config.yml))
-
-## Commands Reference
-
-Development:
-```bash
-rbenv exec bundle install
-npm install
-npm run watch:css
-rbenv exec bundle exec jekyll serve
+```
+dive-gallery/
+├── cohorts/
+│   └── 2025/                      # Cohort year directory
+│       ├── index.md              # Cohort landing page
+│       └── teams/
+│           └── team-name/        # Individual team directory
+│               ├── index.md      # Team page content
+│               ├── poster.pdf    # Project poster
+│               ├── idea-sheet.pdf# Initial project proposal
+│               └── thumb.jpg     # Auto-generated thumbnail
+│
+├── _data/
+│   ├── cohorts/
+│   │   └── 2025.yml             # Cohort schedule, materials, policies
+│   └── taxonomies.yml            # Department, track, and tag options
+│
+├── docs/
+│   └── admin-getting-started.md # Content manager guide
+│
+├── TECHNICAL-GUIDE.md            # Developer customization guide
+└── README.md                     # This file
 ```
 
-Build:
-```bash
-npm run build:css
-npm run build
-```
+### Where Content Lives
 
-Validation:
-```bash
-ruby scripts/check_front_matter.rb
-ruby scripts/check_file_sizes.rb
-```
+| Content Type | Location | Managed Via |
+|-------------|----------|-------------|
+| Team projects | `cohorts/YYYY/teams/<slug>/` | Issue form → PR |
+| Cohort schedule | `_data/cohorts/YYYY.yml` | Issue form → PR |
+| Deliverables (PDFs) | Same as team project | Upload to PR branch |
+| Taxonomies | `_data/taxonomies.yml` | Edit via GitHub UI |
+
+---
+
+## Content Model Quick Reference
+
+### Team Page Requirements
+
+Each team page needs:
+
+**Required Information:**
+- Team title
+- Project summary (one sentence)
+- Department
+- Track (program curriculum)
+- Tags (topic keywords)
+- Cohort year
+
+**Optional Information:**
+- Coach name and email
+- Team member names
+- Dashboard URL
+- Methods and tools used
+- Project narrative (findings, impact)
+
+**Deliverables:**
+- `poster.pdf` - Final project poster
+- `idea-sheet.pdf` - Initial project proposal
+- `thumb.jpg` - Auto-generated from poster
+
+### Cohort Data
+
+Each cohort year needs:
+
+- **Events timeline** - Kickoff, workshops, milestones, celebrations
+- **Learning materials** - Links to resources, slide decks, guides
+- **Policies** - Program guidelines and requirements
+
+---
+
+## Accessibility Standards
+
+All content must meet **WCAG 2.1 AA** accessibility standards:
+
+- ✅ All images must have descriptive alt text
+- ✅ PDFs must be tagged for accessibility before upload
+- ✅ Dashboards must have accessible titles
+- ✅ High-contrast colors (automatically enforced by design)
+- ✅ Keyboard navigation supported (automatically provided)
+
+**Before uploading PDFs:** Ensure they are accessibility-tagged in Adobe Acrobat or your PDF tool.
+
+---
+
+## Repository Limits
+
+GitHub Pages has some constraints to keep in mind:
+
+| Limit | Value | What This Means |
+|-------|-------|-----------------|
+| **Repository size** | 1 GB max | Keep total size under 1 GB |
+| **File size** | 50 MB max | Keep individual files under 50 MB |
+| **Bandwidth** | 100 GB/month | Typical usage is well under this |
+| **Builds** | 10 per hour | Site rebuilds are throttled |
+
+**💡 Tip:** Poster PDFs should be under 10 MB. Compress if needed before upload.
+
+---
+
+## Troubleshooting
+
+### "Validation failed" on Pull Request
+
+**What happened:** Content is missing required information or files are too large.
+
+**How to fix:**
+1. Click on the failed check to see details
+2. Common issues:
+   - Missing required field (title, summary, tags, etc.)
+   - File exceeds 50 MB
+   - Invalid YAML syntax
+3. Edit the file in the PR to fix the issue
+4. Re-run the validation check
+
+### Poster thumbnail not generating
+
+**What happened:** The thumbnail generation workflow didn't run.
+
+**How to fix:**
+1. Ensure `poster.pdf` exists in the team folder
+2. Check that the PR is from a branch (not a fork)
+3. Re-run the "Generate poster thumbnails" workflow manually from the Actions tab
+
+### Changes not appearing on live site
+
+**What happened:** Site hasn't rebuilt yet or build failed.
+
+**How to fix:**
+1. Go to **Actions** tab
+2. Check the latest "Build & Deploy" workflow
+3. If failed, click to see error details
+4. If successful, wait 2-3 minutes for GitHub Pages to serve updated content
+5. Hard refresh your browser (Ctrl+Shift+R or Cmd+Shift+R)
+
+### Need to undo a change
+
+**What happened:** You merged something you didn't mean to.
+
+**How to fix:**
+1. Don't panic! Everything in Git is versioned
+2. Go to the **Code** tab → **Commits**
+3. Find the commit you want to revert
+4. Click the commit, then "Revert" button
+5. This creates a new PR that undoes the change
+
+**💡 Remember:** You can't permanently break anything! All changes are tracked and reversible.
+
+---
+
+## Getting Help
+
+### Documentation
+- **Content managers:** [Admin Getting Started Guide](docs/admin-getting-started.md)
+- **Developers:** [Technical Guide](TECHNICAL-GUIDE.md)
+- **Brand guidelines:** [Austin Brand Guide](austin_brand.md)
+- **Original specification:** [spec.md](spec.md)
+
+### Support Channels
+- **Issues tab** - Report bugs or request features
+- **Discussions tab** - Ask questions and share ideas
+- **Engineering team** - Contact maintainers for urgent technical issues
+
+### Useful GitHub Resources
+- [GitHub Issues Guide](https://docs.github.com/en/issues)
+- [GitHub Pull Requests Guide](https://docs.github.com/en/pull-requests)
+- [GitHub Actions Documentation](https://docs.github.com/en/actions)
+
+---
 
 ## Contributing
 
-- Use Issues and Pull Requests for all content and code changes
-- Ensure validation scripts pass locally before opening PRs
-- Follow repository brand and accessibility guidelines
-- Keep binary assets small and approved by department communications
+We welcome contributions! Here's how to help:
 
-## License
+1. **Report issues** - Found a bug? Open an issue
+2. **Suggest improvements** - Have an idea? Start a discussion
+3. **Submit content** - Use the issue templates to add teams or update schedules
+4. **Review pull requests** - Help review pending content changes
 
-This project is a public-sector initiative by the City of Austin. If a formal license file is added, it will appear at the repository root (e.g., `LICENSE`). Until then, content and code usage should follow City policy and program guidelines.
+### Content Guidelines
+- Follow the issue templates for consistency
+- Ensure all required fields are completed
+- Test links before submitting
+- Keep deliverables under file size limits
+- Make accessibility a priority
+
+### Code Guidelines (for developers)
+- Follow existing code style and patterns
+- Test locally before submitting PRs
+- Update documentation when changing behavior
+- Ensure validation scripts pass
+- See [Technical Guide](TECHNICAL-GUIDE.md) for development details
 
 ---
-For a deeper dive into goals, scope, and architecture, see the SPEC document: [`spec.md`](./spec.md). For assistant/developer guidance and command details, see: [`CLAUDE.md`](./CLAUDE.md).
+
+## Technical Details (For Reference)
+
+**Technology Stack:**
+- **Static site generator:** Jekyll 4.3
+- **Styling:** Tailwind CSS 3.4
+- **Search:** Lunr.js (client-side)
+- **Hosting:** GitHub Pages
+- **Automation:** GitHub Actions
+
+**Brand:**
+- **Typography:** Source Sans 3 (headings), Inter (body)
+- **Colors:** Official City of Austin brand palette
+- **Design:** Responsive, accessible, mobile-first
+
+**Browser Support:**
+- Modern browsers (Chrome, Firefox, Safari, Edge)
+- Graceful degradation for older browsers
+
+**For full technical details:** See [Technical Guide](TECHNICAL-GUIDE.md)
+
+---
+
+## License & Ownership
+
+This project is a public-sector initiative by the City of Austin. Content and code usage should follow City of Austin policies and program guidelines.
+
+---
+
+## Quick Links
+
+### For Content Managers
+- [👉 Get Started Managing Content](docs/admin-getting-started.md)
+- [Create Issue for New Team](../../issues/new/choose)
+- [View All Workflows](../../actions)
+- [Browse Pull Requests](../../pulls)
+
+### For Developers
+- [👉 Technical Development Guide](TECHNICAL-GUIDE.md)
+- [Brand Guidelines](austin_brand.md)
+- [Original Specification](spec.md)
+- [AI Assistant Guide](CLAUDE.md)
+
+### Live Site
+- [🌐 Visit Live Portal](https://cityofaustin.github.io/dive-gallery)
+
+---
+
+**Welcome to the DIVE Portal!** Whether you're managing content or customizing code, we're glad you're here. Pick your guide above and let's get started! 🚀
