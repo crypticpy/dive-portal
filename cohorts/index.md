@@ -6,7 +6,7 @@ title: "Cohort Archive"
 {% assign sorted_years = site.data.cohorts | sort %}
 
 <section class="mb-12 space-y-4">
-  <span class="text-xs font-semibold uppercase tracking-[0.3em] text-brand-cloud">Gallery</span>
+  <span class="text-xs font-semibold uppercase tracking-[0.3em] text-brand-cloud">Portal</span>
   <h1 class="text-4xl font-semibold text-brand-navy sm:text-5xl">Cohort archive</h1>
   <p class="max-w-2xl text-lg leading-relaxed text-brand-stone">Browse every published DIVE cohort. Each year includes a timeline, resource kits, and a searchable gallery of project teams.</p>
 </section>
