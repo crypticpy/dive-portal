@@ -39,4 +39,6 @@ jobs:
       - name: Build site
         env:
           JEKYLL_ENV: production
-        run: bundle exec jekyll build --destination _site
+        run: |
+          echo "Smoke build with dynamic baseurl=/${GITHUB_REPOSITORY#*/}"
+          bundle exec jekyll build --destination _site --baseurl "/${GITHUB_REPOSITORY#*/}"

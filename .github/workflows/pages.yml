@@ -48,7 +48,9 @@ jobs:
       - name: Build Jekyll site
         env:
           JEKYLL_ENV: production
-        run: bundle exec jekyll build --destination _site
+        run: |
+          echo "Building with dynamic baseurl=/${GITHUB_REPOSITORY#*/}"
+          bundle exec jekyll build --destination _site --baseurl "/${GITHUB_REPOSITORY#*/}"
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
