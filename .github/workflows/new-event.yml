@@ -1,0 +1,43 @@
+name: New event from issue
+
+on:
+  issues:
+    types:
+      - opened
+      - edited
+
+jobs:
+  scaffold:
+    if: contains(github.event.issue.labels.*.name, 'content:new-event')
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+      issues: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Scaffold event files
+        id: scaffold
+        run: node scripts/new_event_from_issue.js
+        env:
+          ISSUE_BODY: ${{ github.event.issue.body }}
+          ISSUE_TITLE: ${{ github.event.issue.title }}
+
+      - name: Create pull request
+        uses: peter-evans/create-pull-request@v6
+        with:
+          commit-message: "feat: add event ${{ steps.scaffold.outputs.slug }}"
+          title: "Add event ${{ steps.scaffold.outputs.slug }}"
+          body: "Generated from issue #${{ github.event.issue.number }}"
+          branch: ${{ steps.scaffold.outputs.branch }}
+          delete-branch: true

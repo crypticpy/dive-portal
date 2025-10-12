@@ -30,22 +30,25 @@ layout: default
     {% endif %}
 
     <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-      {% if event_obj.date %}
+      {% assign date_val = event_obj.date | default: page.event_date %}
+      {% if date_val %}
         <div class="rounded-2xl border border-brand-sky/15 bg-white p-4 shadow-subtle">
           <p class="text-xs font-semibold uppercase tracking-[0.28em] text-brand-cloud">Date</p>
-          <p class="mt-1 text-brand-navy">{{ event_obj.date | date: "%A, %B %-d, %Y" }}</p>
+          <p class="mt-1 text-brand-navy">{{ date_val | date: "%A, %B %-d, %Y" }}</p>
         </div>
       {% endif %}
-      {% if event_obj.time %}
+      {% assign time_val = event_obj.time | default: page.event_time %}
+      {% if time_val %}
         <div class="rounded-2xl border border-brand-sky/15 bg-white p-4 shadow-subtle">
           <p class="text-xs font-semibold uppercase tracking-[0.28em] text-brand-cloud">Time</p>
-          <p class="mt-1 text-brand-navy">{{ event_obj.time }}</p>
+          <p class="mt-1 text-brand-navy">{{ time_val }}</p>
         </div>
       {% endif %}
-      {% if event_obj.location %}
+      {% assign location_val = event_obj.location | default: page.event_location %}
+      {% if location_val %}
         <div class="rounded-2xl border border-brand-sky/15 bg-white p-4 shadow-subtle">
           <p class="text-xs font-semibold uppercase tracking-[0.28em] text-brand-cloud">Location</p>
-          <p class="mt-1 text-brand-navy">{{ event_obj.location }}</p>
+          <p class="mt-1 text-brand-navy">{{ location_val }}</p>
         </div>
       {% endif %}
     </div>
@@ -89,4 +92,3 @@ layout: default
     </a>
   </aside>
 </article>
-
