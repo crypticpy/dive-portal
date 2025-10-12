@@ -69,11 +69,20 @@ layout: default
       {% if attachments and attachments.size > 0 %}
         <ul class="space-y-3 px-6 py-6 text-sm text-brand-navy">
           {% for item in attachments %}
+            {% assign type = item.type | downcase %}
+            {% assign icon_name = 'document' %}
+            {% if type contains 'slide' or type contains 'deck' or type contains 'story' %}
+              {% assign icon_name = 'presentation' %}
+            {% elsif type contains 'guide' or type contains 'doc' %}
+              {% assign icon_name = 'document' %}
+            {% elsif type contains 'hands' or type contains 'code' or type contains 'technical' %}
+              {% assign icon_name = 'terminal' %}
+            {% endif %}
             <li>
               <a class="group flex items-center justify-between rounded-xl border border-brand-sky/15 bg-white px-4 py-3 font-semibold text-brand-navy transition hover:border-brand-sky hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-brand-sky/30" href="{{ item.url | relative_url }}" target="_blank" rel="noopener noreferrer">
                 <span class="flex items-center gap-3">
                   <span class="inline-flex h-9 w-9 items-center justify-center rounded-full bg-brand-sky/10 text-brand-indigo">
-                    {% include icon.html name='document' size='sm' %}
+                    {% include icon.html name=icon_name size='sm' %}
                   </span>
                   <span>{{ item.title }}</span>
                 </span>

@@ -1,6 +1,6 @@
 # DIVE Portal: Getting Started Guide
 
-**Welcome!** You've been chosen to help manage the DIVE Cohort Gallery, and we're glad you're here. This guide will walk you through everything you need to know to confidently manage cohort content using GitHub's web interface.
+**Welcome!** You've been chosen to help manage the DIVE Cohort Portal, and we're glad you're here. This guide will walk you through everything you need to know to confidently manage cohort content using GitHub's web interface.
 
 **Good news:** You don't need to be technical. Everything happens in your web browser, and automation handles the complex stuff. Let's get you started! 🚀
 
@@ -61,10 +61,10 @@ All of this happens through **clicking, filling out forms, and drag-and-drop upl
 
 ### Getting Access
 
-You'll need **write access** to the `cityofaustin/dive-gallery` repository on GitHub.
+You'll need **write access** to the `crypticpy/dive-portal` repository on GitHub.
 
 **How to check:**
-1. Go to [github.com/cityofaustin/dive-gallery](https://github.com/cityofaustin/dive-gallery)
+1. Go to [github.com/crypticpy/dive-portal](https://github.com/crypticpy/dive-portal)
 2. Look for tabs at the top: Code, Issues, Pull requests, Actions, etc.
 3. If you see "Settings" tab, you have write access ✅
 4. If you don't see "Settings," contact your engineering team to request access
@@ -1004,8 +1004,8 @@ You've reached the end of the guide. Here's what you've learned:
 
 ### Helpful Links
 
-- **Repository:** [github.com/cityofaustin/dive-gallery](https://github.com/cityofaustin/dive-gallery)
-- **Live site:** [cityofaustin.github.io/dive-gallery](https://cityofaustin.github.io/dive-gallery)
+- **Repository:** [github.com/crypticpy/dive-portal](https://github.com/crypticpy/dive-portal)
+- **Live site:** [crypticpy.github.io/dive-portal](https://crypticpy.github.io/dive-portal)
 - **README:** [Main documentation](../README.md)
 - **Technical guide:** [For developers](../TECHNICAL-GUIDE.md)
 

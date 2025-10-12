@@ -2,7 +2,7 @@
 
 A portal for City of Austin DIVE program cohort projects, managed entirely through GitHub's web interface.
 
-**Live Site:** [cityofaustin.github.io/dive-gallery](https://cityofaustin.github.io/dive-gallery)
+**Live Site:** [crypticpy.github.io/dive-portal](https://crypticpy.github.io/dive-portal)
 
 ---
 
@@ -149,7 +149,7 @@ This site uses **GitHub as a content management system (CMS)**. Here's how it wo
 Here's what's in this repository and where content lives:
 
 ```
-dive-gallery/
+dive-portal/
 ├── cohorts/
 │   └── 2025/                      # Cohort year directory
 │       ├── index.md              # Cohort landing page
@@ -386,7 +386,7 @@ This project is a public-sector initiative by the City of Austin. Content and co
 - [AI Assistant Guide](CLAUDE.md)
 
 ### Live Site
-- [🌐 Visit Live Portal](https://cityofaustin.github.io/dive-gallery)
+- [🌐 Visit Live Portal](https://crypticpy.github.io/dive-portal)
 
 ---
 

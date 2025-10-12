@@ -135,7 +135,7 @@ npm run build
 ### Directory Structure
 
 ```
-dive-gallery/
+dive-portal/
 ├── _config.yml                 # Jekyll configuration
 ├── _data/                      # YAML data files
 │   ├── cohorts/
@@ -251,7 +251,7 @@ module.exports = {
 Key Jekyll settings:
 ```yaml
 title: "DIVE Data Learning Cohorts Portal"
-baseurl: "/dive-gallery"
+baseurl: ""
 url: "https://cityofaustin.github.io"
 timezone: "America/Chicago"
 markdown: kramdown
@@ -588,7 +588,7 @@ The plugin runs at build time and generates `search.json`:
     "title": "On-Time Transit Analytics",
     "summary": "Uses APC/AVL to analyze late arrivals...",
     "tags": ["transportation", "reliability", "apc", "avl"],
-    "url": "/dive-gallery/cohorts/2025/teams/transit-on-time/"
+    "url": "/dive-portal/cohorts/2025/teams/transit-on-time/"
   }
 ]
 ```
@@ -777,7 +777,9 @@ ls -lh _site/
 - **Custom domain:** (none)
 - **HTTPS:** Enforced
 
-**URL:** `https://cityofaustin.github.io/dive-gallery`
+Note: The GitHub Actions workflow passes a dynamic `--baseurl "/${GITHUB_REPOSITORY#*/}"` so the site continues to work after repo renames.
+
+**URL:** `https://crypticpy.github.io/dive-portal`
 
 ### Deployment Process
 
@@ -1038,7 +1040,7 @@ grep -r "search_index" _site/
 **Issue:** Site works locally but not on GitHub Pages
 
 **Causes:**
-- **Baseurl:** Ensure `baseurl: "/dive-gallery"` in `_config.yml`
+- **Baseurl:** Leave `baseurl: ""` in `_config.yml` and rely on the Actions workflow passing `--baseurl` dynamically
 - **JEKYLL_ENV:** Set `JEKYLL_ENV=production` for local prod testing
 - **Excluded files:** Check `exclude:` in `_config.yml`
 

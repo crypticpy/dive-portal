@@ -66,7 +66,7 @@ The project will be organized within a single repository with the following dire
 **Plaintext**
 
 ```
-cityofaustin/dive-gallery/
+dive-portal/
 ├─ .github/
 │  ├─ ISSUE_TEMPLATE/
 │  │  ├─ new-team.yml

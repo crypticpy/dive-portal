@@ -123,7 +123,7 @@ The documentation has been completely restructured from a single technical READM
 ## New Documentation Structure
 
 ```
-dive-gallery/
+dive-portal/
 ├── README.md                           [RESTRUCTURED]
 │   ├─ For: Content managers, quick reference
 │   ├─ Tone: Friendly, welcoming, non-technical
