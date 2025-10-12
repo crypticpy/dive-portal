@@ -1,7 +1,7 @@
 title: "DIVE Data Learning Cohorts Portal"
 description: "Showcase of City of Austin DIVE cohort projects"
 url: "https://cityofaustin.github.io"
-baseurl: "/dive-gallery"
+baseurl: ""
 theme: null
 timezone: "America/Chicago"
 markdown: kramdown
