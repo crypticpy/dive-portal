@@ -27,6 +27,26 @@ jobs:
           ruby-version: "3.3"
           bundler-cache: true
 
+      - name: Preview normalized IDs
+        id: preview
+        run: ruby scripts/preview_schedule_ids_from_issue.rb
+        env:
+          ISSUE_BODY: ${{ github.event.issue.body }}
+
+      - name: Comment with event ID preview
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const year = `${{ steps.preview.outputs.year }}`;
+            const md = `${{ steps.preview.outputs.preview_ids }}`;
+            const body = `### Event ID preview for ${year}\n\n${md}\n\nNote: Event pages will be available at /cohorts/${year}/events/<id>/ after merge.`;
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body
+            });
+
       - name: Update schedule data
         id: update
         run: ruby scripts/update_schedule_from_issue.rb

@@ -49,6 +49,7 @@ Automatically determines state based on date if not specified
         {% assign event_slug = event.slug | default: event.id | default: event.name | slugify %}
         {% assign event_href = '/cohorts/' | append: event_year | append: '/events/' | append: event_slug | append: '/' | relative_url %}
         <li class="group relative ml-10 rounded-2xl border transition-all duration-300 ease-out {{ card_class }} p-5 shadow-subtle backdrop-blur hover:-translate-y-0.5 hover:shadow-card hover:border-brand-sky/30">
+          <a class="absolute inset-0 rounded-2xl focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-brand-sky/30" href="{{ event_href }}" aria-label="View details for {{ event.name }}"></a>
           <div class="absolute left-[-46px] top-1 flex h-10 w-10 items-center justify-center rounded-full transition-all duration-300 {{ icon_bg }} shadow-subtle group-hover:scale-110">
             {% include icon.html name=icon_name size='md' %}
           </div>
@@ -60,9 +61,7 @@ Automatically determines state based on date if not specified
                   <span class="ml-2 rounded-full bg-brand-indigo/15 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-brand-indigo">Current</span>
                 {% endif %}
               </p>
-              <h3 class="mt-2 text-lg font-semibold text-brand-navy transition-colors group-hover:text-brand-indigo">
-                <a class="focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-brand-sky/30" href="{{ event_href }}">{{ event.name }}</a>
-              </h3>
+              <h3 class="mt-2 text-lg font-semibold text-brand-navy transition-colors group-hover:text-brand-indigo">{{ event.name }}</h3>
             </div>
             {% if event.type %}
               {% include badge.html label=event.type tone='neutral' size='sm' %}

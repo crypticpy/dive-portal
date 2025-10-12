@@ -16,6 +16,10 @@
             <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="m21 21-4.35-4.35M17 10a7 7 0 1 1-14 0 7 7 0 0 1 14 0Z"/></svg>
           </span>
           <input type="search" data-filter="search" data-search-index="{{ '/search.json' | relative_url }}" class="w-full rounded-full border border-brand-sky/20 bg-white py-3 pl-12 pr-5 text-sm text-brand-slate shadow-subtle placeholder:text-brand-cloud transition-all duration-200 focus:border-brand-sky focus:shadow-card focus:outline-none focus:ring-4 focus:ring-brand-sky/20" placeholder="Search teams, disciplines, or tags…" aria-label="Search teams, disciplines, or tags" autocomplete="off" spellcheck="false" enterkeyhint="search">
+          <div data-search-results class="absolute left-0 right-0 z-50 mt-2 hidden rounded-xl border border-brand-sky/15 bg-white shadow-subtle">
+            <div class="border-b border-brand-sky/10 bg-brand-sky/5 px-4 py-2 text-xs font-semibold uppercase tracking-wide text-brand-cloud">Matching events</div>
+            <ul data-search-events class="max-h-64 divide-y divide-brand-sky/10 overflow-auto"></ul>
+          </div>
         </div>
         <button type="button" data-filter-clear class="inline-flex items-center justify-center rounded-full border border-brand-sky/30 px-4 py-2 text-sm font-semibold text-brand-sky transition-all duration-200 hover:border-brand-indigo hover:text-brand-indigo hover:bg-brand-indigo/5 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-brand-sky/30 focus-visible:ring-offset-2">Clear filters</button>
       </div>
