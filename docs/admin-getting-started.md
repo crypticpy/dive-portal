@@ -347,6 +347,36 @@ The page includes:
 
 ---
 
+## 3B. Update Event Attachments
+
+Use this when you want to add or change the list of materials shown on an event page.
+
+### What This Does
+
+Creates a Pull Request that updates the `attachments:` list in the event page front matter.
+
+### Step-by-Step Instructions
+
+1. Go to the **"Issues"** tab
+2. Click **"New issue"**
+3. Select **"Update event attachments (creates PR)"**
+4. Fill out the form:
+   - Cohort Year (e.g., `2026`)
+   - Event ID (e.g., `kickoff`, `midpoint`, `final`)
+   - Update Mode: `REPLACE` (overwrite) or `APPEND` (add to existing)
+   - Attachments (one per line as `Title | URL`)
+5. Submit the issue
+
+**What happens next:** A Pull Request is created with changes to `cohorts/YYYY/events/<id>/index.md`.
+
+### Tips
+
+- If you don’t know the Event ID, open the event page and look at the URL: `/cohorts/YYYY/events/<id>/`
+- Choose `APPEND` to keep existing attachments and add new ones without re-entering the full list.
+- Use direct links (https URLs) for files hosted elsewhere.
+
+---
+
 ## 4. Add and Maintain Team Pages
 
 This is how you add team projects to the gallery. You'll do this each time a team submits their project information.

@@ -22,14 +22,34 @@ module Dive
     priority :low
 
     def generate(site)
-      docs = site.pages.select { |page| page.data["layout"] == "team" }.map do |page|
-        {
-          slug: page.data["slug"] || Jekyll::Utils.slugify(page.data["title"] || ""),
-          title: page.data["title"],
-          summary: page.data["summary"],
-          tags: Array(page.data["tags"]).join(" "),
-          url: page.url
-        }
+      docs = []
+      site.pages.each do |page|
+        layout = page.data["layout"]
+        title = page.data["title"]
+        summary = page.data["summary"]
+        case layout
+        when "team"
+          docs << {
+            slug: page.data["slug"] || Jekyll::Utils.slugify(title || ""),
+            title: title,
+            summary: summary,
+            tags: Array(page.data["tags"]).join(" "),
+            url: page.url,
+            kind: "team"
+          }
+        when "event"
+          # Use a non-conflicting ref for events so they don't affect team filtering logic
+          event_id = page.data["event_id"] || Jekyll::Utils.slugify(title || "")
+          year = page.data["cohort"] || ""
+          docs << {
+            slug: "event:#{year}:#{event_id}",
+            title: title,
+            summary: summary,
+            tags: "",
+            url: page.url,
+            kind: "event"
+          }
+        end
       end
 
       payload = { generated_at: Time.now.utc.iso8601, docs: docs }

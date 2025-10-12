@@ -1,0 +1,43 @@
+name: "Update event attachments (creates PR)"
+description: "Add or replace attachments for an existing event page."
+title: "Event attachments: <year> <event-id>"
+labels:
+  - content:event-attachments
+body:
+  - type: input
+    id: cohort_year
+    attributes:
+      label: "Cohort Year"
+      placeholder: "2025"
+    validations:
+      required: true
+  - type: input
+    id: event_id
+    attributes:
+      label: "Event ID"
+      description: "The event identifier used in the URL and schedule (e.g., kickoff, midpoint)."
+      placeholder: "kickoff"
+    validations:
+      required: true
+  - type: dropdown
+    id: mode
+    attributes:
+      label: "Update Mode"
+      description: "Choose whether to replace the existing list or append to it."
+      options:
+        - REPLACE (overwrite existing attachments)
+        - APPEND (keep existing and add new)
+    validations:
+      required: true
+  - type: textarea
+    id: attachments
+    attributes:
+      label: "Attachments"
+      description: |
+        Provide one per line in the format: Title | URL
+        Example: Kickoff Agenda (PDF) | https://example.org/agenda.pdf
+      placeholder: |
+        Agenda (PDF) | https://example.org/agenda.pdf
+        Parking Map (PDF) | https://example.org/parking.pdf
+    validations:
+      required: true
