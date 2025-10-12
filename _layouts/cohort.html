@@ -20,10 +20,34 @@ include_search: true
   {% assign event_count = cohort_data.events | size %}
 {% endif %}
 
+{%- comment -%}
+Compute the next upcoming event for the sidebar highlight. Fallback to last event.
+{%- endcomment -%}
+{% assign next_event = nil %}
+{% assign next_event_slug = nil %}
+{% assign now_ts = 'now' | date: '%s' | plus: 0 %}
+{% if cohort_data and cohort_data.events %}
+  {% for ev in cohort_data.events %}
+    {% if ev.date %}
+      {% assign ev_ts = ev.date | date: '%s' | plus: 0 %}
+      {% if ev_ts >= now_ts and next_event == nil %}
+        {% assign next_event = ev %}
+        {% assign next_event_slug = ev.slug | default: ev.id | default: ev.name | slugify %}
+      {% endif %}
+    {% endif %}
+  {% endfor %}
+  {% if next_event == nil %}
+    {% assign next_event = final_event %}
+    {% if next_event %}
+      {% assign next_event_slug = next_event.slug | default: next_event.id | default: next_event.name | slugify %}
+    {% endif %}
+  {% endif %}
+{% endif %}
+
 <section class="relative mb-12 overflow-hidden rounded-3xl border border-brand-sky/20 bg-gradient-to-br from-white via-brand-sky/5 to-brand-sea/5 shadow-card">
   <div class="absolute -left-24 -top-24 h-48 w-48 rounded-full bg-brand-sky/20 blur-3xl" aria-hidden="true"></div>
   <div class="absolute -right-16 top-1/2 h-40 w-40 -translate-y-1/2 rounded-full bg-brand-sea/15 blur-3xl" aria-hidden="true"></div>
-  <div class="relative grid gap-8 px-6 py-12 sm:px-10 lg:grid-cols-[2fr_minmax(0,1fr)]">
+  <div class="relative grid gap-8 px-6 py-12 sm:px-10">
     <div class="space-y-6">
       <div class="flex flex-wrap items-center gap-3 text-sm font-semibold uppercase tracking-[0.3em] text-brand-cloud">
         <span>Data Interdisciplinary Vocational Experience</span>
@@ -41,34 +65,12 @@ include_search: true
         {% include badge.html label=department_badge tone='department' size='lg' %}
         {% include badge.html label=track_badge tone='track' size='lg' %}
       </div>
-      {% if final_event %}
-        <div class="mt-6 flex flex-col gap-3 rounded-2xl border border-brand-sky/15 bg-white/80 p-5 shadow-subtle md:flex-row md:items-center md:justify-between">
-          <div class="flex items-center gap-3 text-brand-navy">
-            <span class="inline-flex h-12 w-12 items-center justify-center rounded-full bg-brand-sky/15 text-brand-indigo">
-              <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M16 2v4M8 2v4M4.5 9h15M5 20h14a1 1 0 0 0 1-1v-9H4v9a1 1 0 0 0 1 1Z"/></svg>
-            </span>
-            <div>
-              <p class="text-sm font-semibold uppercase tracking-wide text-brand-cloud">Next milestone</p>
-              <p class="text-base font-semibold text-brand-navy">{{ final_event.name }}</p>
-            </div>
-          </div>
-          <div class="text-sm text-brand-stone">
-            <p>{{ final_event.date | date: "%B %-d, %Y" }}</p>
-            {% if final_event.location %}<p>{{ final_event.location }}</p>{% endif %}
-          </div>
-        </div>
-      {% endif %}
-    </div>
-
-    <div class="grid gap-4 sm:grid-cols-2">
-      {% include stat-block.html value=tag_count label="Tags used" description="Project facets across the cohort" %}
-      {% include stat-block.html value=event_count label="Program events" description="Workshops, showcases, and checkpoints" %}
     </div>
   </div>
 </section>
 
 <div class="grid gap-10 lg:grid-cols-[minmax(0,2fr)_minmax(0,1fr)]">
-  <div class="space-y-10">
+  <div class="order-2 space-y-10 lg:order-1">
     {% include filter-controls.html %}
 
     <section aria-labelledby="team-gallery" class="space-y-6">
@@ -90,9 +92,41 @@ include_search: true
     </section>
   </div>
 
-  <aside class="space-y-6">
+  <aside class="order-1 space-y-6 lg:order-2">
+    {% if next_event %}
+      {% assign event_year = page.year %}
+      {% assign next_slug = next_event.slug | default: next_event.id | default: next_event.name | slugify %}
+      {% assign event_href = '/cohorts/' | append: event_year | append: '/events/' | append: next_slug | append: '/' | relative_url %}
+      <section aria-labelledby="next-milestone" class="relative overflow-hidden rounded-2xl border-l-4 border-brand-indigo bg-white shadow-subtle">
+        <a class="absolute inset-0" href="{{ event_href }}" aria-label="View details for {{ next_event.name }}"></a>
+        <div class="border-b border-brand-sky/10 bg-brand-sky/5 px-6 py-4">
+          <h2 id="next-milestone" class="flex items-center gap-2 text-lg font-semibold text-brand-navy">
+            {% include icon.html name='calendar' size='sm' class='text-brand-indigo' %}
+            Next milestone
+          </h2>
+        </div>
+        <div class="flex items-start justify-between gap-4 px-6 py-5">
+          <div class="flex-1">
+            <p class="text-sm font-semibold text-brand-navy">{{ next_event.name }}</p>
+            <div class="mt-2 space-y-1 text-sm text-brand-stone">
+              <p class="flex items-center gap-2">
+                {% include icon.html name='calendar' size='sm' class='text-brand-sky' %}
+                <span>{{ next_event.date | date: "%B %-d, %Y" }}</span>
+              </p>
+              {% if next_event.location %}
+                <p class="flex items-center gap-2">
+                  {% include icon.html name='location-pin' size='sm' class='text-brand-sky' %}
+                  <span>{{ next_event.location }}</span>
+                </p>
+              {% endif %}
+            </div>
+          </div>
+          <span class="inline-flex items-center gap-1 rounded-full bg-brand-indigo/10 px-3 py-1 text-xs font-semibold text-brand-indigo">Details {% include icon.html name='arrow-right' size='sm' class='text-brand-indigo' %}</span>
+        </div>
+      </section>
+    {% endif %}
     {% if cohort_data and cohort_data.events %}
-      {% include timeline.html events=cohort_data.events year=page.year %}
+      {% include timeline.html events=cohort_data.events year=page.year next_slug=next_event_slug %}
     {% endif %}
     {% if cohort_data and cohort_data.materials %}
       {% include materials.html materials=cohort_data.materials %}

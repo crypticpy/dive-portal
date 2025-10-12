@@ -9,11 +9,20 @@
         <h3 class="text-sm font-semibold uppercase tracking-wide text-brand-cloud">{{ group[0] | replace: '_', ' ' | capitalize }}</h3>
         <ul class="mt-4 grid gap-3">
           {% for item in group[1] %}
+            {% assign type = item.type | downcase %}
+            {% assign icon_name = 'document' %}
+            {% if type contains 'slide' or type contains 'deck' or type contains 'story' %}
+              {% assign icon_name = 'presentation' %}
+            {% elsif type contains 'guide' or type contains 'doc' %}
+              {% assign icon_name = 'document' %}
+            {% elsif type contains 'hands' or type contains 'code' or type contains 'technical' %}
+              {% assign icon_name = 'terminal' %}
+            {% endif %}
             <li>
               <a class="group flex items-center justify-between rounded-xl border border-brand-sky/15 bg-white px-4 py-3 text-sm font-semibold text-brand-navy transition hover:border-brand-sky hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-brand-sky/30" href="{{ item.url }}">
                 <span class="flex items-center gap-3">
                   <span class="inline-flex h-9 w-9 items-center justify-center rounded-full bg-brand-sky/10 text-brand-indigo">
-                    <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 4.5h15v15h-15z"/><path stroke-linecap="round" stroke-linejoin="round" d="M9 2.5h6m-3 11v5"/></svg>
+                    {% include icon.html name=icon_name size='sm' %}
                   </span>
                   <span class="flex flex-col">
                     {{ item.title }}
