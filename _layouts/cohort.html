@@ -44,18 +44,16 @@ Compute the next upcoming event for the sidebar highlight. Fallback to last even
   {% endif %}
 {% endif %}
 
-<section class="relative mb-12 overflow-hidden rounded-3xl border border-brand-sky/20 bg-gradient-to-br from-white via-brand-sky/5 to-brand-sea/5 shadow-card">
-  <div class="absolute -left-24 -top-24 h-48 w-48 rounded-full bg-brand-sky/20 blur-3xl" aria-hidden="true"></div>
-  <div class="absolute -right-16 top-1/2 h-40 w-40 -translate-y-1/2 rounded-full bg-brand-sea/15 blur-3xl" aria-hidden="true"></div>
+<section class="relative mb-12 overflow-hidden rounded-3xl border border-brand-navy bg-brand-navy shadow-card">
   <div class="relative grid gap-8 px-6 py-12 sm:px-10">
     <div class="space-y-6">
-      <div class="flex flex-wrap items-center gap-3 text-sm font-semibold uppercase tracking-[0.3em] text-brand-cloud">
+      <div class="flex flex-wrap items-center gap-3 text-sm font-semibold uppercase tracking-[0.3em] text-brand-cream">
         <span>Data Interdisciplinary Vocational Experience</span>
-        <span class="inline-flex items-center gap-2 rounded-full bg-brand-sky/10 px-3 py-1 text-xs font-bold tracking-wide text-brand-indigo">{{ page.year }}</span>
+        <span class="inline-flex items-center gap-2 rounded-full bg-brand-cream/20 px-3 py-1 text-xs font-bold tracking-wide text-brand-cream">{{ page.year }}</span>
       </div>
-      <h1 class="text-4xl font-semibold text-brand-navy sm:text-5xl">DIVE Cohort {{ page.year }}</h1>
+      <h1 class="text-4xl font-semibold text-brand-cream sm:text-5xl">DIVE Cohort {{ page.year }}</h1>
       {% if page.intro %}
-        <p class="max-w-3xl text-lg leading-relaxed text-brand-stone">{{ page.intro }}</p>
+        <p class="max-w-3xl text-lg leading-relaxed text-brand-cream">{{ page.intro }}</p>
       {% endif %}
       <div class="flex flex-wrap gap-3">
         {% assign team_badge = team_count | append: ' teams' %}

@@ -10,7 +10,7 @@ Automatically determines state based on date if not specified
     <p class="text-xs uppercase tracking-[0.28em] text-brand-indigo">{{ include.subtitle | default: 'Milestones for this cohort' }}</p>
   </div>
   <div class="relative px-6 py-6 sm:py-8">
-    <span class="pointer-events-none absolute left-6 top-0 bottom-0 w-px bg-gradient-to-b from-brand-sky/40 via-brand-indigo/30 to-brand-sea/30" aria-hidden="true"></span>
+    <span class="pointer-events-none absolute left-6 top-0 bottom-0 w-px bg-brand-indigo/30" aria-hidden="true"></span>
     <ol class="space-y-6">
       {% for event in include.events %}
         {% assign event_state = event.state | default: 'upcoming' %}
@@ -38,10 +38,10 @@ Automatically determines state based on date if not specified
             {% assign card_class = 'border-brand-indigo/20 bg-white/50 opacity-75' %}
             {% assign icon_bg = 'bg-brand-indigo/20 text-brand-indigo' %}
           {% when 'current' %}
-            {% assign card_class = 'border-brand-indigo/30 bg-gradient-to-br from-white to-brand-sky/5 shadow-card' %}
+            {% assign card_class = 'border-brand-indigo/30 bg-white shadow-card' %}
             {% assign icon_bg = 'bg-brand-indigo text-white shadow-subtle' %}
           {% else %}
-            {% assign card_class = 'border-brand-sky/15 bg-white/80' %}
+            {% assign card_class = 'border-brand-sky/15 bg-white' %}
             {% assign icon_bg = 'bg-brand-sky/15 text-brand-indigo' %}
         {% endcase %}
 

@@ -58,10 +58,6 @@ module.exports = {
         xl: "1.25rem",
         "2xl": "1.75rem"
       },
-      backgroundImage: {
-        "hero-radial": "radial-gradient(circle at 20% 20%, rgba(0,156,222,0.18), transparent 55%), radial-gradient(circle at 80% 10%, rgba(0,159,77,0.18), transparent 50%)",  // Cyan + Logo Green
-        "card-gradient": "linear-gradient(135deg, rgba(68,73,156,0.09) 0%, rgba(0,159,77,0.05) 100%)"  // Logo Blue + Logo Green
-      },
       spacing: {
         18: "4.5rem",
         22: "5.5rem"
