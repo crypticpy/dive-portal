@@ -12,19 +12,17 @@ include_filters: false
 {% assign total_departments = all_teams | map: 'department' | uniq | size %}
 {% assign total_tracks = all_teams | map: 'track' | uniq | size %}
 
-<section class="relative mb-16 overflow-hidden rounded-3xl border border-brand-sky/20 bg-gradient-to-br from-white via-brand-sky/5 to-brand-sea/5 shadow-card">
-  <div class="absolute -left-28 top-1/2 h-56 w-56 -translate-y-1/2 rounded-full bg-brand-sky/20 blur-3xl" aria-hidden="true"></div>
-  <div class="absolute -right-10 -top-10 h-40 w-40 rounded-full bg-brand-gold/20 blur-3xl" aria-hidden="true"></div>
+<section class="relative mb-16 overflow-hidden rounded-3xl border border-brand-navy bg-brand-navy shadow-card">
   <div class="relative grid gap-12 px-6 py-14 sm:px-10 lg:grid-cols-[1.6fr_minmax(0,1fr)]">
     <div class="space-y-6">
-      <span class="inline-flex items-center gap-2 rounded-full border border-brand-indigo/20 bg-white px-4 py-2 text-xs font-semibold uppercase tracking-[0.32em] text-brand-indigo shadow-subtle">City of Austin · DIVE Program</span>
-      <h1 class="text-4xl font-semibold text-brand-navy sm:text-5xl">Data Learning Cohorts Portal</h1>
-      <p class="max-w-2xl text-lg leading-relaxed text-brand-navy">Discover how Austin public servants apply data science, storytelling, and civic analytics to deliver measurable impact. Each cohort highlights cross-department teams, curated resources, and outcomes you can explore and reuse.</p>
+      <span class="inline-flex items-center gap-2 rounded-full border border-brand-cream/30 bg-brand-navy px-4 py-2 text-xs font-semibold uppercase tracking-[0.32em] text-brand-cream shadow-subtle">City of Austin · DIVE Program</span>
+      <h1 class="text-4xl font-semibold text-brand-cream sm:text-5xl">Data Learning Cohorts Portal</h1>
+      <p class="max-w-2xl text-lg leading-relaxed text-brand-cream">Discover how Austin public servants apply data science, storytelling, and civic analytics to deliver measurable impact. Each cohort highlights cross-department teams, curated resources, and outcomes you can explore and reuse.</p>
       <div class="flex flex-col gap-3 sm:flex-row">
         <a class="inline-flex items-center justify-center rounded-full bg-brand-sky px-6 py-3 text-sm font-semibold text-white shadow-subtle transition hover:-translate-y-0.5 hover:bg-brand-indigo focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-brand-sky/40" href="{{ '/cohorts/2025/' | relative_url }}">
           Explore 2025 Cohort
         </a>
-        <a class="inline-flex items-center justify-center rounded-full border border-brand-sky/40 bg-white px-6 py-3 text-sm font-semibold text-brand-indigo transition hover:-translate-y-0.5 hover:border-brand-indigo hover:bg-white focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-brand-sky/30" href="{{ '/cohorts/' | relative_url }}">
+        <a class="inline-flex items-center justify-center rounded-full border border-brand-cream/40 bg-brand-navy px-6 py-3 text-sm font-semibold text-brand-cream transition hover:-translate-y-0.5 hover:border-brand-cream hover:bg-brand-navy focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-brand-cream/30" href="{{ '/cohorts/' | relative_url }}">
           View Cohort Archive
         </a>
       </div>
