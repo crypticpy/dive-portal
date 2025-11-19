@@ -5,7 +5,7 @@
   </div>
   <div class="relative mx-auto flex max-w-7xl items-center justify-between px-4 py-5 sm:px-6 lg:px-8">
     <a class="flex items-center gap-3 text-brand-navy transition-opacity duration-200 hover:opacity-80 focus:outline-none focus-visible:ring-4 focus-visible:ring-brand-sky/30 focus-visible:ring-offset-2" href="{{ '/' | relative_url }}">
-      <img src="{{ '/assets/images/coa-seal.png' | relative_url }}" alt="City of Austin official seal" class="h-12 w-12" />
+      {% include coa-seal.html size="h-12 w-12" %}
       <div class="flex flex-col">
         <span class="text-sm font-medium uppercase tracking-[0.18em] text-brand-slate">City of Austin</span>
         <span class="text-xl font-semibold text-brand-navy">{{ site.title }}</span>
