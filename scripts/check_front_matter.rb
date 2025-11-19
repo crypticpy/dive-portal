@@ -8,7 +8,7 @@ REQUIRED_KEYS = %w[title slug cohort department track coach members links summar
 
 def parse_front_matter(path)
   content = File.read(path)
-  unless content =~ \A---\s*\n(.*?)\n---\s*\n/m
+  unless content =~ /\A---\s*\n(.*?)\n---\s*\n/m
     raise "#{path} is missing YAML front matter"
   end
 
