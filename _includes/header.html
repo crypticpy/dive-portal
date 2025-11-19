@@ -19,7 +19,7 @@
           {% assign href = item.url | default: '/' %}
           {% assign normalized = href | relative_url %}
           {% capture is_active %}{% if current_url == normalized or current_url == href %}true{% elsif current_url != '/' and current_url contains href and href != '/' %}true{% else %}false{% endif %}{% endcapture %}
-          <a href="{{ href | relative_url }}" class="rounded-full px-4 py-2 text-sm font-medium transition-all duration-200 focus:outline-none focus-visible:ring-4 focus-visible:ring-brand-sky/30 focus-visible:ring-offset-1 {% if is_active == 'true' %}bg-brand-sky/15 text-brand-navy{% else %}text-brand-navy hover:bg-brand-sky/10 hover:text-brand-navy{% endif %}" {% if is_active == 'true' %}aria-current="page"{% endif %}>{{ item.label }}</a>
+          <a href="{{ href | relative_url }}" class="rounded-full px-4 py-2 text-sm font-medium transition-all duration-200 focus:outline-none focus-visible:ring-4 focus-visible:ring-brand-sky/30 focus-visible:ring-offset-1 {% if is_active == 'true' %}bg-brand-sky/15 text-brand-navy{% else %}text-brand-stone hover:bg-brand-sky/10 hover:text-brand-navy{% endif %}" {% if is_active == 'true' %}aria-current="page"{% endif %}>{{ item.label }}</a>
         {% endfor %}
       </nav>
       <a class="hidden rounded-full border border-brand-sky/70 bg-brand-sky px-5 py-2 text-sm font-semibold text-white shadow-subtle transition-all duration-200 hover:-translate-y-0.5 hover:bg-brand-indigo hover:shadow-card focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-brand-sky/40 focus-visible:ring-offset-2 lg:inline-flex" href="{{ site.github.repository_url }}/issues/new?template=new-team.yml" target="_blank" rel="noopener noreferrer">Submit Project</a>
