@@ -69,7 +69,7 @@ module.exports = {
       typography: ({ theme }) => ({
         DEFAULT: {
           css: {
-            color: theme("colors.brand.slate"),
+            color: theme("colors.brand.navy"),
             a: {
               color: theme("colors.brand.sky"),
               fontWeight: theme("fontWeight.medium"),
@@ -88,7 +88,7 @@ module.exports = {
               fontStyle: "normal"
             },
             'p strong': {
-              color: theme("colors.brand.slate")
+              color: theme("colors.brand.navy")
             }
           }
         }

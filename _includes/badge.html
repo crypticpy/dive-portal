@@ -29,9 +29,9 @@ Non-interactive badges are purely informational.
       {% assign tone_class = tone_class | append: ' hover:border-brand-amber/40 hover:bg-brand-gold/25' %}
     {% endif %}
   {% when 'neutral' %}
-    {% assign tone_class = 'border border-brand-cloud/30 bg-white text-brand-stone' %}
+    {% assign tone_class = 'border border-brand-indigo/30 bg-white text-brand-navy' %}
     {% if interactive %}
-      {% assign tone_class = tone_class | append: ' hover:border-brand-cloud/50 hover:bg-brand-sky/5' %}
+      {% assign tone_class = tone_class | append: ' hover:border-brand-indigo/50 hover:bg-brand-sky/5' %}
     {% endif %}
   {% else %}
     {% assign tone_class = 'border border-brand-indigo/20 bg-brand-indigo/10 text-brand-indigo' %}
