@@ -1,0 +1,16 @@
+{% comment %}
+  City of Austin Official Seal
+
+  Parameters:
+  - size: CSS class for height/width (default: "h-12 w-12")
+  - class: Additional CSS classes (optional)
+{% endcomment %}
+{% assign seal_size = include.size | default: "h-12 w-12" %}
+{% assign seal_class = include.class | default: "" %}
+<img
+  src="{{ '/assets/images/coa-seal.png' | relative_url }}"
+  alt="City of Austin official seal"
+  class="{{ seal_size }} {{ seal_class }}"
+  loading="lazy"
+  decoding="async"
+/>
