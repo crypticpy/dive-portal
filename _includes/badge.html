@@ -12,31 +12,34 @@ Non-interactive badges are purely informational.
   {% assign base_class = base_class | append: ' cursor-pointer hover:scale-105 hover:shadow-subtle focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-brand-sky/30 focus-visible:ring-offset-1 active:scale-95' %}
 {% endif %}
 
+{% comment %}Extract common badge styles{% endcomment %}
+{% assign common_class = 'border shadow-sm' %}
+
 {% case tone %}
   {% when 'impact' %}
-    {% assign tone_class = 'border border-brand-forest/25 bg-brand-sea/15 text-brand-forest' %}
+    {% assign tone_class = common_class | append: ' border-brand-forest bg-brand-forest text-white' %}
     {% if interactive %}
-      {% assign tone_class = tone_class | append: ' hover:border-brand-forest/40 hover:bg-brand-sea/25' %}
+      {% assign tone_class = tone_class | append: ' hover:bg-brand-sea hover:border-brand-sea hover:text-white' %}
     {% endif %}
   {% when 'department' %}
-    {% assign tone_class = 'border border-brand-indigo/25 bg-brand-sky/15 text-brand-indigo' %}
+    {% assign tone_class = common_class | append: ' border-brand-sky bg-brand-sky text-white' %}
     {% if interactive %}
-      {% assign tone_class = tone_class | append: ' hover:border-brand-indigo/40 hover:bg-brand-sky/25' %}
+      {% assign tone_class = tone_class | append: ' hover:bg-brand-indigo hover:border-brand-indigo hover:text-white' %}
     {% endif %}
   {% when 'track' %}
-    {% assign tone_class = 'border border-brand-amber/25 bg-brand-gold/15 text-brand-amber' %}
+    {% assign tone_class = common_class | append: ' border-brand-gold bg-brand-gold text-brand-navy' %}
     {% if interactive %}
-      {% assign tone_class = tone_class | append: ' hover:border-brand-amber/40 hover:bg-brand-gold/25' %}
+      {% assign tone_class = tone_class | append: ' hover:bg-brand-amber hover:border-brand-amber hover:text-white' %}
     {% endif %}
   {% when 'neutral' %}
-    {% assign tone_class = 'border border-brand-indigo/30 bg-white text-brand-navy' %}
+    {% assign tone_class = common_class | append: ' border-brand-cream bg-brand-cream text-brand-navy' %}
     {% if interactive %}
-      {% assign tone_class = tone_class | append: ' hover:border-brand-indigo/50 hover:bg-brand-sky/5' %}
+      {% assign tone_class = tone_class | append: ' hover:border-brand-indigo/30 hover:bg-white hover:text-brand-navy' %}
     {% endif %}
   {% else %}
-    {% assign tone_class = 'border border-brand-indigo/20 bg-brand-indigo/10 text-brand-indigo' %}
+    {% assign tone_class = common_class | append: ' border-brand-sky bg-brand-sky text-white' %}
     {% if interactive %}
-      {% assign tone_class = tone_class | append: ' hover:border-brand-indigo/40 hover:bg-brand-indigo/20' %}
+      {% assign tone_class = tone_class | append: ' hover:bg-brand-indigo hover:border-brand-indigo hover:text-white' %}
     {% endif %}
 {% endcase %}
 {% case size %}
